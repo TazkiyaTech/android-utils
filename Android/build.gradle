@@ -77,9 +77,9 @@ task generateJavadocsJar(type: Jar, dependsOn: generateJavadocs) {
 publishing {
     publications {
         UtilsLibrary(MavenPublication) {
-//            Artifact "$buildDir/outputs/aar/Android-release.aar"
-//            Artifact generateJavadocsJar
-//            Artifact generateSourcesJar
+            artifact "$buildDir/outputs/aar/Android-release.aar"
+            artifact generateJavadocsJar
+            artifact generateSourcesJar
 
             groupId "${projectGroupName}"
 //            artifactId "Android"
@@ -103,7 +103,7 @@ publishing {
 
 bintray {
     user = "${bintray_user}"
-    key = "${bintray_api_key}"
+    key = "${bintray_api_key_utils_library}"
     publications = ['UtilsLibrary']
     pkg {
         repo = 'maven'
