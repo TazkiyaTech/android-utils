@@ -9,6 +9,7 @@ group = "${projectGroupName}"
 version = "${projectVersionName}"
 
 FileCollection proGuardFileCollection = files { file('./proguard').listFiles() }
+FileCollection proGuardDebugFileCollection = files { file('./proguard-debug').listFiles() }
 
 android {
     compileSdkVersion 23
@@ -33,6 +34,7 @@ android {
             useProguard false
             proguardFile(getDefaultProguardFile('proguard-android.txt'))
             proguardFiles(proGuardFileCollection)
+            proguardFiles(proGuardDebugFileCollection)
         }
 
         release {
@@ -103,7 +105,7 @@ publishing {
 
 bintray {
     user = "${bintray_user}"
-    key = "${bintray_api_key_utils_library}"
+    key = "${bintray_api_key}"
     publications = ['UtilsLibrary']
     pkg {
         repo = 'maven'
