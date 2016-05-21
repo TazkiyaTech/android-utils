@@ -1,17 +1,22 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 FileCollection proGuardFileCollection = files { file('./proguard').listFiles() }
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
-        applicationId "com.thinkincode.utils"
-        minSdkVersion 19
+        minSdkVersion 16
         targetSdkVersion 23
-        versionCode 1
-        versionName "0.0.1"
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        versionCode Integer.parseInt("${projectVersionCode}")
+        versionName "${projectVersionName}"
+    }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize '1024m'
     }
 
     buildTypes {
@@ -28,6 +33,10 @@ android {
             proguardFile(getDefaultProguardFile('proguard-android.txt'))
             proguardFiles(proGuardFileCollection)
         }
+    }
+
+    lintOptions {
+        abortOnError true
     }
 }
 
