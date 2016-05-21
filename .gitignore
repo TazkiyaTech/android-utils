@@ -6,7 +6,7 @@
 
 # Build folders
 /build
-/app/build
+/Android/build
 
 # IntelliJ (User-specific files):
 /.idea/dictionaries

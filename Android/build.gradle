@@ -77,7 +77,7 @@ task generateJavadocsJar(type: Jar, dependsOn: generateJavadocs) {
 publishing {
     publications {
         UtilsLibrary(MavenPublication) {
-//            Artifact "$buildDir/outputs/aar/app-release.aar"
+//            Artifact "$buildDir/outputs/aar/Android-release.aar"
 //            Artifact generateJavadocsJar
 //            Artifact generateSourcesJar
 
