@@ -11,7 +11,7 @@ import android.util.TypedValue;
 import android.widget.TextView;
 
 /**
- * <p>An extension of TextView which resizes (scales down) its text to fit within its available width and height.</p>
+ * <p>An extension of {@link TextView} which resizes (scales down) its text to fit within its available width and height.</p>
  * 
  * <p>This view is a modification of Chase's answer on Stack Overflow here:
  * <a href="http://stackoverflow.com/a/5535672/1071320" >http://stackoverflow.com/a/5535672/1071320</a></p>
