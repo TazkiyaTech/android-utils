@@ -143,9 +143,21 @@ public class AutoResizeTextView extends TextView {
      * Resizes this view's text size with respect to its width and height (minus padding).
      */
     private void resizeText() {
-        final int availableHeightPixels = getHeight() - getCompoundPaddingBottom() - getCompoundPaddingTop();
         final int availableWidthPixels = getWidth() - getCompoundPaddingLeft() - getCompoundPaddingRight();
+        final int availableHeightPixels = getHeight() - getCompoundPaddingBottom() - getCompoundPaddingTop();
 
+        resizeText(availableWidthPixels, availableHeightPixels);
+    }
+
+    /**
+     * <p>Resizes this view's text size with respect to the given width and height.</p>
+     *
+     * <p>(Default package-private visibility for unit-tests access.)</p>
+     *
+     * @param availableWidthPixels
+     * @param availableHeightPixels
+     */
+    void resizeText(int availableWidthPixels, int availableHeightPixels) {
         final CharSequence text = getText();
 
         // Safety check! Do not resize if the view does not have dimensions or if there is no text
