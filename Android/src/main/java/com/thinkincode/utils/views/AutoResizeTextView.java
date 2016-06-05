@@ -241,11 +241,13 @@ public class AutoResizeTextView extends TextView {
         final int lastLineStartOffset = staticLayout.getLineStart(lastLineNumber);
         int lastLineEndOffset = staticLayout.getLineEnd(lastLineNumber);
 
+        CharSequence choppedLineExcludingEllipsis;
         float choppedLineExcludingEllipsisWidthPixels;
 
         // Trim characters off until we have enough room to draw the ellipsis
         do {
-        	choppedLineExcludingEllipsisWidthPixels = textPaintCopy.measureText(text, lastLineStartOffset, lastLineEndOffset);
+            choppedLineExcludingEllipsis = text.subSequence(lastLineStartOffset, lastLineEndOffset);
+        	choppedLineExcludingEllipsisWidthPixels = measureTextWidthPixels(choppedLineExcludingEllipsis.toString(), textPaintCopy);
         	lastLineEndOffset--;
         } while (choppedLineExcludingEllipsisWidthPixels + ellipsisWidthPixels > availableWidthPixels);
 
