@@ -97,8 +97,11 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // Then.
         String text = textView.getText().toString();
-
         assertThat(text, equalTo(TEXT));
+
+        // And.
+        float textSize = textView.getTextSize();
+        assertThat(textSize, equalTo(minimumTextSizePixels));
     }
 
     @Test
@@ -115,6 +118,10 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         assertThat(text, startsWith(AutoResizeTextView.ELLIPSIS));
         assertThat(TEXT, endsWith(text.substring(1)));
         assertThat(text.length(), lessThan(TEXT.length()));
+
+        // And.
+        float textSize = textView.getTextSize();
+        assertThat(textSize, equalTo(minimumTextSizePixels));
     }
 
     @Test
@@ -127,8 +134,11 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // Then.
         String text = textView.getText().toString();
-
         assertThat(text, equalTo(AutoResizeTextView.ELLIPSIS));
+
+        // And.
+        float textSize = textView.getTextSize();
+        assertThat(textSize, equalTo(minimumTextSizePixels));
     }
 
     @Test
@@ -141,8 +151,11 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // Then.
         String text = textView.getText().toString();
-
         assertThat(text, equalTo(TEXT));
+
+        // And.
+        float textSize = textView.getTextSize();
+        assertThat(textSize, equalTo(minimumTextSizePixels));
     }
 
     @Test
@@ -164,6 +177,10 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         assertThat(TEXT, startsWith(textSplitOnEllipsis[0]));
         assertThat(TEXT, endsWith(textSplitOnEllipsis[1]));
+
+        // And.
+        float textSize = textView.getTextSize();
+        assertThat(textSize, equalTo(minimumTextSizePixels));
     }
 
     @Test
@@ -176,8 +193,11 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // Then.
         String text = textView.getText().toString();
-
         assertThat(text, equalTo(AutoResizeTextView.ELLIPSIS));
+
+        // And.
+        float textSize = textView.getTextSize();
+        assertThat(textSize, equalTo(minimumTextSizePixels));
     }
 
     @Test
