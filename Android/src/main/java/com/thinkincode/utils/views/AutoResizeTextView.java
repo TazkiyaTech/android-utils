@@ -195,7 +195,7 @@ public class AutoResizeTextView extends TextView {
      * @param textSizePixels
      * @param textHeightPixels
      */
-    void addEllipsisIfNeeded(int availableHeightPixels, int availableWidthPixels, float textSizePixels, float textHeightPixels) {
+    private void addEllipsisIfNeeded(int availableHeightPixels, int availableWidthPixels, float textSizePixels, float textHeightPixels) {
     	if (getEllipsize() != null && textSizePixels <= mMinTextSizePixels && textHeightPixels > availableHeightPixels) {
         	if (getEllipsize().equals(TruncateAt.END)) {
         		addEllipsisAtEndOfText(availableHeightPixels, availableWidthPixels, textSizePixels);

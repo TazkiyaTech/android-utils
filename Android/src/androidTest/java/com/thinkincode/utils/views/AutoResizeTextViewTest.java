@@ -88,12 +88,12 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     }
 
     @Test
-    public void test_addEllipsisIfNeeded_whenEllipsizeIsTruncateAtStartAndEllipsizeNotNeeded() {
+    public void test_resizeText_whenEllipsizeIsTruncateAtStartAndEllipsizeNotNeeded() {
         // Given.
         textView.setEllipsize(TextUtils.TruncateAt.START);
 
         // When.
-        textView.addEllipsisIfNeeded(((int)testTextHeight)+1, ((int)testTextWidth)+1, minimumTextSizePixels, testTextHeight);
+        textView.resizeText(((int)testTextWidth)+1, ((int)testTextHeight)+1);
 
         // Then.
         String text = textView.getText().toString();
@@ -102,12 +102,12 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     }
 
     @Test
-    public void test_addEllipsisIfNeeded_whenEllipsizeIsTruncateAtStartAndEllipsizeNeeded_1() {
+    public void test_resizeText_whenEllipsizeIsTruncateAtStartAndEllipsizeNeeded_1() {
         // Given.
         textView.setEllipsize(TextUtils.TruncateAt.START);
 
         // When.
-        textView.addEllipsisIfNeeded(((int)testTextHeight)+1, ((int)testTextWidth)/2, minimumTextSizePixels, testTextHeight*2);
+        textView.resizeText(((int)testTextWidth)-1, ((int)testTextHeight)+1);
 
         // Then.
         String text = textView.getText().toString();
@@ -118,12 +118,12 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     }
 
     @Test
-    public void test_addEllipsisIfNeeded_whenEllipsizeIsTruncateAtStartAndEllipsizeNeeded_2() {
+    public void test_resizeText_whenEllipsizeIsTruncateAtStartAndEllipsizeNeeded_2() {
         // Given.
         textView.setEllipsize(TextUtils.TruncateAt.START);
 
         // When.
-        textView.addEllipsisIfNeeded(((int)testTextHeight)+1, ((int)ellipsisTextWidth)+1, minimumTextSizePixels, testTextHeight*2);
+        textView.resizeText(((int)ellipsisTextWidth)+1, ((int)testTextHeight)+1);
 
         // Then.
         String text = textView.getText().toString();
@@ -132,12 +132,12 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     }
 
     @Test
-    public void test_addEllipsisIfNeeded_whenEllipsizeIsTruncateAtMiddleAndEllipsizeNotNeeded() {
+    public void test_resizeText_whenEllipsizeIsTruncateAtMiddleAndEllipsizeNotNeeded() {
         // Given.
         textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
 
         // When.
-        textView.addEllipsisIfNeeded(((int)testTextHeight)+1, ((int)testTextWidth)+1, minimumTextSizePixels, testTextHeight);
+        textView.resizeText(((int)testTextWidth)+1, ((int)testTextHeight)+1);
 
         // Then.
         String text = textView.getText().toString();
@@ -146,12 +146,12 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     }
 
     @Test
-    public void test_addEllipsisIfNeeded_whenEllipsizeIsTruncateAtMiddleAndEllipsizeNeeded_1() {
+    public void test_resizeText_whenEllipsizeIsTruncateAtMiddleAndEllipsizeNeeded_1() {
         // Given.
         textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
 
         // When.
-        textView.addEllipsisIfNeeded(((int)testTextHeight)+1, ((int)testTextWidth)/2, minimumTextSizePixels, testTextHeight*2);
+        textView.resizeText(((int)testTextWidth)-1, ((int)testTextHeight)+1);
 
         // Then.
         String text = textView.getText().toString();
@@ -167,12 +167,12 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     }
 
     @Test
-    public void test_addEllipsisIfNeeded_whenEllipsizeIsTruncateAtMiddleAndEllipsizeNeeded_2() {
+    public void test_resizeText_whenEllipsizeIsTruncateAtMiddleAndEllipsizeNeeded_2() {
         // Given.
         textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
 
         // When.
-        textView.addEllipsisIfNeeded(((int)testTextHeight)+1, ((int)ellipsisTextWidth)+1, minimumTextSizePixels, testTextHeight*2);
+        textView.resizeText(((int)ellipsisTextWidth)+1, ((int)testTextHeight)+1);
 
         // Then.
         String text = textView.getText().toString();
