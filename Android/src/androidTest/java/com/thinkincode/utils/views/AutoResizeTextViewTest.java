@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.endsWith;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.startsWith;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -46,6 +47,42 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         testTextHeight = textView.measureTextHeightPixels(TEXT, Integer.MAX_VALUE, minimumTextSizePixels);
         testTextWidth = textView.measureTextWidthPixels(TEXT, minimumTextSizePixels);
         ellipsisTextWidth = textView.measureTextWidthPixels(AutoResizeTextView.ELLIPSIS, minimumTextSizePixels);
+    }
+
+    @Test
+    public void test_measureTextHeightPixels_whenTextEmpty() {
+        // When.
+        float textHeightPixels = textView.measureTextHeightPixels("", Integer.MAX_VALUE, minimumTextSizePixels);
+
+        // Then.
+        assertThat(textHeightPixels, greaterThan(new Float(0)));
+    }
+
+    @Test
+    public void test_measureTextHeightPixels_whenTextNonEmpty() {
+        // When.
+        float textHeightPixels = textView.measureTextHeightPixels(TEXT, Integer.MAX_VALUE, minimumTextSizePixels);
+
+        // Then.
+        assertThat(textHeightPixels, greaterThan(new Float(0)));
+    }
+
+    @Test
+    public void test_measureTextWidthPixels_whenTextEmpty() {
+        // When.
+        float textWidthPixels = textView.measureTextWidthPixels("", minimumTextSizePixels);
+
+        // Then.
+        assertThat(textWidthPixels, equalTo(new Float(0)));
+    }
+
+    @Test
+    public void test_measureTextWidthPixels_whenTextNonEmpty() {
+        // When.
+        float textWidthPixels = textView.measureTextWidthPixels(TEXT, minimumTextSizePixels);
+
+        // Then.
+        assertThat(textWidthPixels, greaterThan(new Float(0)));
     }
 
     @Test

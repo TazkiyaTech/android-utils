@@ -210,7 +210,7 @@ public class AutoResizeTextView extends TextView {
         final float ellipsisWidthPixels = measureTextWidthPixels(ELLIPSIS, textPaintCopy);
 
         // safety check
-        if (ellipsisWidthPixels == 0 || ellipsisWidthPixels > availableWidthPixels) {
+        if (ellipsisWidthPixels > availableWidthPixels) {
             return;
         }
 
@@ -267,7 +267,7 @@ public class AutoResizeTextView extends TextView {
         float ellipsisWidthPixels = measureTextWidthPixels(ELLIPSIS, textPaintCopy);
 
         // safety check
-        if (ellipsisWidthPixels == 0 || ellipsisWidthPixels > availableWidthPixels) {
+        if (ellipsisWidthPixels > availableWidthPixels) {
         	return;
         }
 
@@ -290,7 +290,7 @@ public class AutoResizeTextView extends TextView {
     }
 
     /**
-     * Chops the characters in the middle of the text down
+     * Repeatedly chops the character in the middle of the text
      * until it fits in a single line within the available width
      * at the specified text size...
      * and adds an ellipsis in the middle of the chopped text.
@@ -303,7 +303,7 @@ public class AutoResizeTextView extends TextView {
         float ellipsisWidthPixels = measureTextWidthPixels(ELLIPSIS, textPaintCopy);
 
         // safety check
-        if (ellipsisWidthPixels == 0 || ellipsisWidthPixels > availableWidthPixels) {
+        if (ellipsisWidthPixels > availableWidthPixels) {
         	return;
         }
 
@@ -398,12 +398,7 @@ public class AutoResizeTextView extends TextView {
      * measured with the provided {@link TextPaint} object.
      */
     private float measureTextWidthPixels(String text, TextPaint textPaint) {
-        // safety check (TODO: needed??)
-        if (TextUtils.isEmpty(text)) {
-            return 0;
-        } else {
-            return textPaint.measureText(text);
-        }
+        return textPaint.measureText(text);
     }
 
     /**
