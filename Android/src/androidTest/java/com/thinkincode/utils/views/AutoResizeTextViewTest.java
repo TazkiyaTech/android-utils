@@ -25,13 +25,34 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
     private static final float MAXIMUM_TEXT_SIZE_SP = 18.0f;
     private static final float MINIMUM_TEXT_SIZE_SP = 12.0f;
-    private static final String TEXT = "Some text";
+    private static final String TEST_TEXT = "Some text";
 
     private AutoResizeTextView textView;
+
+    /**
+     * The minimum text size in pixels (rather than scaled pixels).
+     */
     private float minimumTextSizePixels;
 
+    /**
+     * This is the height of the {@link #TEST_TEXT} String
+     * if it were all to fit on one line in {@link #textView}
+     * and if the text size of {@link #textView} was {@link #MINIMUM_TEXT_SIZE_SP}.
+     */
     private float testTextHeight;
+
+    /**
+     * This is the width of the {@link #TEST_TEXT} String
+     * if it were all to fit on one line in {@link #textView}
+     * and if the text size of {@link #textView} was {@link #MINIMUM_TEXT_SIZE_SP}.
+     */
     private float testTextWidth;
+
+    /**
+     * This is the height of the {@link AutoResizeTextView#ELLIPSIS} String
+     * if it were all to fit on one line in {@link #textView}
+     * and if the text size of {@link #textView} was {@link #MINIMUM_TEXT_SIZE_SP}.
+     */
     private float ellipsisTextWidth;
 
     @Before
@@ -42,12 +63,12 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         textView = new AutoResizeTextView(getContext());
         textView.setTextSize(MAXIMUM_TEXT_SIZE_SP);
         textView.setMinTextSize(MINIMUM_TEXT_SIZE_SP);
-        textView.setText(TEXT);
+        textView.setText(TEST_TEXT);
 
         minimumTextSizePixels = textView.convertSpToPx(MINIMUM_TEXT_SIZE_SP);
 
-        testTextHeight = textView.measureTextHeightPixels(TEXT, Integer.MAX_VALUE, minimumTextSizePixels);
-        testTextWidth = textView.measureTextWidthPixels(TEXT, minimumTextSizePixels);
+        testTextHeight = textView.measureTextHeightPixels(TEST_TEXT, Integer.MAX_VALUE, minimumTextSizePixels);
+        testTextWidth = textView.measureTextWidthPixels(TEST_TEXT, minimumTextSizePixels);
         ellipsisTextWidth = textView.measureTextWidthPixels(AutoResizeTextView.ELLIPSIS, minimumTextSizePixels);
     }
 
@@ -63,7 +84,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     @Test
     public void test_measureTextHeightPixels_whenTextNonEmpty() {
         // When.
-        float textHeightPixels = textView.measureTextHeightPixels(TEXT, Integer.MAX_VALUE, minimumTextSizePixels);
+        float textHeightPixels = textView.measureTextHeightPixels(TEST_TEXT, Integer.MAX_VALUE, minimumTextSizePixels);
 
         // Then.
         assertThat(textHeightPixels, greaterThan(new Float(0)));
@@ -81,7 +102,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     @Test
     public void test_measureTextWidthPixels_whenTextNonEmpty() {
         // When.
-        float textWidthPixels = textView.measureTextWidthPixels(TEXT, minimumTextSizePixels);
+        float textWidthPixels = textView.measureTextWidthPixels(TEST_TEXT, minimumTextSizePixels);
 
         // Then.
         assertThat(textWidthPixels, greaterThan(new Float(0)));
@@ -97,7 +118,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // Then.
         String text = textView.getText().toString();
-        assertThat(text, equalTo(TEXT));
+        assertThat(text, equalTo(TEST_TEXT));
 
         // And.
         float textSize = textView.getTextSize();
@@ -116,8 +137,8 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         String text = textView.getText().toString();
 
         assertThat(text, startsWith(AutoResizeTextView.ELLIPSIS));
-        assertThat(TEXT, endsWith(text.substring(1)));
-        assertThat(text.length(), lessThan(TEXT.length()));
+        assertThat(TEST_TEXT, endsWith(text.substring(1)));
+        assertThat(text.length(), lessThan(TEST_TEXT.length()));
 
         // And.
         float textSize = textView.getTextSize();
@@ -151,7 +172,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // Then.
         String text = textView.getText().toString();
-        assertThat(text, equalTo(TEXT));
+        assertThat(text, equalTo(TEST_TEXT));
 
         // And.
         float textSize = textView.getTextSize();
@@ -170,13 +191,13 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         String text = textView.getText().toString();
 
         assertThat(text, containsString(AutoResizeTextView.ELLIPSIS));
-        assertThat(text.length(), lessThan(TEXT.length()));
+        assertThat(text.length(), lessThan(TEST_TEXT.length()));
 
         // And.
         String[] textSplitOnEllipsis = text.split(AutoResizeTextView.ELLIPSIS);
 
-        assertThat(TEXT, startsWith(textSplitOnEllipsis[0]));
-        assertThat(TEXT, endsWith(textSplitOnEllipsis[1]));
+        assertThat(TEST_TEXT, startsWith(textSplitOnEllipsis[0]));
+        assertThat(TEST_TEXT, endsWith(textSplitOnEllipsis[1]));
 
         // And.
         float textSize = textView.getTextSize();
@@ -210,7 +231,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // Then.
         String text = textView.getText().toString();
-        assertThat(text, equalTo(TEXT));
+        assertThat(text, equalTo(TEST_TEXT));
 
         // And.
         float textSize = textView.getTextSize();
@@ -229,8 +250,8 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         String text = textView.getText().toString();
 
         assertThat(text, endsWith(AutoResizeTextView.ELLIPSIS));
-        assertThat(TEXT, startsWith(text.substring(0, text.length()-1)));
-        assertThat(text.length(), lessThan(TEXT.length()));
+        assertThat(TEST_TEXT, startsWith(text.substring(0, text.length()-1)));
+        assertThat(text.length(), lessThan(TEST_TEXT.length()));
 
         // And.
         float textSize = textView.getTextSize();
