@@ -30,6 +30,11 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     private AutoResizeTextView textView;
 
     /**
+     * The maximum text size in pixels (rather than scaled pixels).
+     */
+    private float maximumTextSizePixels;
+
+    /**
      * The minimum text size in pixels (rather than scaled pixels).
      */
     private float minimumTextSizePixels;
@@ -65,11 +70,15 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         textView.setMinTextSize(MINIMUM_TEXT_SIZE_SP);
         textView.setText(TEST_TEXT);
 
+        maximumTextSizePixels = textView.convertSpToPx(MAXIMUM_TEXT_SIZE_SP);
         minimumTextSizePixels = textView.convertSpToPx(MINIMUM_TEXT_SIZE_SP);
 
         testTextHeight = textView.measureTextHeightPixels(TEST_TEXT, Integer.MAX_VALUE, minimumTextSizePixels);
         testTextWidth = textView.measureTextWidthPixels(TEST_TEXT, minimumTextSizePixels);
         ellipsisTextWidth = textView.measureTextWidthPixels(AutoResizeTextView.ELLIPSIS, minimumTextSizePixels);
+
+        assertThat(textView.getText().toString(), equalTo(TEST_TEXT));
+        assertThat(textView.getTextSize(), equalTo(maximumTextSizePixels));
     }
 
     @Test
