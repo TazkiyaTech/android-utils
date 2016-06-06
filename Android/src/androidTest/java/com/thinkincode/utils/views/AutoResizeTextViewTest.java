@@ -25,7 +25,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
     private static final float MAXIMUM_TEXT_SIZE_SP = 18.0f;
     private static final float MINIMUM_TEXT_SIZE_SP = 12.0f;
-    private static final String TEST_TEXT = "Some text";
+    private static final String TEST_TEXT = "12345678";
 
     private AutoResizeTextView textView;
 
@@ -231,12 +231,29 @@ public class AutoResizeTextViewTest extends BaseTestCase {
     }
 
     @Test
-    public void test_resizeText_whenEllipsizeIsTruncateAtEndAndEllipsizeNotNeeded() {
+    public void test_resizeText_whenEllipsizeIsTruncateAtEndAndEllipsizeNotNeeded_1() {
         // Given.
         textView.setEllipsize(TextUtils.TruncateAt.END);
 
         // When.
         textView.resizeText(((int)testTextWidth)+1, ((int)testTextHeight)+1);
+
+        // Then.
+        String text = textView.getText().toString();
+        assertThat(text, equalTo(TEST_TEXT));
+
+        // And.
+        float textSize = textView.getTextSize();
+        assertThat(textSize, equalTo(minimumTextSizePixels));
+    }
+
+    @Test
+    public void test_resizeText_whenEllipsizeIsTruncateAtEndAndEllipsizeNotNeeded_2() {
+        // Given.
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+
+        // When.
+        textView.resizeText((int)((testTextWidth/2)+1), (int)((testTextHeight*2)+1));
 
         // Then.
         String text = textView.getText().toString();
