@@ -5,8 +5,8 @@ plugins {
 apply plugin: 'maven-publish'
 apply plugin: 'com.android.library'
 
-group = "${projectGroupName}"
-version = "${projectVersionName}"
+group = getProperty('projectGroupName')
+version = getProperty('projectVersionName')
 
 FileCollection proGuardFileCollection = files { file('./proguard').listFiles() }
 FileCollection proGuardDebugFileCollection = files { file('./proguard-debug').listFiles() }
@@ -19,8 +19,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-        versionCode Integer.parseInt("${projectVersionCode}")
-        versionName "${projectVersionName}"
+        versionCode Integer.parseInt(getProperty('projectVersionCode'))
+        versionName getProperty('projectVersionName')
     }
 
     dexOptions {
@@ -83,9 +83,9 @@ publishing {
             artifact generateJavadocsJar
             artifact generateSourcesJar
 
-            groupId "${projectGroupName}"
+            groupId getProperty('projectGroupName')
 //            artifactId "Android"
-            version "${projectVersionName}"
+            version getProperty('projectVersionName')
 
             //The publication doesn't know about our dependencies, so we have to manually add them to the pom
             pom.withXml {
@@ -104,8 +104,8 @@ publishing {
 }
 
 bintray {
-    user = "${bintray_user}"
-    key = "${bintray_api_key}"
+    user = getProperty('bintray_user')
+    key = getProperty('bintray_api_key')
     publications = ['UtilsLibrary']
     pkg {
         repo = 'maven'
@@ -115,10 +115,10 @@ bintray {
         vcsUrl = 'https://bitbucket.org/adilson05uk/utils-library.git'
 
         version {
-            name = "${projectVersionName}"
+            name = getProperty('projectVersionName')
             desc = 'Latest release!'
             released  = new Date()
-//            vcsTag = "release_" + "${projectVersionName}"
+//            vcsTag = "release_" + getProperty('projectVersionName}"
         }
     }
 }
