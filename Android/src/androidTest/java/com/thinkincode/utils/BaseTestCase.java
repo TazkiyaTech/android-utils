@@ -3,7 +3,7 @@ package com.thinkincode.utils;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 
-public class BaseTestCase {
+public abstract class BaseTestCase {
 
     /**
      * Performs some pre-test setup.
