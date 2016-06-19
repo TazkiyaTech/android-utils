@@ -6,28 +6,31 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 /**
- * Custom view which extends {@link RelativeLayout}
+ * <p>Custom view which extends {@link RelativeLayout}
  * and which places its children horizontally,
- * flowing over to a new line whenever it runs out of width.
+ * flowing over to a new line whenever it runs out of width.</p>
+ *
+ * <p>This view is a modification of Nishant Nair's Blog post here:
+ * <a href="https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android">https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android</a></p>
  * */
 public class HorizontalFlowLayout extends RelativeLayout {
 
 	/**
-	 * Constructor to use when creating View from code.
+	 * Constructor to use when creating the view from code.
 	 * */
     public HorizontalFlowLayout(Context context) {
         super(context);
     }
 
     /**
-     * Constructor that is called when inflating View from XML.
+     * Constructor that is called when inflating the view from XML.
      * */
     public HorizontalFlowLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     /**
-     * Perform inflation from XML and apply a class-specific base style.
+     * Perform inflation from XML and apply a class-specific base style from a theme attribute.
      * */
 	public HorizontalFlowLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);

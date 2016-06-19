@@ -38,26 +38,28 @@ public class AutoResizeTextView extends TextView {
     private float mLineSpacingExtra = 0.0f;
 
     /**
-     * Default constructor override.
+     * Constructor to use when creating the view from code.
      * 
      * @param context
      */
     public AutoResizeTextView(Context context) {
-        this(context, null);
+        super(context);
+        initialise();
     }
 
     /**
-     * Default constructor when inflating from XML file.
+     * Constructor that is called when inflating the view from XML.
      * 
      * @param context
      * @param attrs
      */
     public AutoResizeTextView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        initialise();
     }
 
     /**
-     * Default constructor override.
+     * Perform inflation from XML and apply a class-specific base style from a theme attribute.
      * 
      * @param context
      * @param attrs
