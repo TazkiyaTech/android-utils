@@ -39,8 +39,6 @@ public class AutoResizeTextView extends TextView {
 
     /**
      * Constructor to use when creating the view from code.
-     * 
-     * @param context
      */
     public AutoResizeTextView(Context context) {
         super(context);
@@ -49,9 +47,6 @@ public class AutoResizeTextView extends TextView {
 
     /**
      * Constructor that is called when inflating the view from XML.
-     * 
-     * @param context
-     * @param attrs
      */
     public AutoResizeTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -69,6 +64,15 @@ public class AutoResizeTextView extends TextView {
         super(context, attrs, defStyle);
         initialise();
     }
+
+//    /**
+//     * Perform inflation from XML and apply a class-specific base style from a theme attribute or style resource.
+//     *
+//     * TODO: uncomment this constructor once the minimum API level of this project is changed to 21 (Lollipop).
+//     */
+//    public AutoResizeTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+//        super(context, attrs, defStyleAttr, defStyleRes);
+//    }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
