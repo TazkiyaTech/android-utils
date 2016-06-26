@@ -47,79 +47,26 @@ public class HorizontalFlowLayout extends RelativeLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    	// need to call super.onMeasure(...) otherwise get some funny behaviour
+    	// need to call super.onMeasure(...) otherwise we'll get some funny behaviour
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
 		final int width = MeasureSpec.getSize(widthMeasureSpec);
 		int height = MeasureSpec.getSize(heightMeasureSpec);
 
-		// increment the x position as we progress through a line
-        int xpos = getPaddingLeft();
-        // increment the y position as we progress through the lines
-        int ypos = getPaddingTop();
-        // the height of the current line
-        int line_height = 0;
-
-        // go through children
-        // to work out the height required for this view
-
-        // call to measure size of children not needed I think?!
-        // getting child's measured height/width seems to work okay without it
-        //measureChildren(widthMeasureSpec, heightMeasureSpec);
-
-        View child;
-        MarginLayoutParams childMarginLayoutParams;
-        int childWidth, childHeight, childMarginLeft, childMarginRight, childMarginTop, childMarginBottom;
-
-        for (int i = 0; i < getChildCount(); i++) {
-            child = getChildAt(i);
-
-            if (child.getVisibility() != GONE) {
-                childWidth = child.getMeasuredWidth();
-                childHeight = child.getMeasuredHeight();
-
-                if (child.getLayoutParams() != null
-                		&& child.getLayoutParams() instanceof MarginLayoutParams) {
-                	childMarginLayoutParams = (MarginLayoutParams)child.getLayoutParams();
-
-                	childMarginLeft = childMarginLayoutParams.leftMargin;
-                	childMarginRight = childMarginLayoutParams.rightMargin;
-                	childMarginTop = childMarginLayoutParams.topMargin;
-                	childMarginBottom = childMarginLayoutParams.bottomMargin;
-                } else {
-                	childMarginLeft = 0;
-                	childMarginRight = 0;
-                	childMarginTop = 0;
-                	childMarginBottom = 0;
-                }
-
-                if (xpos + childMarginLeft + childWidth + childMarginRight + getPaddingRight() > width) {
-                	// this child will need to go on a new line
-
-                    xpos = getPaddingLeft();
-                    ypos += line_height;
-
-                    line_height = childMarginTop + childHeight + childMarginBottom;
-                } else {
-                	// enough space for this child on the current line
-                	line_height = Math.max(
-                			line_height,
-                			childMarginTop + childHeight + childMarginBottom);
-                }
-
-                xpos += childMarginLeft + childWidth + childMarginRight;
-            }
-        }
-
-        ypos += line_height + getPaddingBottom();
+        final int requiredHeight = measureRequiredHeight(
+                width,
+                getPaddingTop(),
+                getPaddingBottom(),
+                getPaddingLeft(),
+                getPaddingRight());
 
         if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.UNSPECIFIED) {
-        	// set height as measured since there's no height restrictions
-        	height = ypos;
+        	// set height as required since there's no height restrictions
+        	height = requiredHeight;
         } else if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.AT_MOST
-        		&& ypos < height) {
-        	// set height as measured since it's less than the maximum allowed
-        	height = ypos;
+        		&& requiredHeight < height) {
+        	// set height as required since it's less than the maximum allowed
+        	height = requiredHeight;
         }
 
         setMeasuredDimension(width, height);
@@ -188,5 +135,83 @@ public class HorizontalFlowLayout extends RelativeLayout {
                 xpos += childMarginLeft + childWidth + childMarginRight;
             }
         }
+    }
+
+    /**
+     * <p>Measures the height required by this view
+     * to fit all its children within the available width,
+     * wrapping its children over multiple lines if necessary.</p>
+     *
+     * <p>(Package-private visibility for uint tests access.)</p>
+     *
+     * @param width the width available to this view.
+     * @return the height required by this view.
+     */
+    int measureRequiredHeight(int width,
+                                      int paddingTop,
+                                      int paddingBottom,
+                                      int paddingLeft,
+                                      int paddingRight) {
+        // increment the x position as we progress through a line
+        int xpos = paddingLeft;
+        // increment the y position as we progress through the lines
+        int ypos = paddingTop;
+        // the height of the current line
+        int line_height = 0;
+
+        // go through children
+        // to work out the height required for this view
+
+        // call to measure size of children not needed I think?!
+        // getting child's measured height/width seems to work okay without it
+        //measureChildren(widthMeasureSpec, heightMeasureSpec);
+
+        View child;
+        MarginLayoutParams childMarginLayoutParams;
+        int childWidth, childHeight, childMarginLeft, childMarginRight, childMarginTop, childMarginBottom;
+
+        for (int i = 0; i < getChildCount(); i++) {
+            child = getChildAt(i);
+
+            if (child.getVisibility() != GONE) {
+                childWidth = child.getMeasuredWidth();
+                childHeight = child.getMeasuredHeight();
+
+                if (child.getLayoutParams() != null
+                        && child.getLayoutParams() instanceof MarginLayoutParams) {
+                    childMarginLayoutParams = (MarginLayoutParams)child.getLayoutParams();
+
+                    childMarginLeft = childMarginLayoutParams.leftMargin;
+                    childMarginRight = childMarginLayoutParams.rightMargin;
+                    childMarginTop = childMarginLayoutParams.topMargin;
+                    childMarginBottom = childMarginLayoutParams.bottomMargin;
+                } else {
+                    childMarginLeft = 0;
+                    childMarginRight = 0;
+                    childMarginTop = 0;
+                    childMarginBottom = 0;
+                }
+
+                if (xpos + childMarginLeft + childWidth + childMarginRight + paddingRight > width) {
+                    // this child will need to go on a new line
+
+                    xpos = paddingLeft;
+                    ypos += line_height;
+
+                    line_height = childMarginTop + childHeight + childMarginBottom;
+                } else {
+                    // enough space for this child on the current line
+                    line_height = Math.max(
+                            line_height,
+                            childMarginTop + childHeight + childMarginBottom);
+                }
+
+                xpos += childMarginLeft + childWidth + childMarginRight;
+            }
+        }
+
+        ypos += line_height + paddingBottom;
+
+        return ypos;
     }
 }
