@@ -10,10 +10,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.either;
 import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.startsWith;
+import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -123,7 +125,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         textView.setEllipsize(TextUtils.TruncateAt.START);
 
         // When.
-        textView.resizeText(((int)testTextWidth)+1, ((int)testTextHeight)+1);
+        textView.resizeText(((int)testTextWidth)+1, ((int)testTextHeight));
 
         // Then.
         String text = textView.getText().toString();
@@ -131,7 +133,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // And.
         float textSize = textView.getTextSize();
-        assertThat(textSize, equalTo(minimumTextSizePixels));
+        assertThat(textSize, either(is(minimumTextSizePixels)).or(is(minimumTextSizePixels + 1)));
     }
 
     @Test
@@ -177,7 +179,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
 
         // When.
-        textView.resizeText(((int)testTextWidth)+1, ((int)testTextHeight)+1);
+        textView.resizeText(((int)testTextWidth)+1, ((int)testTextHeight));
 
         // Then.
         String text = textView.getText().toString();
@@ -185,7 +187,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // And.
         float textSize = textView.getTextSize();
-        assertThat(textSize, equalTo(minimumTextSizePixels));
+        assertThat(textSize, either(is(minimumTextSizePixels)).or(is(minimumTextSizePixels + 1)));
     }
 
     @Test
@@ -236,7 +238,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         textView.setEllipsize(TextUtils.TruncateAt.END);
 
         // When.
-        textView.resizeText(((int)testTextWidth)+1, ((int)testTextHeight)+1);
+        textView.resizeText(((int)testTextWidth)+1, ((int)testTextHeight));
 
         // Then.
         String text = textView.getText().toString();
@@ -244,7 +246,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // And.
         float textSize = textView.getTextSize();
-        assertThat(textSize, equalTo(minimumTextSizePixels));
+        assertThat(textSize, either(is(minimumTextSizePixels)).or(is(minimumTextSizePixels + 1)));
     }
 
     @Test
@@ -253,7 +255,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         textView.setEllipsize(TextUtils.TruncateAt.END);
 
         // When.
-        textView.resizeText((int)((testTextWidth/2)+1), (int)((testTextHeight*2)+1));
+        textView.resizeText((int)((testTextWidth/2)+1), (int)(testTextHeight*2));
 
         // Then.
         String text = textView.getText().toString();
@@ -261,7 +263,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
 
         // And.
         float textSize = textView.getTextSize();
-        assertThat(textSize, equalTo(minimumTextSizePixels));
+        assertThat(textSize, either(is(minimumTextSizePixels)).or(is(minimumTextSizePixels + 1)));
     }
 
     @Test
