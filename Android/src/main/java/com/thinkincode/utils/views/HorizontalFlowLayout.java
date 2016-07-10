@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 /**
- * <p>Custom view which extends {@link RelativeLayout}
+ * <p>A custom view that extends {@link RelativeLayout}
  * and which places its children horizontally,
  * flowing over to a new line whenever it runs out of width.</p>
  *

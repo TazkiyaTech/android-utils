@@ -74,9 +74,9 @@ task generateSourcesJar(type: Jar) {
 
 task generateJavadocs(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
-    classpath += configurations.compile // ?? needed ??
+    classpath += configurations.compile
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    failOnError true // !! set to false if generating Javadoc fails but try a clean and build first !!
+    failOnError false
 }
 
 task generateJavadocsJar(type: Jar, dependsOn: generateJavadocs) {
