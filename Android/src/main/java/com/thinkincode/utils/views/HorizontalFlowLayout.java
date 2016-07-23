@@ -12,6 +12,8 @@ import android.widget.RelativeLayout;
  *
  * <p>This view is a modification of Nishant Nair's Blog post here:
  * <a href="https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android">https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android</a></p>
+ *
+ * <p>TODO: modify class to allow for right-to-left placement of sub-views as well as left-to-right placement of sub-views.</p>
  * */
 public class HorizontalFlowLayout extends RelativeLayout {
 
