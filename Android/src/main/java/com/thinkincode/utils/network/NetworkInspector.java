@@ -3,39 +3,50 @@ package com.thinkincode.utils.network;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
 
 import java.net.InetAddress;
 
 /**
  * Class containing helper methods for checking the state of the network.
- * */
+ */
 public class NetworkInspector {
+
+    @NonNull
+    private final Context context;
+
+    /**
+     * Constructor.
+     *
+     * @param context the {@link Context} used to get the {@link ConnectivityManager}.
+     */
+    public NetworkInspector(@NonNull Context context) {
+        this.context = context;
+    }
 
     /**
      * This method should not be called in the main/UI thread
      * as it makes a network call.
      *
-     * @param context is non-null.
      * @return true iff the active network is connected and working.
-     * @see #isActiveNetworkConnected(Context)
+     * @see #isActiveNetworkConnected()
      */
-    public boolean isActiveNetworkConnectedAndWorking(Context context) {
-        return isActiveNetworkConnected(context)
+    public boolean isActiveNetworkConnectedAndWorking() {
+        return isActiveNetworkConnected()
                 && (isGoogleReachableWithPing() || isGoogleReachableWithInetAddress());
     }
 
-	/**
-     * @param context is non-null.
+    /**
      * @return true iff the active network is connected.
-     * @see #isActiveNetworkConnectedAndWorking(Context)
-	 * */
-    public boolean isActiveNetworkConnected(Context context) {
-    	ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-    	NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+     * @see #isActiveNetworkConnectedAndWorking()
+     */
+    public boolean isActiveNetworkConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
-    	return networkInfo != null
-				&& networkInfo.isAvailable()
-    			&& networkInfo.isConnected();
+        return networkInfo != null
+                && networkInfo.isAvailable()
+                && networkInfo.isConnected();
     }
 
     /**
@@ -56,7 +67,7 @@ public class NetworkInspector {
         } catch (Exception ex) {
             return false;
         }
-	}
+    }
 
     /**
      * @return true iff an address can be found for www.google.com with {@link InetAddress}.

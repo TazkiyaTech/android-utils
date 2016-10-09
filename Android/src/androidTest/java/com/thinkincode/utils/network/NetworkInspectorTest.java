@@ -19,17 +19,17 @@ public class NetworkInspectorTest extends BaseTestCase {
     @Override
     public void setUp() {
         super.setUp();
-        networkInspector = new NetworkInspector();
+        networkInspector = new NetworkInspector(getContext());
     }
 
     @Test
     public void testIsActiveNetworkConnectedAndWorking() {
-        assertTrue(networkInspector.isActiveNetworkConnectedAndWorking(getContext()));
+        assertTrue(networkInspector.isActiveNetworkConnectedAndWorking());
     }
 
     @Test
     public void testIsActiveNetworkConnected() {
-        assertTrue(networkInspector.isActiveNetworkConnected(getContext()));
+        assertTrue(networkInspector.isActiveNetworkConnected());
     }
 
     @Test
