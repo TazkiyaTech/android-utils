@@ -48,7 +48,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_when_noWhereClauseProvided_1() {
         // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
                 "SELECT * FROM TableA"
         );
 
@@ -75,9 +75,38 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
+    public void test_explainQueryPlanForUpdateStatement_when_noWhereClauseProvided_1() {
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
+                "UPDATE TableA SET ColumnB = 1"
+        );
+
+        // Then.
+        assertThat(result.getDetail(), is(equalTo("SCAN TABLE TableA")));
+    }
+
+    @Test
+    public void test_explainQueryPlanForUpdateStatement_when_noWhereClauseProvided_2() {
+        // Given.
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ColumnB", 1);
+
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForUpdateStatement(
+                "TableA",
+                contentValues,
+                null,
+                null
+        );
+
+        // Then.
+        assertThat(result.getDetail(), is(equalTo("SCAN TABLE TableA")));
+    }
+
+    @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnA_1() {
         // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
                 "SELECT * FROM TableA WHERE ColumnA = 1"
         );
 
@@ -106,7 +135,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnB_1() {
         // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
                 "SELECT * FROM TableA WHERE ColumnB = 1"
         );
 
@@ -135,7 +164,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnC_1() {
         // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
                 "SELECT * FROM TableA WHERE ColumnC = '1'"
         );
 
@@ -163,7 +192,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_when_whereClauseProvidedForColumnBAndColumnC_1() {
         // When.
-        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
                 "SELECT * FROM TableA WHERE ColumnB = 1 AND ColumnC = '1'"
         );
 
