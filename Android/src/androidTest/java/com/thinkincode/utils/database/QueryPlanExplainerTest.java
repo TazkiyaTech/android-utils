@@ -19,9 +19,9 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
-public class QueryPlanHelperTest extends BaseTestCase {
+public class QueryPlanExplainerTest extends BaseTestCase {
 
-    private QueryPlanHelper queryPlanHelper;
+    private QueryPlanExplainer queryPlanExplainer;
     private SomeDatabase someDatabase;
 
     @Before
@@ -35,7 +35,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
         someDatabase.createRecord(2, "2");
         someDatabase.createRecord(3, "3");
 
-        queryPlanHelper = new QueryPlanHelper(someDatabase.getReadableDatabase());
+        queryPlanExplainer = new QueryPlanExplainer(someDatabase.getReadableDatabase());
     }
 
     @After
@@ -48,7 +48,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_when_noWhereClauseProvided_1() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "SELECT * FROM TableA"
         );
 
@@ -59,7 +59,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_when_noWhereClauseProvided_2() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "TableA",
                 null,
                 null,
@@ -77,7 +77,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnA_1() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "SELECT * FROM TableA WHERE ColumnA = 1"
         );
 
@@ -88,7 +88,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnA_2() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "TableA",
                 null,
                 "ColumnA = ? ",
@@ -106,7 +106,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnB_1() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "SELECT * FROM TableA WHERE ColumnB = 1"
         );
 
@@ -117,7 +117,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnB_2() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "TableA",
                 null,
                 "ColumnB = ? ",
@@ -135,7 +135,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnC_1() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "SELECT * FROM TableA WHERE ColumnC = '1'"
         );
 
@@ -146,7 +146,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnC_2() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "TableA",
                 null,
                 "ColumnC = ? ",
@@ -163,7 +163,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_when_whereClauseProvidedForColumnBAndColumnC_1() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "SELECT * FROM TableA WHERE ColumnB = 1 AND ColumnC = '1'"
         );
 
@@ -174,7 +174,7 @@ public class QueryPlanHelperTest extends BaseTestCase {
     @Test
     public void test_explainQueryPlanForSelectStatement_when_whereClauseProvidedForColumnBAndColumnC_2() {
         // When.
-        QueryPlan result = queryPlanHelper.explainQueryPlanForSelectStatement(
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "TableA",
                 null,
                 "ColumnB = ? AND ColumnC = ? ",

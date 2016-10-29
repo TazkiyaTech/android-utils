@@ -9,7 +9,7 @@ import android.text.TextUtils;
 /**
  * Helper class for building up {@link QueryPlan} objects for queries run against a given database.
  */
-public class QueryPlanHelper {
+public class QueryPlanExplainer {
 
     @NonNull
 	private final SQLiteDatabase database;
@@ -19,7 +19,7 @@ public class QueryPlanHelper {
      *
      * @param database the {@link SQLiteDatabase} object against which to run the "EXPLAIN QUERY PLAN" queries.
      */
-	public QueryPlanHelper(@NonNull SQLiteDatabase database) {
+	public QueryPlanExplainer(@NonNull SQLiteDatabase database) {
 		this.database = database;
 	}
 
