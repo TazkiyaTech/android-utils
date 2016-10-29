@@ -3,6 +3,7 @@ package com.thinkincode.utils.database;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 /**
@@ -10,6 +11,7 @@ import android.text.TextUtils;
  */
 public class QueryPlanHelper {
 
+    @NonNull
 	private final SQLiteDatabase database;
 
     /**
@@ -28,7 +30,7 @@ public class QueryPlanHelper {
 	 * @param sql the (non-null) SQLite SELECT statement for which to run the "EXPLAIN QUERY PLAN" query.
 	 * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
 	 */
-	public QueryPlan explainQueryPlanForSelectStatement(String sql) {
+	public QueryPlan explainQueryPlanForSelectStatement(@NonNull String sql) {
 		sql = "EXPLAIN QUERY PLAN " + sql;
 		return executeExplainQueryPlanStatement(sql, null);
 	}
@@ -40,14 +42,14 @@ public class QueryPlanHelper {
 	 * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
 	 * @see SQLiteDatabase#query(String, String[], String, String[], String, String, String, String)
 	 */
-	public QueryPlan explainQueryPlanForSelectStatement(String table,
-														String[] columns,
-														String selection,
-														String[] selectionArgs,
-														String groupBy,
-                                                        String having,
-                                                        String orderBy,
-                                                        String limit) {
+	public QueryPlan explainQueryPlanForSelectStatement(@NonNull String table,
+														@Nullable String[] columns,
+                                                        @Nullable String selection,
+                                                        @Nullable String[] selectionArgs,
+                                                        @Nullable String groupBy,
+                                                        @Nullable String having,
+                                                        @Nullable String orderBy,
+                                                        @Nullable String limit) {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("EXPLAIN QUERY PLAN SELECT ");
 
@@ -105,8 +107,8 @@ public class QueryPlanHelper {
 	 * @param selectionArgs the values to use in place of the ?s in the where clause of <code>sql</code>.
 	 * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
 	 */
-	private QueryPlan executeExplainQueryPlanStatement(String sql,
-                                                       String[] selectionArgs) {
+	private QueryPlan executeExplainQueryPlanStatement(@NonNull String sql,
+                                                       @Nullable String[] selectionArgs) {
 		Cursor cursor = null;
 
 		try {
