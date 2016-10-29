@@ -1,9 +1,6 @@
-plugins {
-    id 'com.jfrog.bintray' version '1.6'
-}
-
-apply plugin: 'maven-publish'
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
 
 group = getProperty('projectGroupName')
 version = getProperty('projectVersionName')
@@ -91,7 +88,7 @@ publishing {
             artifact generateSourcesJar
 
             groupId getProperty('projectGroupName')
-//            artifactId "Android"
+//            artifactId 'Android'
             version getProperty('projectVersionName')
 
             //The publication doesn't know about our dependencies, so we have to manually add them to the pom
