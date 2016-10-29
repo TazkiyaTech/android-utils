@@ -13,6 +13,13 @@ public abstract class BaseTestCase {
     }
 
     /**
+     * Performs some post-test teardown.
+     */
+    protected void tearDown() {
+        // nothing to do
+    }
+
+    /**
      * @return the {@link Context} for the target application being instrumented.
      */
     protected Context getContext() {
