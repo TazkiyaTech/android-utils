@@ -15,186 +15,186 @@ import java.util.Set;
 public class QueryPlanExplainer {
 
     @NonNull
-	private final SQLiteDatabase database;
+    private final SQLiteDatabase database;
 
     /**
      * Constructors.
      *
      * @param database the {@link SQLiteDatabase} object against which to run the "EXPLAIN QUERY PLAN" queries.
      */
-	public QueryPlanExplainer(@NonNull SQLiteDatabase database) {
-		this.database = database;
-	}
+    public QueryPlanExplainer(@NonNull SQLiteDatabase database) {
+        this.database = database;
+    }
 
-	/**
-	 * Composes and executes an "EXECUTE QUERY PLAN" command
-	 * for the SQLite query provided.
-	 * 
-	 * @param sql the (non-null) SQLite SELECT/UPDATE/etc statement for which to run the "EXPLAIN QUERY PLAN" query.
-	 * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
-	 */
-	public QueryPlan explainQueryPlanForSqlStatement(@NonNull String sql) {
-		sql = "EXPLAIN QUERY PLAN " + sql;
-		return executeExplainQueryPlanStatement(sql, null);
-	}
+    /**
+     * Composes and executes an "EXECUTE QUERY PLAN" command
+     * for the SQLite query provided.
+     *
+     * @param sql the (non-null) SQLite SELECT/UPDATE/etc statement for which to run the "EXPLAIN QUERY PLAN" query.
+     * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
+     */
+    public QueryPlan explainQueryPlanForSqlStatement(@NonNull String sql) {
+        sql = "EXPLAIN QUERY PLAN " + sql;
+        return executeExplainQueryPlanStatement(sql, null);
+    }
 
-	/**
-	 * Composes and executes an "EXECUTE QUERY PLAN" command
-	 * for the SELECT query that would be composed from the parameters provided.
-	 *
-	 * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
-	 * @see SQLiteDatabase#query(String, String[], String, String[], String, String, String, String)
-	 */
-	public QueryPlan explainQueryPlanForSelectStatement(@NonNull String table,
-														@Nullable String[] columns,
+    /**
+     * Composes and executes an "EXECUTE QUERY PLAN" command
+     * for the SELECT query that would be composed from the parameters provided.
+     *
+     * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
+     * @see SQLiteDatabase#query(String, String[], String, String[], String, String, String, String)
+     */
+    public QueryPlan explainQueryPlanForSelectStatement(@NonNull String table,
+                                                        @Nullable String[] columns,
                                                         @Nullable String selection,
                                                         @Nullable String[] selectionArgs,
                                                         @Nullable String groupBy,
                                                         @Nullable String having,
                                                         @Nullable String orderBy,
                                                         @Nullable String limit) {
-		final StringBuilder sb = new StringBuilder();
-		sb.append("EXPLAIN QUERY PLAN SELECT ");
+        final StringBuilder sb = new StringBuilder();
+        sb.append("EXPLAIN QUERY PLAN SELECT ");
 
-		if (columns == null || columns.length == 0) {
-			sb.append(" * ");
-		} else {
-			boolean firstColumn = true;
+        if (columns == null || columns.length == 0) {
+            sb.append(" * ");
+        } else {
+            boolean firstColumn = true;
 
-			for (String column : columns) {
-				if (!firstColumn) {
-					sb.append(", ");
-				}
+            for (String column : columns) {
+                if (!firstColumn) {
+                    sb.append(", ");
+                }
 
-				sb.append(column);
+                sb.append(column);
 
-				firstColumn = false;
-			}
-		}
+                firstColumn = false;
+            }
+        }
 
-		sb.append(" FROM ");
-		sb.append(table);
+        sb.append(" FROM ");
+        sb.append(table);
 
-		if (!TextUtils.isEmpty(selection)) {
-			sb.append(" WHERE ");
-			sb.append(selection);
-		}
+        if (!TextUtils.isEmpty(selection)) {
+            sb.append(" WHERE ");
+            sb.append(selection);
+        }
 
-		if (!TextUtils.isEmpty(groupBy)) {
-			sb.append(" GROUP BY ");
-			sb.append(groupBy);
-		}
+        if (!TextUtils.isEmpty(groupBy)) {
+            sb.append(" GROUP BY ");
+            sb.append(groupBy);
+        }
 
-		if (!TextUtils.isEmpty(having)) {
-			sb.append(" HAVING ");
-			sb.append(having);
-		}
+        if (!TextUtils.isEmpty(having)) {
+            sb.append(" HAVING ");
+            sb.append(having);
+        }
 
-		if (!TextUtils.isEmpty(orderBy)) {
-			sb.append(" ORDER BY ");
-			sb.append(orderBy);
-		}
+        if (!TextUtils.isEmpty(orderBy)) {
+            sb.append(" ORDER BY ");
+            sb.append(orderBy);
+        }
 
-		if (!TextUtils.isEmpty(limit)) {
-			sb.append(" LIMIT ");
-			sb.append(limit);
-		}
+        if (!TextUtils.isEmpty(limit)) {
+            sb.append(" LIMIT ");
+            sb.append(limit);
+        }
 
-		return executeExplainQueryPlanStatement(sb.toString(), selectionArgs);
-	}
+        return executeExplainQueryPlanStatement(sb.toString(), selectionArgs);
+    }
 
-	/**
-	 * Composes and executes an "EXECUTE QUERY PLAN" command
-	 * for the UPDATE query that would be composed from the parameters provided.
-	 *
+    /**
+     * Composes and executes an "EXECUTE QUERY PLAN" command
+     * for the UPDATE query that would be composed from the parameters provided.
+     *
      * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
-	 * @see {@link SQLiteDatabase#update(String, ContentValues, String, String[])} for a description of this method's parameters.
-	 */
-	public QueryPlan explainQueryPlanForUpdateStatement(String table,
-												   ContentValues contentValues,
-												   String selection,
-												   String[] selectionArgs) {
-		final StringBuilder sb = new StringBuilder();
-		sb.append("EXPLAIN QUERY PLAN UPDATE ");
+     * @see {@link SQLiteDatabase#update(String, ContentValues, String, String[])} for a description of this method's parameters.
+     */
+    public QueryPlan explainQueryPlanForUpdateStatement(@NonNull String table,
+                                                        @NonNull ContentValues contentValues,
+                                                        @Nullable String selection,
+                                                        @Nullable String[] selectionArgs) {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("EXPLAIN QUERY PLAN UPDATE ");
 
-		sb.append(table);
+        sb.append(table);
 
-		sb.append(" SET ");
+        sb.append(" SET ");
 
-		final Set<String> keys = contentValues.keySet();
+        final Set<String> keys = contentValues.keySet();
 
-		boolean firstKey = true;
+        boolean firstKey = true;
 
-		for (String key : keys) {
-			if (!firstKey) {
-				sb.append(", ");
-			}
+        for (String key : keys) {
+            if (!firstKey) {
+                sb.append(", ");
+            }
 
-			sb.append(key);
-			sb.append(" = ");
+            sb.append(key);
+            sb.append(" = ");
 
-			if (contentValues.get(key) == null) {
-				sb.append("NULL");
-			} else if (contentValues.get(key) instanceof Boolean) {
-				Boolean value = (Boolean) contentValues.get(key);
+            if (contentValues.get(key) == null) {
+                sb.append("NULL");
+            } else if (contentValues.get(key) instanceof Boolean) {
+                Boolean value = (Boolean) contentValues.get(key);
 
-				if (value) {
-					sb.append("1");
-				} else {
-					sb.append("0");
-				}
-			} else if (contentValues.get(key) instanceof Number) {
-				sb.append(contentValues.get(key).toString());
-			} else {
-				sb.append("'");
-				sb.append(contentValues.get(key).toString());
-				sb.append("' ");
-			}
+                if (value) {
+                    sb.append("1");
+                } else {
+                    sb.append("0");
+                }
+            } else if (contentValues.get(key) instanceof Number) {
+                sb.append(contentValues.get(key).toString());
+            } else {
+                sb.append("'");
+                sb.append(contentValues.get(key).toString());
+                sb.append("' ");
+            }
 
-			firstKey = false;
-		}
+            firstKey = false;
+        }
 
-		if (!TextUtils.isEmpty(selection)) {
-			sb.append(" WHERE ");
-			sb.append(selection);
-		}
+        if (!TextUtils.isEmpty(selection)) {
+            sb.append(" WHERE ");
+            sb.append(selection);
+        }
 
-		return executeExplainQueryPlanStatement(sb.toString(), selectionArgs);
-	}
+        return executeExplainQueryPlanStatement(sb.toString(), selectionArgs);
+    }
 
-	/**
-	 * Executes the sql command provided using the database object provided.
-	 * 
-	 * @param sql the (non-null) "EXPLAIN QUERY PLAN" command which must not be ; terminated.
-	 * @param selectionArgs the values to use in place of the ?s in the where clause of <code>sql</code>.
-	 * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
-	 */
-	private QueryPlan executeExplainQueryPlanStatement(@NonNull String sql,
+    /**
+     * Executes the sql command provided using the database object provided.
+     *
+     * @param sql           the (non-null) "EXPLAIN QUERY PLAN" command which must not be ; terminated.
+     * @param selectionArgs the values to use in place of the ?s in the where clause of <code>sql</code>.
+     * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
+     */
+    private QueryPlan executeExplainQueryPlanStatement(@NonNull String sql,
                                                        @Nullable String[] selectionArgs) {
-		Cursor cursor = null;
+        Cursor cursor = null;
 
-		try {
-			cursor = database.rawQuery(sql, selectionArgs);
+        try {
+            cursor = database.rawQuery(sql, selectionArgs);
 
-			if (cursor.moveToFirst()) {
-				final int colIndexSelectId = cursor.getColumnIndex("selectid");
-				final int colIndexOrder = cursor.getColumnIndex("order");
-				final int colIndexFrom = cursor.getColumnIndex("from");
-				final int colIndexDetail = cursor.getColumnIndex("detail");
+            if (cursor.moveToFirst()) {
+                final int colIndexSelectId = cursor.getColumnIndex("selectid");
+                final int colIndexOrder = cursor.getColumnIndex("order");
+                final int colIndexFrom = cursor.getColumnIndex("from");
+                final int colIndexDetail = cursor.getColumnIndex("detail");
 
-				final int selectId = cursor.getInt(colIndexSelectId);
-				final int order = cursor.getInt(colIndexOrder);
-				final int from = cursor.getInt(colIndexFrom);
-				final String detail = cursor.getString(colIndexDetail);
+                final int selectId = cursor.getInt(colIndexSelectId);
+                final int order = cursor.getInt(colIndexOrder);
+                final int from = cursor.getInt(colIndexFrom);
+                final String detail = cursor.getString(colIndexDetail);
 
-				return new QueryPlan(selectId, order, from, detail);
-			} else {
-				return null;
-			}
-		} finally {
-			if (cursor != null) {
-				cursor.close();
-			}
-		}
-	}
+                return new QueryPlan(selectId, order, from, detail);
+            } else {
+                return null;
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
 }
