@@ -44,6 +44,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     public void tearDown() {
         super.tearDown();
         someDatabase.dropTable();
+        someDatabase.close();
     }
 
     @Test
