@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.hamcrest.core.AnyOf.anyOf;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
@@ -133,6 +134,35 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
+    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnA_1() {
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
+                "UPDATE TableA SET ColumnB = 1 WHERE ColumnA = 1"
+        );
+
+        // Then.
+        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)")));
+    }
+
+    @Test
+    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnA_2() {
+        // Given.
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ColumnB", 1);
+
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForUpdateStatement(
+                "TableA",
+                contentValues,
+                "ColumnA = ?",
+                new String[] { "1" }
+        );
+
+        // Then.
+        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)")));
+    }
+
+    @Test
     public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnB_1() {
         // When.
         QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
@@ -140,7 +170,9 @@ public class QueryPlanExplainerTest extends BaseTestCase {
         );
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)")));
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnB_on_TableA (ColumnB=?)")));
     }
 
     @Test
@@ -149,7 +181,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
         QueryPlan result = queryPlanExplainer.explainQueryPlanForSelectStatement(
                 "TableA",
                 null,
-                "ColumnB = ? ",
+                "ColumnB = ?",
                 new String[] { "1" },
                 null,
                 null,
@@ -158,7 +190,42 @@ public class QueryPlanExplainerTest extends BaseTestCase {
         );
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)")));
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnB_on_TableA (ColumnB=?)")));
+    }
+
+    @Test
+    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnB_1() {
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
+                "UPDATE TableA SET ColumnB = 1 WHERE ColumnB = 2"
+        );
+
+        // Then.
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnB_on_TableA (ColumnB=?)")));
+    }
+
+    @Test
+    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnB_2() {
+        // Given.
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ColumnB", 1);
+
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForUpdateStatement(
+                "TableA",
+                contentValues,
+                "ColumnB = ?",
+                new String[] { "1" }
+        );
+
+        // Then.
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnB_on_TableA (ColumnB=?)")));
     }
 
     @Test
@@ -169,7 +236,9 @@ public class QueryPlanExplainerTest extends BaseTestCase {
         );
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)")));
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnC_on_TableA (ColumnC=?)")));
     }
 
     @Test
@@ -186,7 +255,41 @@ public class QueryPlanExplainerTest extends BaseTestCase {
                 null);
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)")));
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnC_on_TableA (ColumnC=?)")));
+    }
+
+    @Test
+    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnC_1() {
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
+                "UPDATE TableA SET ColumnB = 1 WHERE ColumnC = '1'"
+        );
+
+        // Then.
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnC_on_TableA (ColumnC=?)")));
+    }
+
+    @Test
+    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnC_2() {
+        // Given.
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ColumnB", 1);
+
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForUpdateStatement(
+                "TableA",
+                contentValues,
+                "ColumnC = ? ",
+                new String[] { "1" });
+
+        // Then.
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnC_on_TableA (ColumnC=?)")));
     }
 
     @Test
@@ -197,7 +300,9 @@ public class QueryPlanExplainerTest extends BaseTestCase {
         );
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)")));
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnB_on_TableA (ColumnB=?)")));
     }
 
     @Test
@@ -214,7 +319,41 @@ public class QueryPlanExplainerTest extends BaseTestCase {
                 null);
 
         // Then.
-        assertThat(result.getDetail(), is(equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)")));
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnB_on_TableA (ColumnB=?)")));
+    }
+
+    @Test
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseProvidedForColumnBAndColumnC_1() {
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForSqlStatement(
+                "UPDATE TableA SET ColumnB = 2 WHERE ColumnB = 1 AND ColumnC = '1'"
+        );
+
+        // Then.
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnB_on_TableA (ColumnB=?)")));
+    }
+
+    @Test
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseProvidedForColumnBAndColumnC_2() {
+        // Given.
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ColumnB", 2);
+
+        // When.
+        QueryPlan result = queryPlanExplainer.explainQueryPlanForUpdateStatement(
+                "TableA",
+                contentValues,
+                "ColumnB = ? AND ColumnC = ? ",
+                new String[] { "1", "1" });
+
+        // Then.
+        assertThat(result.getDetail(), anyOf(
+                equalTo("SEARCH TABLE TableA USING INDEX ColumnB_on_TableA (ColumnB=?)"),
+                equalTo("SEARCH TABLE TableA USING COVERING INDEX ColumnB_on_TableA (ColumnB=?)")));
     }
 
     private static class SomeDatabase extends SQLiteOpenHelper {

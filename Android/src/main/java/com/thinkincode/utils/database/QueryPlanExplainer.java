@@ -108,7 +108,7 @@ public class QueryPlanExplainer {
      * for the UPDATE query that would be composed from the parameters provided.
      *
      * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
-     * @see {@link SQLiteDatabase#update(String, ContentValues, String, String[])} for a description of this method's parameters.
+     * @see SQLiteDatabase#update(String, ContentValues, String, String[])
      */
     public QueryPlan explainQueryPlanForUpdateStatement(@NonNull String table,
                                                         @NonNull ContentValues contentValues,
