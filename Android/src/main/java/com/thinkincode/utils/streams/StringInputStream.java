@@ -13,14 +13,14 @@ import java.io.OutputStream;
  */
 public class StringInputStream {
 
-    private static final int BUFFER_SIZE_BYTES = 1024;
+    private static final int BUFFER_SIZE_BYTES = 2048;
 
     /**
      * Reads in the contents of {@code inputStream} and then closes {@code inputStream}.
      *
      * @param inputStream the {@link InputStream} instance to read in from.
      * @return the value read in from {@code inputStream}.
-     * @throws IOException
+     * @throws IOException if an I/O error occurs.
      */
     public String read(@NonNull InputStream inputStream) throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(BUFFER_SIZE_BYTES);

@@ -2,8 +2,6 @@ package com.thinkincode.utils.streams;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.thinkincode.utils.BaseTestCase;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -14,7 +12,7 @@ import java.io.InputStream;
 import static junit.framework.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
-public class StringInputStreamTest extends BaseTestCase {
+public class StringInputStreamTest {
 
     @Test
     public void test_read() throws IOException {

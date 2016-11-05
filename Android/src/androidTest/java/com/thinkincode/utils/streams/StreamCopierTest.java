@@ -5,28 +5,30 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import static junit.framework.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
-public class StringOutputStreamTest {
+public class StreamCopierTest {
 
     @Test
-    public void test_write() throws IOException {
+    public void test_copy() throws IOException {
         // Given.
-        StringOutputStream stringOutputStream = new StringOutputStream();
+        StreamCopier streamCopier = new StreamCopier();
 
         String input = "Hello\nHello\tHello";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         // When.
-        stringOutputStream.write(input, outputStream);
+        streamCopier.copy(inputStream, outputStream);
 
-        // Then.
         String output = new String(outputStream.toByteArray(), "UTF-8");
 
+        // Then.
         assertEquals(input, output);
     }
 }

@@ -17,7 +17,7 @@ public class StringOutputStream {
      *
      * @param value        the {@link String} value to write.
      * @param outputStream the {@link OutputStream} to write to.
-     * @throws IOException
+     * @throws IOException if an I/O error occurs.
      */
     public void write(@NonNull String value,
                       @NonNull OutputStream outputStream) throws IOException {
