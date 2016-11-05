@@ -15,6 +15,7 @@ public class StringInputStream {
 
     private static final int BUFFER_SIZE_BYTES = 2048;
 
+    @NonNull
     private final InputStream inputStream;
 
     /**
@@ -29,10 +30,11 @@ public class StringInputStream {
     /**
      * Reads in the contents of the {@link InputStream} instance that this class wraps.
      *
-     * @return the value read in.
+     * @return the value read in from the input stream.
      * @throws IOException if an I/O error occurs.
      */
-    public String readAll() throws IOException {
+    @NonNull
+    public String read() throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(BUFFER_SIZE_BYTES);
 
         try {

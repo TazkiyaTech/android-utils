@@ -11,29 +11,32 @@ import java.nio.charset.Charset;
  */
 public class StringOutputStream {
 
+    @NonNull
+    private final OutputStream outputStream;
+
     /**
-     * Writes {@code value} to {@code outputStream}
-     * and then closes {@code outputStream}.
+     * Constructor.
      *
-     * @param value        the {@link String} value to write.
-     * @param outputStream the {@link OutputStream} to write to.
-     * @throws IOException if an I/O error occurs.
+     * @param outputStream the {@link OutputStream} instance to write to.
      */
-    public void write(@NonNull String value,
-                      @NonNull OutputStream outputStream) throws IOException {
-        try {
-            outputStream.write(value.getBytes(Charset.forName("UTF-8")));
-        } finally {
-            close(outputStream);
-        }
+    public StringOutputStream(@NonNull OutputStream outputStream) {
+        this.outputStream = outputStream;
     }
 
     /**
-     * Flushes and closes {@code outputStream}.
+     * Writes {@code value} to the {@link OutputStream} instance that this class wraps.
      *
-     * @param outputStream the {@link OutputStream} to flush and close.
+     * @param value        the {@link String} value to write to the output stream.
+     * @throws IOException if an I/O error occurs.
      */
-    private void close(@NonNull OutputStream outputStream) {
+    public void write(@NonNull String value) throws IOException {
+        outputStream.write(value.getBytes(Charset.forName("UTF-8")));
+    }
+
+    /**
+     * Flushes and closes the {@link OutputStream} instance that this class wraps.
+     */
+    public void close() {
         try {
             outputStream.flush();
             outputStream.close();

@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
 public class StringInputStreamTest {
 
     @Test
-    public void test_readAll() throws IOException {
+    public void test_read() throws IOException {
         // Given.
         String input = "Hello\nHello\tHello";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
@@ -23,7 +23,7 @@ public class StringInputStreamTest {
         StringInputStream stringInputStream = new StringInputStream(inputStream);
 
         // When.
-        String output = stringInputStream.readAll();
+        String output = stringInputStream.read();
         stringInputStream.close();
 
         // Then.
@@ -31,16 +31,16 @@ public class StringInputStreamTest {
     }
 
     @Test
-    public void test_calling_readAll_after_readAll_has_already_been_called() throws IOException {
+    public void test_read_after_read_has_already_been_called() throws IOException {
         // Given.
         String input = "Hello\nHello\tHello";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
 
         StringInputStream stringInputStream = new StringInputStream(inputStream);
-        stringInputStream.readAll();
+        stringInputStream.read();
 
         // When.
-        String output = stringInputStream.readAll();
+        String output = stringInputStream.read();
         stringInputStream.close();
 
         // Then.
@@ -48,7 +48,7 @@ public class StringInputStreamTest {
     }
 
     @Test
-    public void test_calling_readAll_after_close_has_been_called() throws IOException {
+    public void test_read_after_close_has_been_called() throws IOException {
         // Given.
         String input = "Hello\nHello\tHello";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
@@ -57,7 +57,7 @@ public class StringInputStreamTest {
         stringInputStream.close();
 
         // When.
-        String output = stringInputStream.readAll();
+        String output = stringInputStream.read();
         stringInputStream.close();
 
         // Then.
