@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * Provides an easy method for copying the contents of an {@link InputStream} to an {@link OutputStream}.
+ * <p>
+ * The method contained in this class is taken from the Guava library's com.google.common.io.ByteStreams class.
+ */
 public class StreamCopier {
 
     private static final int BUFFER_SIZE_BYTES = 2048;
