@@ -26,15 +26,10 @@ public class StreamCopier {
     public void copy(@NonNull InputStream inputStream,
                      @NonNull OutputStream outputStream) throws IOException {
         byte[] buffer = new byte[BUFFER_SIZE_BYTES];
+        int length;
 
-        while (true) {
-            int r = inputStream.read(buffer);
-
-            if (r == -1) {
-                break;
-            }
-
-            outputStream.write(buffer, 0, r);
+        while ((length = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, length);
         }
     }
 }
