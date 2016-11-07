@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,7 +35,7 @@ public class QueryPlanExplainer {
      * @param sql the (non-null) SQLite SELECT/UPDATE/etc statement for which to run the "EXPLAIN QUERY PLAN" query.
      * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
      */
-    public QueryPlan explainQueryPlanForSqlStatement(@NonNull String sql) {
+    public List<QueryPlan> explainQueryPlanForSqlStatement(@NonNull String sql) {
         sql = "EXPLAIN QUERY PLAN " + sql;
         return executeExplainQueryPlanStatement(sql, null);
     }
@@ -45,7 +47,7 @@ public class QueryPlanExplainer {
      * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
      * @see SQLiteDatabase#query(String, String[], String, String[], String, String, String, String)
      */
-    public QueryPlan explainQueryPlanForSelectStatement(@NonNull String table,
+    public List<QueryPlan> explainQueryPlanForSelectStatement(@NonNull String table,
                                                         @Nullable String[] columns,
                                                         @Nullable String selection,
                                                         @Nullable String[] selectionArgs,
@@ -110,7 +112,7 @@ public class QueryPlanExplainer {
      * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
      * @see SQLiteDatabase#update(String, ContentValues, String, String[])
      */
-    public QueryPlan explainQueryPlanForUpdateStatement(@NonNull String table,
+    public List<QueryPlan> explainQueryPlanForUpdateStatement(@NonNull String table,
                                                         @NonNull ContentValues contentValues,
                                                         @Nullable String selection,
                                                         @Nullable String[] selectionArgs) {
@@ -169,14 +171,16 @@ public class QueryPlanExplainer {
      * @param selectionArgs the values to use in place of the ?s in the where clause of <code>sql</code>.
      * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
      */
-    private QueryPlan executeExplainQueryPlanStatement(@NonNull String sql,
+    private List<QueryPlan> executeExplainQueryPlanStatement(@NonNull String sql,
                                                        @Nullable String[] selectionArgs) {
         Cursor cursor = null;
 
         try {
             cursor = database.rawQuery(sql, selectionArgs);
 
-            if (cursor.moveToFirst()) {
+            List<QueryPlan> queryPlanList = new ArrayList<>();
+
+            while (cursor.moveToNext()) {
                 final int colIndexSelectId = cursor.getColumnIndex("selectid");
                 final int colIndexOrder = cursor.getColumnIndex("order");
                 final int colIndexFrom = cursor.getColumnIndex("from");
@@ -187,10 +191,10 @@ public class QueryPlanExplainer {
                 final int from = cursor.getInt(colIndexFrom);
                 final String detail = cursor.getString(colIndexDetail);
 
-                return new QueryPlan(selectId, order, from, detail);
-            } else {
-                return null;
+                queryPlanList.add(new QueryPlan(selectId, order, from, detail));
             }
+
+            return queryPlanList;
         } finally {
             if (cursor != null) {
                 cursor.close();
