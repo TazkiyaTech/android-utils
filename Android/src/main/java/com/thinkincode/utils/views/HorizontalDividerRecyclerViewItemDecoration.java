@@ -16,8 +16,8 @@ import android.view.View;
  */
 public class HorizontalDividerRecyclerViewItemDecoration extends RecyclerView.ItemDecoration {
 
-    private Drawable dividerDrawable;
-    private int dividerHeightPixels;
+    private final Drawable dividerDrawable;
+    private final int dividerHeightPixels;
 
     /**
      * <p>Constructor.</p>
