@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -483,6 +484,40 @@ public class QueryPlanExplainerTest extends BaseTestCase {
                 contentValues,
                 "ColumnB = ? AND ColumnC = ? ",
                 new String[] { "1", "1" });
+
+        // Then.
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void test_explainQueryPlanForSelectStatement_whereClauseMatchesColumnBOrColumnC() {
+        // Given.
+        QueryPlan queryPlan1 = new QueryPlan(0, 0, 0, "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)");
+        QueryPlan queryPlan2 = new QueryPlan(0, 0, 0, "SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)");
+
+        List<QueryPlan> expected = Arrays.asList(queryPlan1, queryPlan2);
+
+        // When.
+        List<QueryPlan> actual = queryPlanExplainer.explainQueryPlanForSqlStatement(
+                "SELECT * FROM TableA WHERE ColumnB = 1 OR ColumnC = '1'"
+        );
+
+        // Then.
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnB_orderByProvidedForColumnA() {
+        // Given.
+        QueryPlan queryPlan1 = new QueryPlan(0, 0, 0, "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)");
+        QueryPlan queryPlan2 = new QueryPlan(0, 0, 0, "USE TEMP B-TREE FOR ORDER BY");
+
+        List<QueryPlan> expected = Arrays.asList(queryPlan1, queryPlan2);
+
+        // When.
+        List<QueryPlan> actual = queryPlanExplainer.explainQueryPlanForSqlStatement(
+                "SELECT * FROM TableA WHERE ColumnB = 1 ORDER BY ColumnA ASC"
+        );
 
         // Then.
         assertEquals(expected, actual);
