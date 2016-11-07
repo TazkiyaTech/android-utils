@@ -1,7 +1,7 @@
 package com.thinkincode.utils.database;
 
 /**
- * Represents the result of an "EXPLAIN QUERY PLAN" query.
+ * Represents a row within the output of an "EXPLAIN QUERY PLAN" command.
  */
 public class QueryPlanRow {
 
