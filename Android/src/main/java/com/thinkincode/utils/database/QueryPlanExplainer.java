@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Helper class for building up {@link QueryPlan} objects for queries run against a given database.
+ * Helper class for building up a {@link List} of {@link QueryPlanRow} objects
+ * that explain the strategy or plan that SQLite uses to implement a specific SQL query.
  */
 public class QueryPlanExplainer {
 
@@ -20,9 +21,9 @@ public class QueryPlanExplainer {
     private final SQLiteDatabase database;
 
     /**
-     * Constructors.
+     * Constructor.
      *
-     * @param database the {@link SQLiteDatabase} object against which to run the "EXPLAIN QUERY PLAN" queries.
+     * @param database the {@link SQLiteDatabase} object against which to run the "EXPLAIN QUERY PLAN" command.
      */
     public QueryPlanExplainer(@NonNull SQLiteDatabase database) {
         this.database = database;
@@ -33,9 +34,9 @@ public class QueryPlanExplainer {
      * for the SQLite query provided.
      *
      * @param sql the (non-null) SQLite SELECT/UPDATE/etc statement for which to run the "EXPLAIN QUERY PLAN" query.
-     * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
+     * @return the result of the "EXPLAIN QUERY PLAN" command.
      */
-    public List<QueryPlan> explainQueryPlanForSqlStatement(@NonNull String sql) {
+    public List<QueryPlanRow> explainQueryPlanForSqlStatement(@NonNull String sql) {
         sql = "EXPLAIN QUERY PLAN " + sql;
         return executeExplainQueryPlanStatement(sql, null);
     }
@@ -44,17 +45,17 @@ public class QueryPlanExplainer {
      * Composes and executes an "EXECUTE QUERY PLAN" command
      * for the SELECT query that would be composed from the parameters provided.
      *
-     * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
+     * @return the result of the "EXPLAIN QUERY PLAN" command.
      * @see SQLiteDatabase#query(String, String[], String, String[], String, String, String, String)
      */
-    public List<QueryPlan> explainQueryPlanForSelectStatement(@NonNull String table,
-                                                        @Nullable String[] columns,
-                                                        @Nullable String selection,
-                                                        @Nullable String[] selectionArgs,
-                                                        @Nullable String groupBy,
-                                                        @Nullable String having,
-                                                        @Nullable String orderBy,
-                                                        @Nullable String limit) {
+    public List<QueryPlanRow> explainQueryPlanForSelectStatement(@NonNull String table,
+                                                                 @Nullable String[] columns,
+                                                                 @Nullable String selection,
+                                                                 @Nullable String[] selectionArgs,
+                                                                 @Nullable String groupBy,
+                                                                 @Nullable String having,
+                                                                 @Nullable String orderBy,
+                                                                 @Nullable String limit) {
         final StringBuilder sb = new StringBuilder();
         sb.append("EXPLAIN QUERY PLAN SELECT ");
 
@@ -109,13 +110,13 @@ public class QueryPlanExplainer {
      * Composes and executes an "EXECUTE QUERY PLAN" command
      * for the UPDATE query that would be composed from the parameters provided.
      *
-     * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
+     * @return the result of the "EXPLAIN QUERY PLAN" command.
      * @see SQLiteDatabase#update(String, ContentValues, String, String[])
      */
-    public List<QueryPlan> explainQueryPlanForUpdateStatement(@NonNull String table,
-                                                        @NonNull ContentValues contentValues,
-                                                        @Nullable String selection,
-                                                        @Nullable String[] selectionArgs) {
+    public List<QueryPlanRow> explainQueryPlanForUpdateStatement(@NonNull String table,
+                                                                 @NonNull ContentValues contentValues,
+                                                                 @Nullable String selection,
+                                                                 @Nullable String[] selectionArgs) {
         final StringBuilder sb = new StringBuilder();
         sb.append("EXPLAIN QUERY PLAN UPDATE ");
 
@@ -165,20 +166,20 @@ public class QueryPlanExplainer {
     }
 
     /**
-     * Executes the sql command provided using the database object provided.
+     * Executes the sql command provided on the database contained within this class.
      *
-     * @param sql           the (non-null) "EXPLAIN QUERY PLAN" command which must not be ; terminated.
+     * @param sql           the "EXPLAIN QUERY PLAN" command to call.
      * @param selectionArgs the values to use in place of the ?s in the where clause of <code>sql</code>.
-     * @return the result of the "EXPLAIN QUERY PLAN" query, or null in case of error.
+     * @return the result of the "EXPLAIN QUERY PLAN" command.
      */
-    private List<QueryPlan> executeExplainQueryPlanStatement(@NonNull String sql,
-                                                       @Nullable String[] selectionArgs) {
+    private List<QueryPlanRow> executeExplainQueryPlanStatement(@NonNull String sql,
+                                                                @Nullable String[] selectionArgs) {
         Cursor cursor = null;
 
         try {
             cursor = database.rawQuery(sql, selectionArgs);
 
-            List<QueryPlan> queryPlanList = new ArrayList<>();
+            List<QueryPlanRow> queryPlanRowList = new ArrayList<>();
 
             while (cursor.moveToNext()) {
                 final int colIndexSelectId = cursor.getColumnIndex("selectid");
@@ -191,10 +192,10 @@ public class QueryPlanExplainer {
                 final int from = cursor.getInt(colIndexFrom);
                 final String detail = cursor.getString(colIndexDetail);
 
-                queryPlanList.add(new QueryPlan(selectId, order, from, detail));
+                queryPlanRowList.add(new QueryPlanRow(selectId, order, from, detail));
             }
 
-            return queryPlanList;
+            return queryPlanRowList;
         } finally {
             if (cursor != null) {
                 cursor.close();

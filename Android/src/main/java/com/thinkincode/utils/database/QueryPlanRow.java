@@ -3,7 +3,7 @@ package com.thinkincode.utils.database;
 /**
  * Represents the result of an "EXPLAIN QUERY PLAN" query.
  */
-public class QueryPlan {
+public class QueryPlanRow {
 
     private final int selectId;
     private final int order;
@@ -13,7 +13,7 @@ public class QueryPlan {
     /**
      * Constructor.
      */
-    public QueryPlan(int selectId, int order, int from, String detail) {
+    public QueryPlanRow(int selectId, int order, int from, String detail) {
         this.selectId = selectId;
         this.order = order;
         this.from = from;
@@ -41,12 +41,12 @@ public class QueryPlan {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        QueryPlan queryPlan = (QueryPlan) o;
+        QueryPlanRow queryPlanRow = (QueryPlanRow) o;
 
-        if (selectId != queryPlan.selectId) return false;
-        if (order != queryPlan.order) return false;
-        if (from != queryPlan.from) return false;
-        return detail != null ? detail.equals(queryPlan.detail) : queryPlan.detail == null;
+        if (selectId != queryPlanRow.selectId) return false;
+        if (order != queryPlanRow.order) return false;
+        if (from != queryPlanRow.from) return false;
+        return detail != null ? detail.equals(queryPlanRow.detail) : queryPlanRow.detail == null;
 
     }
 
@@ -61,7 +61,7 @@ public class QueryPlan {
 
     @Override
     public String toString() {
-        return "QueryPlan{" +
+        return "QueryPlanRow{" +
                 "selectId=" + selectId +
                 ", order=" + order +
                 ", from=" + from +
