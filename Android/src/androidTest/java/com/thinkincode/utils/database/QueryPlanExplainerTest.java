@@ -138,7 +138,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnA_1() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnA_1() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -157,7 +157,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnA_2() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnA_2() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -183,7 +183,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnA_1() {
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnA_1() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -202,7 +202,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnA_2() {
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnA_2() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -227,7 +227,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnB_1() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnB_1() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -246,7 +246,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnB_2() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnB_2() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -272,7 +272,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnB_1() {
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnB_1() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -291,7 +291,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnB_2() {
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnB_2() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -316,7 +316,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnC_1() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnC_1() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -335,7 +335,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnC_2() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnC_2() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -360,7 +360,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnC_1() {
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnC_1() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -379,7 +379,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForUpdateStatement_whereClauseProvidedForColumnC_2() {
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnC_2() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -403,7 +403,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_when_whereClauseProvidedForColumnBAndColumnC_1() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnBAndColumnC_1() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -422,7 +422,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_when_whereClauseProvidedForColumnBAndColumnC_2() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnBAndColumnC_2() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -447,7 +447,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForUpdateStatement_when_whereClauseProvidedForColumnBAndColumnC_1() {
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnBAndColumnC_1() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -466,7 +466,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForUpdateStatement_when_whereClauseProvidedForColumnBAndColumnC_2() {
+    public void test_explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnBAndColumnC_2() {
         // Given.
         List<QueryPlan> expected = Collections.singletonList(new QueryPlan(
                 0,
@@ -490,7 +490,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_whereClauseMatchesColumnBOrColumnC() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnBOrColumnC() {
         // Given.
         QueryPlan queryPlan1 = new QueryPlan(0, 0, 0, "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)");
         QueryPlan queryPlan2 = new QueryPlan(0, 0, 0, "SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)");
@@ -507,7 +507,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @Test
-    public void test_explainQueryPlanForSelectStatement_whereClauseProvidedForColumnB_orderByProvidedForColumnA() {
+    public void test_explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnB_and_orderByColumnA() {
         // Given.
         QueryPlan queryPlan1 = new QueryPlan(0, 0, 0, "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)");
         QueryPlan queryPlan2 = new QueryPlan(0, 0, 0, "USE TEMP B-TREE FOR ORDER BY");
