@@ -11,31 +11,39 @@ import android.util.TypedValue;
 import android.widget.TextView;
 
 /**
- * <p>A custom view that extends {@link TextView}
- * and which resizes (scales down) its text to fit within its available width and height.</p>
- * 
- * <p>This view is a modification of Chase's answer on Stack Overflow here:
- * <a href="http://stackoverflow.com/a/5535672/1071320" >http://stackoverflow.com/a/5535672/1071320</a></p>
+ * A custom view that extends {@link TextView}
+ * and which resizes (scales down) its text to fit within its available width and height.
+ * <p>
+ * This view is a modification of Chase's answer on Stack Overflow here:
+ * <a href="http://stackoverflow.com/a/5535672/1071320" >http://stackoverflow.com/a/5535672/1071320</a>
  */
 public class AutoResizeTextView extends TextView {
 
     /**
      * <p>Ellipsis string.</p>
-     * 
+     * <p>
      * <p>(Default package-private visibility for unit-tests access.)</p>
-     * */
+     */
     static final String ELLIPSIS = "\u2026";
 
-    /** Upper bounds for text size. This acts as a starting point for resizing. */
+    /**
+     * Upper bounds for text size. This acts as a starting point for resizing.
+     */
     private float mMaxTextSizePixels;
 
-    /** Lower bounds for text size. */
+    /**
+     * Lower bounds for text size.
+     */
     private float mMinTextSizePixels;
 
-    /** TextView line spacing multiplier. */
+    /**
+     * TextView line spacing multiplier.
+     */
     private float mLineSpacingMultiplier = 1.0f;
 
-    /** TextView additional line spacing. */
+    /**
+     * TextView additional line spacing.
+     */
     private float mLineSpacingExtra = 0.0f;
 
     /**
@@ -56,7 +64,7 @@ public class AutoResizeTextView extends TextView {
 
     /**
      * Perform inflation from XML and apply a class-specific base style from a theme attribute.
-     * 
+     *
      * @param context
      * @param attrs
      * @param defStyle
@@ -77,19 +85,19 @@ public class AutoResizeTextView extends TextView {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-    	super.onLayout(changed, left, top, right, bottom);
-    	resizeText();
+        super.onLayout(changed, left, top, right, bottom);
+        resizeText();
     }
 
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
-    	super.onTextChanged(text, start, lengthBefore, lengthAfter);
+        super.onTextChanged(text, start, lengthBefore, lengthAfter);
         requestLayout();
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    	super.onSizeChanged(w, h, oldw, oldh);
+        super.onSizeChanged(w, h, oldw, oldh);
 
         if (w != oldw || h != oldh) {
             requestLayout();
@@ -118,13 +126,13 @@ public class AutoResizeTextView extends TextView {
 
     @Override
     public void setEllipsize(TruncateAt where) {
-    	super.setEllipsize(where);
-    	requestLayout();
+        super.setEllipsize(where);
+        requestLayout();
     }
 
     /**
      * Sets the lower text size limit and invalidates the view.
-     * 
+     *
      * @param minTextSizeScaledPixels the minimum size to use for text in this view, in scaled pixels.
      */
     public void setMinTextSize(float minTextSizeScaledPixels) {
@@ -136,14 +144,14 @@ public class AutoResizeTextView extends TextView {
      * @return the lower text size limit of this view, in pixels.
      */
     public float getMinTextSizePixels() {
-    	return mMinTextSizePixels;
+        return mMinTextSizePixels;
     }
 
     /**
      * Sets the upper text size of this view.
      */
     private void initialise() {
-    	mMaxTextSizePixels = getTextSize();
+        mMaxTextSizePixels = getTextSize();
     }
 
     /**
@@ -158,7 +166,7 @@ public class AutoResizeTextView extends TextView {
 
     /**
      * <p>Resizes this view's text size with respect to the given width and height.</p>
-     *
+     * <p>
      * <p>(Default package-private visibility for unit-tests access.)</p>
      *
      * @param availableWidthPixels
@@ -194,23 +202,23 @@ public class AutoResizeTextView extends TextView {
      * and the specified text size is the view's minimum text size
      * and the specified text height is greater than the available height,
      * then cut the text and add an ellipsis.</p>
-     * 
+     * <p>
      * <p>(Default package-private visibility for unit-tests access.)</p>
-     * 
+     *
      * @param availableHeightPixels
      * @param availableWidthPixels
      * @param textSizePixels
      * @param textHeightPixels
      */
     private void addEllipsisIfNeeded(int availableHeightPixels, int availableWidthPixels, float textSizePixels, float textHeightPixels) {
-    	if (getEllipsize() != null && textSizePixels <= mMinTextSizePixels && textHeightPixels > availableHeightPixels) {
-        	if (getEllipsize().equals(TruncateAt.END)) {
-        		addEllipsisAtEndOfText(availableHeightPixels, availableWidthPixels, textSizePixels);
-        	} else if (getEllipsize().equals(TruncateAt.START)) {
-        		addEllipsisAtStartOfText(availableWidthPixels, textSizePixels);
-        	} else if (getEllipsize().equals(TruncateAt.MIDDLE)) {
-        		addEllipsisAtMiddleOfText(availableWidthPixels, textSizePixels);
-        	}
+        if (getEllipsize() != null && textSizePixels <= mMinTextSizePixels && textHeightPixels > availableHeightPixels) {
+            if (getEllipsize().equals(TruncateAt.END)) {
+                addEllipsisAtEndOfText(availableHeightPixels, availableWidthPixels, textSizePixels);
+            } else if (getEllipsize().equals(TruncateAt.START)) {
+                addEllipsisAtStartOfText(availableWidthPixels, textSizePixels);
+            } else if (getEllipsize().equals(TruncateAt.MIDDLE)) {
+                addEllipsisAtMiddleOfText(availableWidthPixels, textSizePixels);
+            }
         }
     }
 
@@ -219,13 +227,13 @@ public class AutoResizeTextView extends TextView {
      * until it fits within the available height and width
      * at the specified text size...
      * and adds an ellipsis at the end of the chopped text.
-     * 
+     *
      * @param availableHeightPixels >= 0.
-     * @param availableWidthPixels >= 0.
-     * @param textSizePixels >= 0.
+     * @param availableWidthPixels  >= 0.
+     * @param textSizePixels        >= 0.
      */
     private void addEllipsisAtEndOfText(int availableHeightPixels, int availableWidthPixels, float textSizePixels) {
-    	final TextPaint textPaintCopy = getTextPaintCopy(textSizePixels);
+        final TextPaint textPaintCopy = getTextPaintCopy(textSizePixels);
         final float ellipsisWidthPixels = measureTextWidthPixels(ELLIPSIS, textPaintCopy);
 
         // safety check
@@ -237,7 +245,7 @@ public class AutoResizeTextView extends TextView {
 
         // safety check
         if (TextUtils.isEmpty(text)) {
-        	return;
+            return;
         }
 
         // Measure using a StaticLayout instance
@@ -245,7 +253,7 @@ public class AutoResizeTextView extends TextView {
 
         // Check that we have a least one line of rendered text
         if (staticLayout.getLineCount() <= 0) {
-        	return;
+            return;
         }
 
         // Since the line at the specific vertical position would be cut off,
@@ -254,7 +262,7 @@ public class AutoResizeTextView extends TextView {
 
         // safety check
         if (lastLineNumber < 0) {
-        	return;
+            return;
         }
 
         final int lastLineStartOffset = staticLayout.getLineStart(lastLineNumber);
@@ -266,9 +274,10 @@ public class AutoResizeTextView extends TextView {
         // Trim characters off until we have enough room to draw the ellipsis
         do {
             choppedLineExcludingEllipsis = text.subSequence(lastLineStartOffset, lastLineEndOffset);
-        	choppedLineExcludingEllipsisWidthPixels = measureTextWidthPixels(choppedLineExcludingEllipsis.toString(), textPaintCopy);
-        	lastLineEndOffset--;
-        } while (choppedLineExcludingEllipsisWidthPixels + ellipsisWidthPixels > availableWidthPixels);
+            choppedLineExcludingEllipsisWidthPixels = measureTextWidthPixels(choppedLineExcludingEllipsis.toString(), textPaintCopy);
+            lastLineEndOffset--;
+        }
+        while (choppedLineExcludingEllipsisWidthPixels + ellipsisWidthPixels > availableWidthPixels);
 
         // add one to 'lastLineEndOffset' since it was just decremented in the do-while loop
         setText(text.subSequence(0, lastLineEndOffset + 1) + ELLIPSIS);
@@ -279,17 +288,17 @@ public class AutoResizeTextView extends TextView {
      * until it fits in a single line within the available width
      * at the specified text size...
      * and adds an ellipsis at the beginning of the chopped text.
-     * 
+     *
      * @param availableWidthPixels >= 0.
-     * @param textSizePixels >= 0.
+     * @param textSizePixels       >= 0.
      */
     private void addEllipsisAtStartOfText(int availableWidthPixels, float textSizePixels) {
-    	final TextPaint textPaintCopy = getTextPaintCopy(textSizePixels);
+        final TextPaint textPaintCopy = getTextPaintCopy(textSizePixels);
         float ellipsisWidthPixels = measureTextWidthPixels(ELLIPSIS, textPaintCopy);
 
         // safety check
         if (ellipsisWidthPixels > availableWidthPixels) {
-        	return;
+            return;
         }
 
         final CharSequence text = getText();
@@ -302,10 +311,11 @@ public class AutoResizeTextView extends TextView {
 
         // Trim characters off until we have enough room to draw the ellipsis
         do {
-        	choppedTextExcludingEllipsis = text.subSequence(startOffset, endOffset);
-        	choppedTextExcludingEllipsisWidthPixels = measureTextWidthPixels(choppedTextExcludingEllipsis.toString(), textPaintCopy);
-        	startOffset++;
-        } while (choppedTextExcludingEllipsisWidthPixels + ellipsisWidthPixels > availableWidthPixels);
+            choppedTextExcludingEllipsis = text.subSequence(startOffset, endOffset);
+            choppedTextExcludingEllipsisWidthPixels = measureTextWidthPixels(choppedTextExcludingEllipsis.toString(), textPaintCopy);
+            startOffset++;
+        }
+        while (choppedTextExcludingEllipsisWidthPixels + ellipsisWidthPixels > availableWidthPixels);
 
         setText(ELLIPSIS + choppedTextExcludingEllipsis);
     }
@@ -315,17 +325,17 @@ public class AutoResizeTextView extends TextView {
      * until it fits in a single line within the available width
      * at the specified text size...
      * and adds an ellipsis in the middle of the chopped text.
-     * 
+     *
      * @param availableWidthPixels >= 0.
-     * @param textSizePixels >= 0.
+     * @param textSizePixels       >= 0.
      */
     private void addEllipsisAtMiddleOfText(int availableWidthPixels, float textSizePixels) {
-    	final TextPaint textPaintCopy = getTextPaintCopy(textSizePixels);
+        final TextPaint textPaintCopy = getTextPaintCopy(textSizePixels);
         float ellipsisWidthPixels = measureTextWidthPixels(ELLIPSIS, textPaintCopy);
 
         // safety check
         if (ellipsisWidthPixels > availableWidthPixels) {
-        	return;
+            return;
         }
 
         final CharSequence text = getText();
@@ -343,41 +353,42 @@ public class AutoResizeTextView extends TextView {
 
         // Trim characters off until we have enough room to draw the ellipsis
         do {
-        	textLeftOfEllipsis = text.subSequence(startOffset, ellipsisStartOffset);
-        	textRightOfEllipsis = text.subSequence(ellipsisEndOffset, endOffset);
+            textLeftOfEllipsis = text.subSequence(startOffset, ellipsisStartOffset);
+            textRightOfEllipsis = text.subSequence(ellipsisEndOffset, endOffset);
 
-        	float textLeftOfEllipsisWidthPixels = measureTextWidthPixels(textLeftOfEllipsis.toString(), textPaintCopy);
-        	float textRightOfEllipsisWidthPixels = measureTextWidthPixels(textRightOfEllipsis.toString(), textPaintCopy);
+            float textLeftOfEllipsisWidthPixels = measureTextWidthPixels(textLeftOfEllipsis.toString(), textPaintCopy);
+            float textRightOfEllipsisWidthPixels = measureTextWidthPixels(textRightOfEllipsis.toString(), textPaintCopy);
 
-        	choppedTextExcludingEllipsisWidthPixels = textLeftOfEllipsisWidthPixels + textRightOfEllipsisWidthPixels;
+            choppedTextExcludingEllipsisWidthPixels = textLeftOfEllipsisWidthPixels + textRightOfEllipsisWidthPixels;
 
-        	if ((ellipsisStartOffset - startOffset) > (endOffset - ellipsisEndOffset)) {
-        		ellipsisStartOffset--;
-        	} else {
-        		ellipsisEndOffset++;
-        	}
-        } while (choppedTextExcludingEllipsisWidthPixels + ellipsisWidthPixels > availableWidthPixels);
+            if ((ellipsisStartOffset - startOffset) > (endOffset - ellipsisEndOffset)) {
+                ellipsisStartOffset--;
+            } else {
+                ellipsisEndOffset++;
+            }
+        }
+        while (choppedTextExcludingEllipsisWidthPixels + ellipsisWidthPixels > availableWidthPixels);
 
         setText(textLeftOfEllipsis + ELLIPSIS + textRightOfEllipsis);
     }
 
     /**
      * <p>Converts scaled pixels to pixels.</p>
-     *
+     * <p>
      * <p>(Default package-private visibility for unit-tests access.)</p>
-     * 
+     *
      * @param scaledPixels
      * @return the number of pixels which <code>scaledPixels</code> corresponds to on the device.
      */
     float convertSpToPx(float scaledPixels) {
-    	float pixels = scaledPixels * getContext().getResources().getDisplayMetrics().scaledDensity;
-    	return pixels;
+        float pixels = scaledPixels * getContext().getResources().getDisplayMetrics().scaledDensity;
+        return pixels;
     }
 
     /**
      * <p>Measures the height of the provided text
      * by means of the {@link TextPaint} object contained within this view.</p>
-     *
+     * <p>
      * <p>(Default package-private visibility for unit-tests access.)</p>
      *
      * @param text
@@ -396,7 +407,7 @@ public class AutoResizeTextView extends TextView {
     /**
      * <p>Measures the width of the provided text
      * by means of the {@link TextPaint} object contained within this view.</p>
-     *
+     * <p>
      * <p>(Default package-private visibility for unit-tests access.)</p>
      *
      * @param text
