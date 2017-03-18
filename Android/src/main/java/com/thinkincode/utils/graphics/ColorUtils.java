@@ -1,5 +1,8 @@
 package com.thinkincode.utils.graphics;
 
+/**
+ * Provides helper methods for converting between different colour representations.
+ */
 public class ColorUtils {
 
     /**
