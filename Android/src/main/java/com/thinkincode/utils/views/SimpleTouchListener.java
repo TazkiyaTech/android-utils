@@ -12,7 +12,7 @@ import android.view.View;
  * (e.g. because the down touch moved outside the bounds of the {@link View}).
  * <p>
  * To use this class, simply set it as the single parameter of the {@link View#setOnTouchListener(View.OnTouchListener)} method
- * of your {@link View}, as follows: {@code myView.setOnTouchListener(new SimpleTouchListener() {...}}.
+ * as follows: {@code myView.setOnTouchListener(new SimpleTouchListener() {...}}.
  */
 public abstract class SimpleTouchListener implements View.OnTouchListener {
 

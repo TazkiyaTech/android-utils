@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 /**
  * A custom view that extends {@link TextView}
- * and which resizes (scales down) its text to fit within its available width and height.
+ * and resizes (scales down) its text to fit within its available width and height.
  * <p>
  * This view is a modification of Chase's answer on Stack Overflow here:
  * <a href="http://stackoverflow.com/a/5535672/1071320" >http://stackoverflow.com/a/5535672/1071320</a>
@@ -20,9 +20,9 @@ import android.widget.TextView;
 public class AutoResizeTextView extends TextView {
 
     /**
-     * <p>Ellipsis string.</p>
+     * Ellipsis string.
      * <p>
-     * <p>(Default package-private visibility for unit-tests access.)</p>
+     * (Default package-private visibility for unit-tests access.)
      */
     static final String ELLIPSIS = "\u2026";
 
@@ -165,9 +165,9 @@ public class AutoResizeTextView extends TextView {
     }
 
     /**
-     * <p>Resizes this view's text size with respect to the given width and height.</p>
+     * Resizes this view's text size with respect to the given width and height.
      * <p>
-     * <p>(Default package-private visibility for unit-tests access.)</p>
+     * (Default package-private visibility for unit-tests access.)
      *
      * @param availableWidthPixels
      * @param availableHeightPixels
@@ -198,12 +198,12 @@ public class AutoResizeTextView extends TextView {
     }
 
     /**
-     * <p>If this {@link TextView} has an ellipsize associated to it,
+     * If this {@link TextView} has an ellipsize associated to it,
      * and the specified text size is the view's minimum text size
      * and the specified text height is greater than the available height,
-     * then cut the text and add an ellipsis.</p>
+     * then cut the text and add an ellipsis.
      * <p>
-     * <p>(Default package-private visibility for unit-tests access.)</p>
+     * (Default package-private visibility for unit-tests access.)
      *
      * @param availableHeightPixels
      * @param availableWidthPixels
@@ -373,9 +373,9 @@ public class AutoResizeTextView extends TextView {
     }
 
     /**
-     * <p>Converts scaled pixels to pixels.</p>
+     * Converts scaled pixels to pixels.
      * <p>
-     * <p>(Default package-private visibility for unit-tests access.)</p>
+     * (Default package-private visibility for unit-tests access.)
      *
      * @param scaledPixels
      * @return the number of pixels which <code>scaledPixels</code> corresponds to on the device.
@@ -386,10 +386,10 @@ public class AutoResizeTextView extends TextView {
     }
 
     /**
-     * <p>Measures the height of the provided text
-     * by means of the {@link TextPaint} object contained within this view.</p>
+     * Measures the height of the provided text
+     * by means of the {@link TextPaint} object contained within this view.
      * <p>
-     * <p>(Default package-private visibility for unit-tests access.)</p>
+     * (Default package-private visibility for unit-tests access.)
      *
      * @param text
      * @param availableWidthPixels
@@ -405,10 +405,10 @@ public class AutoResizeTextView extends TextView {
     }
 
     /**
-     * <p>Measures the width of the provided text
-     * by means of the {@link TextPaint} object contained within this view.</p>
+     * Measures the width of the provided text
+     * by means of the {@link TextPaint} object contained within this view.
      * <p>
-     * <p>(Default package-private visibility for unit-tests access.)</p>
+     * (Default package-private visibility for unit-tests access.)
      *
      * @param text
      * @param textSizePixels

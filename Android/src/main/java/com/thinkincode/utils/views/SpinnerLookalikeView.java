@@ -12,12 +12,11 @@ import android.widget.TextView;
 import com.thinkincode.utils.R;
 
 /**
- * <p>A custom view that extends {@link FrameLayout}
- * and which looks like a {@link Spinner}.</p>
- *
- * <p>TODO: add override of Spinner class that allows setting of text size and ellipsize.</p>
- *
- * <p>TODO: add attributes to set text, text size and ellipsize via layout xml.</p>
+ * A custom view that extends {@link FrameLayout} and looks like a {@link Spinner}.
+ * <p>
+ * TODO: add override of Spinner class that allows setting of text size and ellipsize.
+ * <p>
+ * TODO: add attributes to set text, text size and ellipsize via layout xml.
  */
 public class SpinnerLookalikeView extends FrameLayout {
 

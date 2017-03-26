@@ -19,7 +19,7 @@ public class StreamCopier {
      * Copies all bytes from {@code inputStream} to {@code outputStream}.
      * Does not close or flush either stream.
      *
-     * @param inputStream the {@link InputStream} to read from.
+     * @param inputStream  the {@link InputStream} to read from.
      * @param outputStream the {@link OutputStream} to write to.
      * @throws IOException if an I/O error occurs.
      */

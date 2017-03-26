@@ -6,37 +6,41 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 /**
- * <p>A custom view that extends {@link RelativeLayout}
+ * A custom view that extends {@link android.view.ViewGroup}
  * and which places its children horizontally,
- * flowing over to a new line whenever it runs out of width.</p>
- *
- * <p>This view is a modification of Nishant Nair's Blog post here:
- * <a href="https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android">https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android</a></p>
- *
- * <p>TODO: modify class to allow for right-to-left placement of sub-views as well as left-to-right placement of sub-views.</p>
- * */
+ * flowing over to a new line whenever it runs out of width.
+ * <p>
+ * Add children to this view like you would for any other {@link android.view.ViewGroup}
+ * by either declaring the view and its children in an xml layout file
+ * or by calling the {@link #addView} method on the view.
+ * <p>
+ * This view is a modification of Nishant Nair's Blog post here:
+ * <a href="https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android">https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android</a>
+ * <p>
+ * TODO: modify this class to allow for right-to-left placement of sub-views as well as left-to-right placement of sub-views.
+ */
 public class HorizontalFlowLayout extends RelativeLayout {
 
-	/**
-	 * Constructor to use when creating the view from code.
-	 * */
+    /**
+     * Constructor to use when creating the view from code.
+     */
     public HorizontalFlowLayout(Context context) {
         super(context);
     }
 
     /**
      * Constructor that is called when inflating the view from XML.
-     * */
+     */
     public HorizontalFlowLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     /**
      * Perform inflation from XML and apply a class-specific base style from a theme attribute.
-     * */
-	public HorizontalFlowLayout(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
+     */
+    public HorizontalFlowLayout(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
 
 //    /**
 //     * Perform inflation from XML and apply a class-specific base style from a theme attribute or style resource.
@@ -49,11 +53,11 @@ public class HorizontalFlowLayout extends RelativeLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    	// need to call super.onMeasure(...) otherwise we'll get some funny behaviour
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        // need to call super.onMeasure(...) otherwise we'll get some funny behaviour
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-		final int width = MeasureSpec.getSize(widthMeasureSpec);
-		int height = MeasureSpec.getSize(heightMeasureSpec);
+        final int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
 
         final int requiredHeight = measureRequiredHeight(
                 width,
@@ -63,12 +67,12 @@ public class HorizontalFlowLayout extends RelativeLayout {
                 getPaddingRight());
 
         if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.UNSPECIFIED) {
-        	// set height as required since there's no height restrictions
-        	height = requiredHeight;
+            // set height as required since there's no height restrictions
+            height = requiredHeight;
         } else if (MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.AT_MOST
-        		&& requiredHeight < height) {
-        	// set height as required since it's less than the maximum allowed
-        	height = requiredHeight;
+                && requiredHeight < height) {
+            // set height as required since it's less than the maximum allowed
+            height = requiredHeight;
         }
 
         setMeasuredDimension(width, height);
@@ -76,19 +80,19 @@ public class HorizontalFlowLayout extends RelativeLayout {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		// increment the x position as we progress through a line
-		int xpos = getPaddingLeft();
-		// increment the y position as we progress through the lines
-		int ypos = getPaddingTop();
-		// the height of the current line
-		int line_height = 0;
+        // increment the x position as we progress through a line
+        int xpos = getPaddingLeft();
+        // increment the y position as we progress through the lines
+        int ypos = getPaddingTop();
+        // the height of the current line
+        int line_height = 0;
 
-		View child;
-		MarginLayoutParams childMarginLayoutParams;
-		int childWidth, childHeight, childMarginLeft, childMarginRight, childMarginTop, childMarginBottom;
+        View child;
+        MarginLayoutParams childMarginLayoutParams;
+        int childWidth, childHeight, childMarginLeft, childMarginRight, childMarginTop, childMarginBottom;
 
-		// note: considering "margins" here...
-		// ... but don't need to consider "translations" as translations are done post-layout
+        // note: considering "margins" here...
+        // ... but don't need to consider "translations" as translations are done post-layout
 
         for (int i = 0; i < getChildCount(); i++) {
             child = getChildAt(i);
@@ -98,41 +102,39 @@ public class HorizontalFlowLayout extends RelativeLayout {
                 childHeight = child.getMeasuredHeight();
 
                 if (child.getLayoutParams() != null
-                		&& child.getLayoutParams() instanceof MarginLayoutParams) {
-                	childMarginLayoutParams = (MarginLayoutParams)child.getLayoutParams();
+                        && child.getLayoutParams() instanceof MarginLayoutParams) {
+                    childMarginLayoutParams = (MarginLayoutParams) child.getLayoutParams();
 
-                	childMarginLeft = childMarginLayoutParams.leftMargin;
-                	childMarginRight = childMarginLayoutParams.rightMargin;
-                	childMarginTop = childMarginLayoutParams.topMargin;
-                	childMarginBottom = childMarginLayoutParams.bottomMargin;
-                }
-                else {
-                	childMarginLeft = 0;
-                	childMarginRight = 0;
-                	childMarginTop = 0;
-                	childMarginBottom = 0;
+                    childMarginLeft = childMarginLayoutParams.leftMargin;
+                    childMarginRight = childMarginLayoutParams.rightMargin;
+                    childMarginTop = childMarginLayoutParams.topMargin;
+                    childMarginBottom = childMarginLayoutParams.bottomMargin;
+                } else {
+                    childMarginLeft = 0;
+                    childMarginRight = 0;
+                    childMarginTop = 0;
+                    childMarginBottom = 0;
                 }
 
                 if (xpos + childMarginLeft + childWidth + childMarginRight + getPaddingRight() > r - l) {
-                	// this child will need to go on a new line
+                    // this child will need to go on a new line
 
                     xpos = getPaddingLeft();
                     ypos += line_height;
 
                     line_height = childHeight + childMarginTop + childMarginBottom;
-                }
-                else {
-                	// enough space for this child on the current line
-                	line_height = Math.max(
-                			line_height,
-                			childMarginTop + childHeight + childMarginBottom);
+                } else {
+                    // enough space for this child on the current line
+                    line_height = Math.max(
+                            line_height,
+                            childMarginTop + childHeight + childMarginBottom);
                 }
 
                 child.layout(
-                		xpos + childMarginLeft,
-                		ypos + childMarginTop,
-                		xpos + childMarginLeft + childWidth,
-                		ypos + childMarginTop + childHeight);
+                        xpos + childMarginLeft,
+                        ypos + childMarginTop,
+                        xpos + childMarginLeft + childWidth,
+                        ypos + childMarginTop + childHeight);
 
                 xpos += childMarginLeft + childWidth + childMarginRight;
             }
@@ -140,20 +142,20 @@ public class HorizontalFlowLayout extends RelativeLayout {
     }
 
     /**
-     * <p>Measures the height required by this view
+     * Measures the height required by this view
      * to fit all its children within the available width,
-     * wrapping its children over multiple lines if necessary.</p>
-     *
-     * <p>(Package-private visibility for uint tests access.)</p>
+     * wrapping its children over multiple lines if necessary.
+     * <p>
+     * (Package-private visibility for uint tests access.)
      *
      * @param width the width available to this view.
      * @return the height required by this view.
      */
     int measureRequiredHeight(int width,
-                                      int paddingTop,
-                                      int paddingBottom,
-                                      int paddingLeft,
-                                      int paddingRight) {
+                              int paddingTop,
+                              int paddingBottom,
+                              int paddingLeft,
+                              int paddingRight) {
         // increment the x position as we progress through a line
         int xpos = paddingLeft;
         // increment the y position as we progress through the lines
@@ -181,7 +183,7 @@ public class HorizontalFlowLayout extends RelativeLayout {
 
                 if (child.getLayoutParams() != null
                         && child.getLayoutParams() instanceof MarginLayoutParams) {
-                    childMarginLayoutParams = (MarginLayoutParams)child.getLayoutParams();
+                    childMarginLayoutParams = (MarginLayoutParams) child.getLayoutParams();
 
                     childMarginLeft = childMarginLayoutParams.leftMargin;
                     childMarginRight = childMarginLayoutParams.rightMargin;

@@ -7,12 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * <p>An extension of {@link RecyclerView.ItemDecoration} that
+ * An extension of {@link RecyclerView.ItemDecoration} that
  * – when applied to a {@link RecyclerView} –
- * draws a horizontal divider at the bottom of each item in the {@link RecyclerView}.</p>
- *
- * <p>This class is a modification of N J's answer on Stack Overflow here:
- * <a href="http://stackoverflow.com/a/31243174/1071320">http://stackoverflow.com/a/31243174/1071320</a></p>
+ * draws a horizontal divider at the bottom of each item in the {@link RecyclerView}.
+ * <p>
+ * This class is a modification of N J's answer on Stack Overflow here:
+ * <a href="http://stackoverflow.com/a/31243174/1071320">http://stackoverflow.com/a/31243174/1071320</a>
  */
 public class HorizontalDividerRecyclerViewItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -22,11 +22,11 @@ public class HorizontalDividerRecyclerViewItemDecoration extends RecyclerView.It
     private final int dividerMarginRightPixels;
 
     /**
-     * <p>Constructor.</p>
+     * Constructor.
      *
-     * @param dividerColor the color value to apply to the divider.
-     * @param dividerHeightPixels the height to apply to the divider (in pixels).
-     * @param dividerMarginLeftPixels the size of the left margin (in pixels).
+     * @param dividerColor             the color value to apply to the divider.
+     * @param dividerHeightPixels      the height to apply to the divider (in pixels).
+     * @param dividerMarginLeftPixels  the size of the left margin (in pixels).
      * @param dividerMarginRightPixels the size of the right margin (in pixels).
      */
     public HorizontalDividerRecyclerViewItemDecoration(int dividerColor,

@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import java.net.InetAddress;
 
 /**
- * Class containing helper methods for checking the state of the network.
+ * Helper methods for checking the state of the network.
  */
 public class NetworkInspector {
 

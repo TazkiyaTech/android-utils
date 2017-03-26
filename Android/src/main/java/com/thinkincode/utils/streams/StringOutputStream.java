@@ -26,7 +26,7 @@ public class StringOutputStream {
     /**
      * Writes {@code value} to the {@link OutputStream} instance that this class wraps.
      *
-     * @param value        the {@link String} value to write to the output stream.
+     * @param value the {@link String} value to write to the output stream.
      * @throws IOException if an I/O error occurs.
      */
     public void write(@NonNull String value) throws IOException {
