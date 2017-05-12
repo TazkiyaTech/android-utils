@@ -1,4 +1,8 @@
+# Android Utils Library
+
 This Android library (SDK) contains helper classes and views that we have found to be useful in our Android applications and which we'd like to share with the wider world!
+
+## Classes
 
 The classes contained within the library are as follows:
 
@@ -13,6 +17,8 @@ The classes contained within the library are as follows:
 * [com.thinkincode.utils.views.HorizontalFlowLayout](Android/src/main/java/com/thinkincode/utils/views/HorizontalFlowLayout.java) – An extension of the `android.widget.RelativeLayout` class that places its children horizontally and flows over to a new line whenever it runs out of width.
 * [com.thinkincode.utils.views.SimpleTouchListener](Android/src/main/java/com/thinkincode/utils/views/SimpleTouchListener.java) – An implementation of the `android.view.View.OnTouchListener` interface that simply reports when a `android.views.View` is touched down and when the touch is subsequently released or canceled.
 * [com.thinkincode.utils.views.SpinnerLookalikeView](Android/src/main/java/com/thinkincode/utils/views/SpinnerLookalikeView.java) – An extension of the `android.widget.FrameLayout` class that looks like an `android.widget.Spinner` view.
+
+## Setup
 
 To use the above classes within your app you'll need to first declare the repository from which you'll get the library. You can do this by copying the following `jcenter` repository declaration into the `build.gradle` file of your app:
 
