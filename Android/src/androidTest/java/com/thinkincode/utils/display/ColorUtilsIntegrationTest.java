@@ -1,8 +1,9 @@
-package com.thinkincode.utils.graphics;
+package com.thinkincode.utils.display;
 
 import android.graphics.Color;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -14,10 +15,17 @@ import static junit.framework.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class ColorUtilsIntegrationTest {
 
+    private ColorUtils colorUtils;
+
+    @Before
+    public void setUp() {
+        colorUtils = new ColorUtils();
+    }
+
     @Test
     public void test_rgbColorToHexString_black() {
         // When.
-        String actual = ColorUtils.rgbColorToHexString(Color.BLACK);
+        String actual = colorUtils.rgbColorToHexString(Color.BLACK);
 
         // Then.
         assertEquals("#000000", actual);
@@ -26,7 +34,7 @@ public class ColorUtilsIntegrationTest {
     @Test
     public void test_rgbColorToHexString_white() {
         // When.
-        String actual = ColorUtils.rgbColorToHexString(Color.WHITE);
+        String actual = colorUtils.rgbColorToHexString(Color.WHITE);
 
         // Then.
         assertEquals("#FFFFFF", actual);
@@ -35,7 +43,7 @@ public class ColorUtilsIntegrationTest {
     @Test
     public void test_rgbColorToHexString_blue() {
         // When.
-        String actual = ColorUtils.rgbColorToHexString(Color.BLUE);
+        String actual = colorUtils.rgbColorToHexString(Color.BLUE);
 
         // Then.
         assertEquals("#0000FF", actual);
@@ -44,7 +52,7 @@ public class ColorUtilsIntegrationTest {
     @Test
     public void test_rgbColorToHexString_green() {
         // When.
-        String actual = ColorUtils.rgbColorToHexString(Color.GREEN);
+        String actual = colorUtils.rgbColorToHexString(Color.GREEN);
 
         // Then.
         assertEquals("#00FF00", actual);
@@ -53,7 +61,7 @@ public class ColorUtilsIntegrationTest {
     @Test
     public void test_rgbColorToHexString_red() {
         // When.
-        String actual = ColorUtils.rgbColorToHexString(Color.RED);
+        String actual = colorUtils.rgbColorToHexString(Color.RED);
 
         // Then.
         assertEquals("#FF0000", actual);

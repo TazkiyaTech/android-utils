@@ -1,4 +1,4 @@
-package com.thinkincode.utils.graphics;
+package com.thinkincode.utils.display;
 
 /**
  * Provides helper methods for converting between different colour representations.
@@ -11,7 +11,7 @@ public class ColorUtils {
      * @param rgbColor the RGB int color to convert.
      * @return the Hex String representation of the provided RGB int color.
      */
-    public static String rgbColorToHexString(int rgbColor) {
+    public String rgbColorToHexString(int rgbColor) {
         return String.format("#%06X", (0xFFFFFF & rgbColor));
     }
 }

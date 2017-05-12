@@ -64,10 +64,6 @@ public class AutoResizeTextView extends TextView {
 
     /**
      * Perform inflation from XML and apply a class-specific base style from a theme attribute.
-     *
-     * @param context
-     * @param attrs
-     * @param defStyle
      */
     public AutoResizeTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);

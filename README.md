@@ -7,7 +7,8 @@ This Android library (SDK) contains helper classes and views that we have found 
 The classes contained within the library are as follows:
 
 * [com.thinkincode.utils.database.QueryPlanExplainer](Android/src/main/java/com/thinkincode/utils/database/QueryPlanExplainer.java) – Provides helper methods for explaining the strategy or plan that SQLite uses to implement specific SQL queries.
-* [com.thinkincode.utils.graphics.ColorUtils](Android/src/main/java/com/thinkincode/utils/graphics/ColorUtils.java) – Provides helper methods for converting between different colour representations.
+* [com.thinkincode.utils.display.ColorUtils](Android/src/main/java/com/thinkincode/utils/display/ColorUtils.java) – Provides helper methods for converting between different colour representations.
+* [com.thinkincode.utils.display.DimensionUtils](Android/src/main/java/com/thinkincode/utils/display/DimensionUtils.java) – Provides helper methods for converting between different dimension units.
 * [com.thinkincode.utils.network.NetworkInspector](Android/src/main/java/com/thinkincode/utils/network/NetworkInspector.java) – Provides helper methods for checking the state of the network.
 * [com.thinkincode.utils.streams.StreamCopier](Android/src/main/java/com/thinkincode/utils/streams/StreamCopier.java) – Provides an easy method for copying the contents of an input stream to an output stream.
 * [com.thinkincode.utils.streams.StringInputStream](Android/src/main/java/com/thinkincode/utils/streams/StringInputStream.java) – Provides an easy method for reading in the contents of an input stream and converting it to a String.
@@ -29,5 +30,5 @@ To use the above classes within your app you'll need to first declare the reposi
 Secondly and finally, you need to declare the library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
 
     dependencies {
-        compile 'com.thinkincode.utils:Android:0.1.9'
+        compile 'com.thinkincode.utils:Android:0.2.0'
     }
