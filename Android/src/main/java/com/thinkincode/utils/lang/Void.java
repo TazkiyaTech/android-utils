@@ -1,7 +1,7 @@
 package com.thinkincode.utils.lang;
 
 /**
- * An empty class which differs from {@link java.lang.Void} class in that this class can be instantiated.
+ * An empty class which differs from the {@link java.lang.Void} class in that this class can be instantiated.
  */
 public class Void {
 
