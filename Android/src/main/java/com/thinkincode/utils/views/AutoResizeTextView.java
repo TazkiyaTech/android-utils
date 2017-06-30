@@ -1,6 +1,7 @@
 package com.thinkincode.utils.views;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -17,7 +18,7 @@ import android.widget.TextView;
  * This view is a modification of Chase's answer on Stack Overflow here:
  * <a href="http://stackoverflow.com/a/5535672/1071320" >http://stackoverflow.com/a/5535672/1071320</a>
  */
-public class AutoResizeTextView extends TextView {
+public class AutoResizeTextView extends AppCompatTextView {
 
     /**
      * Ellipsis string.

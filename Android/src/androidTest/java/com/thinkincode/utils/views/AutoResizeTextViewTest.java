@@ -84,7 +84,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         float textHeightPixels = textView.measureTextHeightPixels("", Integer.MAX_VALUE, minimumTextSizePixels);
 
         // Then.
-        assertThat(textHeightPixels, greaterThan(new Float(0)));
+        assertThat(textHeightPixels, greaterThan(0f));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         float textHeightPixels = textView.measureTextHeightPixels(TEST_TEXT, Integer.MAX_VALUE, minimumTextSizePixels);
 
         // Then.
-        assertThat(textHeightPixels, greaterThan(new Float(0)));
+        assertThat(textHeightPixels, greaterThan(0f));
     }
 
     @Test
@@ -102,7 +102,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         float textWidthPixels = textView.measureTextWidthPixels("", minimumTextSizePixels);
 
         // Then.
-        assertThat(textWidthPixels, equalTo(new Float(0)));
+        assertThat(textWidthPixels, equalTo(0f));
     }
 
     @Test
@@ -111,7 +111,7 @@ public class AutoResizeTextViewTest extends BaseTestCase {
         float textWidthPixels = textView.measureTextWidthPixels(TEST_TEXT, minimumTextSizePixels);
 
         // Then.
-        assertThat(textWidthPixels, greaterThan(new Float(0)));
+        assertThat(textWidthPixels, greaterThan(0f));
     }
 
     @Test
