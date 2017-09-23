@@ -1,19 +1,19 @@
 package com.thinkincode.utils.display;
 
 import android.graphics.Color;
-import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import static junit.framework.Assert.assertEquals;
 
 /**
  * Tests for the methods in the {@link ColorUtils} class.
  */
-@RunWith(AndroidJUnit4.class)
-public class ColorUtilsIntegrationTest {
+@RunWith(JUnit4.class)
+public class ColorUtilsTest {
 
     private ColorUtils colorUtils;
 
