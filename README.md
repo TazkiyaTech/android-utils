@@ -6,6 +6,8 @@ This Android Utils Library (SDK) contains helper classes and views that we have 
 
 The classes contained within the library are as follows:
 
+* [com.thinkincode.utils.collections.ImmutableLists](Android/src/main/java/com/thinkincode/utils/collections/ImmutableLists.java) – Provides a helper method for creating immutable copies of `java.util.List` instances
+* [com.thinkincode.utils.collections.ImmutableMaps](Android/src/main/java/com/thinkincode/utils/collections/ImmutableMaps.java) – Provides a helper method for creating immutable copies of `java.util.Map` instances.
 * [com.thinkincode.utils.database.QueryPlanExplainer](Android/src/main/java/com/thinkincode/utils/database/QueryPlanExplainer.java) – Provides helper methods for explaining the strategy or plan that SQLite uses to implement specific SQL queries.
 * [com.thinkincode.utils.display.ColorUtils](Android/src/main/java/com/thinkincode/utils/display/ColorUtils.java) – Provides helper methods for converting between different colour representations.
 * [com.thinkincode.utils.display.DimensionUtils](Android/src/main/java/com/thinkincode/utils/display/DimensionUtils.java) – Provides helper methods for converting between different dimension units.
@@ -32,5 +34,5 @@ To use the above classes within your app you'll need to first declare the reposi
 Secondly and finally, you need to declare the library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
 
     dependencies {
-        compile 'com.thinkincode.utils:Android:0.2.4'
+        compile 'com.thinkincode.utils:Android:0.2.6'
     }
