@@ -2,7 +2,8 @@ package com.thinkincode.utils.collections;
 
 import android.support.annotation.NonNull;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ImmutableLists {
@@ -16,7 +17,6 @@ public class ImmutableLists {
      */
     @NonNull
     public static <T> List<T> copyOf(@NonNull List<T> list) {
-        T[] array = (T[]) new Object[list.size()];
-        return Arrays.asList(list.toArray(array));
+        return Collections.unmodifiableList(new ArrayList<>(list));
     }
 }

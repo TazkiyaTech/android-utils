@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,9 +14,10 @@ import static org.junit.Assert.assertEquals;
 public class ImmutableListsTest {
 
     @Test
-    public void test_create_withListContainingOneItem() {
+    public void test_create_withListContainingSingleItem() {
         // Given.
-        List<String> input = Collections.singletonList("a");
+        List<String> input = new ArrayList<>();
+        input.add("a");
 
         // When.
         List<String> output = ImmutableLists.copyOf(input);
@@ -29,7 +29,10 @@ public class ImmutableListsTest {
     @Test
     public void test_create_withListContainingMultipleItems() {
         // Given.
-        List<String> input = Arrays.asList("a", "b", "c");
+        List<String> input = new ArrayList<>();
+        input.add("a");
+        input.add("b");
+        input.add("c");
 
         // When.
         List<String> output = ImmutableLists.copyOf(input);
@@ -56,7 +59,8 @@ public class ImmutableListsTest {
     @Test(expected = UnsupportedOperationException.class)
     public void test_addingItemToImmutableListThrowsException() {
         // Given.
-        List<String> input = Collections.singletonList("a");
+        List<String> input = new ArrayList<>();
+        input.add("a");
 
         List<String> output = ImmutableLists.copyOf(input);
 
@@ -67,7 +71,8 @@ public class ImmutableListsTest {
     @Test(expected = UnsupportedOperationException.class)
     public void test_removingItemFromImmutableListThrowsException() {
         // Given.
-        List<String> input = Collections.singletonList("a");
+        List<String> input = new ArrayList<>();
+        input.add("a");
 
         List<String> output = ImmutableLists.copyOf(input);
 
