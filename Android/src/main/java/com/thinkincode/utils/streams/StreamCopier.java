@@ -17,7 +17,7 @@ public class StreamCopier {
 
     /**
      * Copies all bytes from {@code inputStream} to {@code outputStream}.
-     * Does not close or flush either stream.
+     * Does not close either stream.
      *
      * @param inputStream  the {@link InputStream} to read from.
      * @param outputStream the {@link OutputStream} to write to.
@@ -31,5 +31,7 @@ public class StreamCopier {
         while ((length = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, length);
         }
+
+        outputStream.flush();
     }
 }
