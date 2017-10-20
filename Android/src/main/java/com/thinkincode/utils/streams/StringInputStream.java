@@ -48,11 +48,7 @@ public class StringInputStream implements AutoCloseable {
     }
 
     @Override
-    public void close() {
-        try {
-            inputStream.close();
-        } catch (IOException ex) {
-            // nothing to do
-        }
+    public void close() throws IOException {
+        inputStream.close();
     }
 }

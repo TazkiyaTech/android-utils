@@ -35,12 +35,8 @@ public class StringOutputStream implements AutoCloseable {
     }
 
     @Override
-    public void close() {
-        try {
-            outputStream.flush();
-            outputStream.close();
-        } catch (IOException ex) {
-            // nothing to do
-        }
+    public void close() throws IOException {
+        outputStream.flush();
+        outputStream.close();
     }
 }
