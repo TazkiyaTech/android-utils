@@ -17,13 +17,13 @@ public class StringInputStreamTest {
     public void test_read() throws IOException {
         // Given.
         String input = "Hello\nHello\tHello";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+        String output;
 
-        StringInputStream stringInputStream = new StringInputStream(inputStream);
-
-        // When.
-        String output = stringInputStream.read();
-        stringInputStream.close();
+        try (InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+             StringInputStream stringInputStream = new StringInputStream(inputStream)) {
+            // When.
+            output = stringInputStream.read();
+        }
 
         // Then.
         assertEquals(input, output);
@@ -33,14 +33,15 @@ public class StringInputStreamTest {
     public void test_read_after_read_has_already_been_called() throws IOException {
         // Given.
         String input = "Hello\nHello\tHello";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+        String output;
 
-        StringInputStream stringInputStream = new StringInputStream(inputStream);
-        stringInputStream.read();
+        try (InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+             StringInputStream stringInputStream = new StringInputStream(inputStream)) {
+            stringInputStream.read();
 
-        // When.
-        String output = stringInputStream.read();
-        stringInputStream.close();
+            // When.
+            output = stringInputStream.read();
+        }
 
         // Then.
         assertEquals("", output);
@@ -50,14 +51,15 @@ public class StringInputStreamTest {
     public void test_read_after_close_has_been_called() throws IOException {
         // Given.
         String input = "Hello\nHello\tHello";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+        String output;
 
-        StringInputStream stringInputStream = new StringInputStream(inputStream);
-        stringInputStream.close();
+        try (InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+             StringInputStream stringInputStream = new StringInputStream(inputStream)) {
+            stringInputStream.close();
 
-        // When.
-        String output = stringInputStream.read();
-        stringInputStream.close();
+            // When.
+            output = stringInputStream.read();
+        }
 
         // Then.
         assertEquals(input, output);

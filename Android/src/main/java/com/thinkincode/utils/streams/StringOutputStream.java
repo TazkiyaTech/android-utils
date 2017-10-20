@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
 /**
  * Provides an easy method for writing a {@link String} to an {@link OutputStream}.
  */
-public class StringOutputStream {
+public class StringOutputStream implements AutoCloseable {
 
     @NonNull
     private final OutputStream outputStream;
@@ -31,11 +31,10 @@ public class StringOutputStream {
      */
     public void write(@NonNull String value) throws IOException {
         outputStream.write(value.getBytes(Charset.forName("UTF-8")));
+        outputStream.flush();
     }
 
-    /**
-     * Flushes and closes the {@link OutputStream} instance that this class wraps.
-     */
+    @Override
     public void close() {
         try {
             outputStream.flush();

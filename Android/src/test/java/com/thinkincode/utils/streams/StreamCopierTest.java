@@ -19,13 +19,14 @@ public class StreamCopierTest {
         StreamCopier streamCopier = new StreamCopier();
 
         String input = "Hello\nHello\tHello";
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        String output;
 
-        // When.
-        streamCopier.copy(inputStream, outputStream);
-
-        String output = new String(outputStream.toByteArray(), "UTF-8");
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+             ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+            // When.
+            streamCopier.copy(inputStream, outputStream);
+            output = new String(outputStream.toByteArray(), "UTF-8");
+        }
 
         // Then.
         assertEquals(input, output);

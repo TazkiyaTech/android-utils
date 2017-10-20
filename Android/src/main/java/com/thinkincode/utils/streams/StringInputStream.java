@@ -5,13 +5,12 @@ import android.support.annotation.NonNull;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * Provides an easy method for reading in the contents of an {@link InputStream}
  * and converting it to a {@link String}.
  */
-public class StringInputStream {
+public class StringInputStream implements AutoCloseable {
 
     private static final int BUFFER_SIZE_BYTES = 2048;
 
@@ -35,42 +34,23 @@ public class StringInputStream {
      */
     @NonNull
     public String read() throws IOException {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(BUFFER_SIZE_BYTES);
-
-        try {
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream(BUFFER_SIZE_BYTES)) {
             byte[] buffer = new byte[BUFFER_SIZE_BYTES];
             int length;
 
             while ((length = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, length);
             }
-        } finally {
-            close(outputStream);
-        }
 
-        return outputStream.toString("UTF-8");
+            outputStream.flush();
+            return outputStream.toString("UTF-8");
+        }
     }
 
-    /**
-     * Closes the {@link InputStream} instance that this class wraps.
-     */
+    @Override
     public void close() {
         try {
             inputStream.close();
-        } catch (IOException ex) {
-            // nothing to do
-        }
-    }
-
-    /**
-     * Flushes and closes {@code outputStream}.
-     *
-     * @param outputStream the {@link OutputStream} to flush and close.
-     */
-    private void close(@NonNull OutputStream outputStream) {
-        try {
-            outputStream.flush();
-            outputStream.close();
         } catch (IOException ex) {
             // nothing to do
         }
