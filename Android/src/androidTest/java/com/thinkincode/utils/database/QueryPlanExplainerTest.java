@@ -20,6 +20,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * TODO: Fix failing tests.
+ */
 @RunWith(AndroidJUnit4.class)
 public class QueryPlanExplainerTest extends BaseTestCase {
 
