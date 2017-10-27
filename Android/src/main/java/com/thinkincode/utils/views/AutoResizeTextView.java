@@ -17,7 +17,10 @@ import android.widget.TextView;
  * <p>
  * This view is a modification of Chase's answer on Stack Overflow here:
  * <a href="http://stackoverflow.com/a/5535672/1071320" >http://stackoverflow.com/a/5535672/1071320</a>
+ *
+ * @deprecated As of Android O (API Level 26) {@link TextView} and {@link AppCompatTextView} now support text resizing.
  */
+@Deprecated
 public class AutoResizeTextView extends AppCompatTextView {
 
     /**
