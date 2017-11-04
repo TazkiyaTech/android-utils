@@ -17,7 +17,6 @@ The classes contained within the library are as follows:
 * [com.thinkincode.utils.streams.StreamCopier](Android/src/main/java/com/thinkincode/utils/streams/StreamCopier.java) – Provides an easy method for copying the contents of an input stream to an output stream.
 * [com.thinkincode.utils.streams.StringInputStream](Android/src/main/java/com/thinkincode/utils/streams/StringInputStream.java) – Provides an easy method for reading in the contents of an input stream and converting it to a String.
 * [com.thinkincode.utils.streams.StringOutputStream](Android/src/main/java/com/thinkincode/utils/streams/StringOutputStream.java) – Provides an easy method for writing a String to an output stream.
-* [com.thinkincode.utils.views.AutoResizeTextView](Android/src/main/java/com/thinkincode/utils/views/AutoResizeTextView.java) – An extension of the `android.support.v7.widget.AppCompatTextView` class which resizes (scales down) its text to fit within its available width and height.
 * [com.thinkincode.utils.views.HorizontalDividerRecyclerViewItemDecoration](Android/src/main/java/com/thinkincode/utils/views/HorizontalDividerRecyclerViewItemDecoration.java) – An extension of the `android.support.v7.widget.RecyclerView.ItemDecoration` class that draws a horizontal divider at the bottom of each item in the `RecyclerView`.
 * [com.thinkincode.utils.views.HorizontalFlowLayout](Android/src/main/java/com/thinkincode/utils/views/HorizontalFlowLayout.java) – An extension of the `android.widget.RelativeLayout` class that places its children horizontally and flows over to a new line whenever it runs out of width.
 * [com.thinkincode.utils.views.SimpleTouchListener](Android/src/main/java/com/thinkincode/utils/views/SimpleTouchListener.java) – An implementation of the `android.view.View.OnTouchListener` interface that simply reports when a `android.views.View` is touched down and when the touch is subsequently released or canceled.
@@ -34,5 +33,5 @@ To use the above classes within your app you'll need to first declare the reposi
 Secondly and finally, you need to declare the library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
 
     dependencies {
-        compile 'com.thinkincode.utils:Android:0.2.6'
+        compile 'com.thinkincode.utils:Android:0.2.9'
     }
