@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+apply plugin: 'digital.wup.android-maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = getProperty('projectGroupName').toString()
@@ -9,8 +9,8 @@ File[] proGuardFileCollection = file('./proguard').listFiles()
 File[] proGuardDebugFileCollection = file('./proguard-debug').listFiles()
 
 android {
+    buildToolsVersion '26.0.3'
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 19
@@ -83,26 +83,13 @@ task generateJavadocJar(type: Jar) {
 publishing {
     publications {
         UtilsLibrary(MavenPublication) {
-            artifact "$buildDir/outputs/aar/Android-release.aar"
+            from components.android
             artifact generateJavadocJar
             artifact generateSourcesJar
 
             groupId getProperty('projectGroupName').toString()
 //            artifactId 'Android'
             version getProperty('projectVersionName').toString()
-
-            //The publication doesn't know about our dependencies, so we have to manually add them to the pom
-            pom.withXml {
-                def dependenciesNode = asNode().appendNode('dependencies')
-
-                //Iterate over the compile dependencies (we don't want the test ones), adding a <dependency> node for each
-                configurations.compile.allDependencies.each {
-                    def dependencyNode = dependenciesNode.appendNode('dependency')
-                    dependencyNode.appendNode('groupId', it.group)
-                    dependencyNode.appendNode('artifactId', it.name)
-                    dependencyNode.appendNode('version', it.version)
-                }
-            }
         }
     }
 }
