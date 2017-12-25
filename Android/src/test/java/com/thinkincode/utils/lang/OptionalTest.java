@@ -16,7 +16,7 @@ public class OptionalTest {
     @Test
     public void test_isPresent_optional_has_null_value() {
         // Given.
-        Optional<String> optional = Optional.empty();
+        Optional<String> optional = Optional.ofNullable(null);
 
         // When. / Then.
         assertFalse(optional.isPresent());
@@ -25,7 +25,7 @@ public class OptionalTest {
     @Test
     public void test_isPresent_optional_has_non_null_value() {
         // Given.
-        Optional<String> optional = Optional.of("Some Value");
+        Optional<String> optional = Optional.ofNullable("Some value");
 
         // When. / Then.
         assertTrue(optional.isPresent());
@@ -34,18 +34,36 @@ public class OptionalTest {
     @Test(expected = NoSuchElementException.class)
     public void test_get_when_optional_has_null_value() {
         // Given.
-        Optional<String> optional = Optional.empty();
+        Optional<String> optional = Optional.ofNullable(null);
 
         // When. / Then.
-        assertEquals("Some Value", optional.get());
+        optional.get();
     }
 
     @Test
     public void test_get_when_optional_has_non_null_value() {
         // Given.
-        Optional<String> optional = Optional.of("Some Value");
+        Optional<String> optional = Optional.ofNullable("Some value");
 
         // When. / Then.
-        assertEquals("Some Value", optional.get());
+        assertEquals("Some value", optional.get());
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void test_orElseThrow_when_optional_has_null_value() {
+        // Given.
+        Optional<String> optional = Optional.ofNullable(null);
+
+        // When. / Then.
+        optional.orElseThrow(new RuntimeException("Some exception"));
+    }
+
+    @Test
+    public void test_orElseThrow_when_optional_has_non_null_value() {
+        // Given.
+        Optional<String> optional = Optional.ofNullable("Some value");
+
+        // When. / Then.
+        assertEquals("Some value", optional.orElseThrow(new RuntimeException("Some exception")));
     }
 }

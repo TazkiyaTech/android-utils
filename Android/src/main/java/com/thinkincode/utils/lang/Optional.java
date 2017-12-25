@@ -22,7 +22,7 @@ public class Optional<T> {
     private final T value;
 
     /**
-     * Returns an {@link Optional} instance which contains a null value.
+     * Returns an empty {@link Optional} instance. No value is present for this {@link Optional}.
      */
     @NonNull
     public static <T> Optional<T> empty() {
@@ -30,11 +30,23 @@ public class Optional<T> {
     }
 
     /**
-     * Returns an {@link Optional} instance which contains the provided value.
+     * Returns an {@link Optional} with the specified present non-null value.
      */
     @NonNull
     public static <T> Optional<T> of(@NonNull T value) {
         return new Optional<>(value);
+    }
+
+    /**
+     * Returns an {@link Optional} describing the specified value, if non-null, otherwise returns an empty {@link Optional}.
+     */
+    @NonNull
+    public static <T> Optional<T> ofNullable(@Nullable T value) {
+        if (value == null) {
+            return empty();
+        } else {
+            return of(value);
+        }
     }
 
     /**
@@ -62,8 +74,19 @@ public class Optional<T> {
     public T get() throws NoSuchElementException {
         if (value == null) {
             throw new NoSuchElementException("There is no value to get from this Optional");
+        } else {
+            return value;
         }
+    }
 
-        return value;
+    /**
+     * Returns the contained value, if present, otherwise throws the provided exception.
+     */
+    <X extends Throwable> T orElseThrow(X throwable) throws X {
+        if (value == null) {
+            throw throwable;
+        } else {
+            return value;
+        }
     }
 }
