@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 /**
  * A container object which may or may not contain a non-null value.
  * <p>
- * This class is a step-in for the <a href="https://developer.android.com/reference/java/util/Optional.html">java.util.Optional</a> class
+ * This class is an alternative for the <a href="https://developer.android.com/reference/java/util/Optional.html">java.util.Optional</a> class
  * to be used in projects that have a minimum Android SDK version lower than API level 24.
  * (The <a href="https://developer.android.com/reference/java/util/Optional.html">java.util.Optional</a> class was added to Android in API level 24
  * and thus is not available in earlier versions).
