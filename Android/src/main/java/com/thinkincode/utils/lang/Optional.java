@@ -82,7 +82,7 @@ public class Optional<T> {
     /**
      * Returns the contained value, if present, otherwise throws the provided exception.
      */
-    <X extends Throwable> T orElseThrow(X throwable) throws X {
+    public <X extends Throwable> T orElseThrow(X throwable) throws X {
         if (value == null) {
             throw throwable;
         } else {
