@@ -33,5 +33,5 @@ To use the above classes within your app you'll need to first declare the reposi
 Secondly and finally, you need to declare the library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
 
     dependencies {
-        compile 'com.thinkincode.utils:Android:0.3.2'
+        compile 'com.thinkincode.utils:Android:0.3.3'
     }
