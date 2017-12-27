@@ -49,6 +49,24 @@ public class OptionalTest {
         assertEquals("Some value", optional.get());
     }
 
+    @Test
+    public void test_orElse_when_optional_has_null_value() {
+        // Given.
+        Optional<String> optional = Optional.ofNullable(null);
+
+        // When. / Then.
+        assertEquals("Some alternative value", optional.orElse("Some alternative value"));
+    }
+
+    @Test
+    public void test_orElse_when_optional_has_non_null_value() {
+        // Given.
+        Optional<String> optional = Optional.ofNullable("Some value");
+
+        // When. / Then.
+        assertEquals("Some value", optional.orElse("Some value"));
+    }
+
     @Test(expected = RuntimeException.class)
     public void test_orElseThrow_when_optional_has_null_value() {
         // Given.

@@ -80,9 +80,28 @@ public class Optional<T> {
     }
 
     /**
-     * Returns the contained value, if present, otherwise throws the provided exception.
+     * Returns the value if present, otherwise returns {@code other}.
+     *
+     * @param other the value to be returned if there is no value present, may be null.
+     * @return the value, if present, otherwise {@code other}.
      */
-    public <X extends Throwable> T orElseThrow(X throwable) throws X {
+    @Nullable
+    public T orElse(@Nullable T other) {
+        if (value == null) {
+            return other;
+        } else {
+            return value;
+        }
+    }
+
+    /**
+     * Returns the contained value, if present, otherwise throws the provided exception.
+     *
+     * @param throwable the exception to throw if there is no value present.
+     * @return the present value.
+     */
+    @NonNull
+    public <X extends Throwable> T orElseThrow(@NonNull X throwable) throws X {
         if (value == null) {
             throw throwable;
         } else {
