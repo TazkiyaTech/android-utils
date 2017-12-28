@@ -1,6 +1,6 @@
 # Android Utils Library
 
-This Android Utils Library (SDK) contains helper classes and views that we have found to be useful in our Android applications and which we'd like to share with the wider world!
+This Android Utils Library (SDK) contains helper classes and views that we have found to be useful across our various Android applications.
 
 ## Classes
 
