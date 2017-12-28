@@ -6,8 +6,9 @@ This Android Utils Library (SDK) contains helper classes and views that we have 
 
 The classes contained within the library are as follows:
 
-* [com.thinkincode.utils.collections.ImmutableLists](Android/src/main/java/com/thinkincode/utils/collections/ImmutableLists.java) – Provides a helper method for creating immutable copies of `java.util.List` instances
-* [com.thinkincode.utils.collections.ImmutableMaps](Android/src/main/java/com/thinkincode/utils/collections/ImmutableMaps.java) – Provides a helper method for creating immutable copies of `java.util.Map` instances.
+* [com.thinkincode.utils.collections.ImmutableList](Android/src/main/java/com/thinkincode/utils/collections/ImmutableSet.java) – Provides a helper method for creating immutable copies of `java.util.List` instances
+* [com.thinkincode.utils.collections.ImmutableMap](Android/src/main/java/com/thinkincode/utils/collections/ImmutableMap.java) – Provides a helper method for creating immutable copies of `java.util.Map` instances.
+* [com.thinkincode.utils.collections.ImmutableSet](Android/src/main/java/com/thinkincode/utils/collections/ImmutableSet.java) – Provides a helper method for creating immutable copies of `java.util.Set` instances.
 * [com.thinkincode.utils.database.QueryPlanExplainer](Android/src/main/java/com/thinkincode/utils/database/QueryPlanExplainer.java) – Provides helper methods for explaining the strategy or plan that SQLite uses to implement specific SQL queries.
 * [com.thinkincode.utils.display.ColorUtils](Android/src/main/java/com/thinkincode/utils/display/ColorUtils.java) – Provides helper methods for converting between different colour representations.
 * [com.thinkincode.utils.display.DimensionUtils](Android/src/main/java/com/thinkincode/utils/display/DimensionUtils.java) – Provides helper methods for converting between different dimension units.

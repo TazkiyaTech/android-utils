@@ -5,40 +5,38 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 @RunWith(JUnit4.class)
-public class ImmutableListsTest {
+public class ImmutableListTest {
 
     @Test
-    public void test_create_withListContainingSingleItem() {
+    public void test_copyOf_withListContainingSingleItem() {
         // Given.
-        List<String> input = new ArrayList<>();
-        input.add("a");
+        List<String> input = Collections.singletonList("a");
 
         // When.
-        List<String> output = ImmutableLists.copyOf(input);
+        List<String> output = ImmutableList.copyOf(input);
 
         // Then.
-        assertEquals(input, output);
+        assertThat(output, contains("a"));
     }
 
     @Test
-    public void test_create_withListContainingMultipleItems() {
+    public void test_copyOf_withListContainingMultipleItems() {
         // Given.
-        List<String> input = new ArrayList<>();
-        input.add("a");
-        input.add("b");
-        input.add("c");
+        List<String> input = Arrays.asList("a", "b", "c");
 
         // When.
-        List<String> output = ImmutableLists.copyOf(input);
+        List<String> output = ImmutableList.copyOf(input);
 
         // Then.
-        assertEquals(input, output);
+        assertThat(output, contains("a", "b", "c"));
     }
 
     @Test
@@ -47,13 +45,13 @@ public class ImmutableListsTest {
         List<String> input = new ArrayList<>();
         input.add("a");
 
-        List<String> output = ImmutableLists.copyOf(input);
+        List<String> output = ImmutableList.copyOf(input);
 
         // When.
         input.add("b");
 
         // Then.
-        assertEquals(Collections.singletonList("a"), output);
+        assertThat(output, contains("a"));
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -62,7 +60,7 @@ public class ImmutableListsTest {
         List<String> input = new ArrayList<>();
         input.add("a");
 
-        List<String> output = ImmutableLists.copyOf(input);
+        List<String> output = ImmutableList.copyOf(input);
 
         // When.
         output.add("b");
@@ -74,7 +72,7 @@ public class ImmutableListsTest {
         List<String> input = new ArrayList<>();
         input.add("a");
 
-        List<String> output = ImmutableLists.copyOf(input);
+        List<String> output = ImmutableList.copyOf(input);
 
         // When.
         output.clear();
