@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'digital.wup.android-maven-publish'
+apply plugin: 'kotlin-android'
 
 group = getProperty('projectGroupName').toString()
 version = getProperty('projectVersionName').toString()
@@ -48,7 +49,8 @@ android {
 dependencies {
     api 'com.android.support:appcompat-v7:27.1.1'
     api 'com.android.support:recyclerview-v7:27.1.1'
-    api 'com.android.support:support-annotations:27.1.1'
+    implementation 'com.android.support:support-annotations:27.1.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.hamcrest:hamcrest-library:1.3'
