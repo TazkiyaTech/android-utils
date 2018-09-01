@@ -108,7 +108,7 @@ bintray {
         version {
             name = getProperty('projectVersionName').toString()
             desc = 'Latest release!'
-            released  = new Date()
+            released = new Date()
             vcsTag = 'release_' + getProperty('projectVersionName').toString()
         }
     }

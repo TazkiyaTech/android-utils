@@ -8,8 +8,7 @@ import android.support.annotation.NonNull;
  */
 public class DimensionUtils {
 
-    @NonNull
-    private final Resources resources;
+    @NonNull private final Resources resources;
 
     /**
      * Constructor.
