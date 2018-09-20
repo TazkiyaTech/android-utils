@@ -7,7 +7,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class ColorUtilsTest {
+class ColorsTest {
 
     @Test
     fun test_toRGBHexadecimalString_00000000() {

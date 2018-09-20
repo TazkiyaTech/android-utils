@@ -2,8 +2,8 @@ buildscript {
     ext.kotlin_version = '1.2.70'
 
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
 
     dependencies {
@@ -16,11 +16,11 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
 }
 
 wrapper {
-    gradleVersion = '4.10'
+    gradleVersion = '4.10.1'
 }
