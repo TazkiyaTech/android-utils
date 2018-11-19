@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  * A container object which may or may not contain a non-null value.
@@ -107,5 +108,29 @@ public class Optional<T> {
         } else {
             return value;
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Optional)) {
+            return false;
+        }
+        Optional<?> other = (Optional<?>) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return value != null
+                ? String.format("Optional[%s]", value)
+                : "Optional.empty";
     }
 }
