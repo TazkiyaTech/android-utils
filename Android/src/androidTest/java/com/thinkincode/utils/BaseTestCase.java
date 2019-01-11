@@ -1,7 +1,8 @@
 package com.thinkincode.utils;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+
+import androidx.test.core.app.ApplicationProvider;
 
 public abstract class BaseTestCase {
 
@@ -23,6 +24,6 @@ public abstract class BaseTestCase {
      * @return the {@link Context} for the target application being instrumented.
      */
     protected Context getContext() {
-        return InstrumentationRegistry.getTargetContext();
+        return ApplicationProvider.getApplicationContext();
     }
 }

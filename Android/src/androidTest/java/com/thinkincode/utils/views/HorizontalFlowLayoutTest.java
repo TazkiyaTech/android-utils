@@ -1,6 +1,5 @@
 package com.thinkincode.utils.views;
 
-import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -9,6 +8,8 @@ import com.thinkincode.utils.BaseTestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;

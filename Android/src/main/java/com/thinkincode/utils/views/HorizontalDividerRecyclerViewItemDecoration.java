@@ -3,8 +3,10 @@ package com.thinkincode.utils.views;
 import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * An extension of {@link RecyclerView.ItemDecoration} that
@@ -40,7 +42,7 @@ public class HorizontalDividerRecyclerViewItemDecoration extends RecyclerView.It
     }
 
     @Override
-    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         int left = dividerMarginLeftPixels;
         int right = parent.getWidth() - dividerMarginRightPixels;
 

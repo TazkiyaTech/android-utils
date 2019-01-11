@@ -3,7 +3,7 @@ package com.thinkincode.utils.network;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.net.InetAddress;
 

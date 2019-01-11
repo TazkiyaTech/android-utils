@@ -1,11 +1,11 @@
 package com.thinkincode.utils.collections;
 
-import android.support.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 public class ImmutableList {
 

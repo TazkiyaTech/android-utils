@@ -1,6 +1,6 @@
 package com.thinkincode.utils.streams;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.io.InputStream;

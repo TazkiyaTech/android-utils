@@ -16,7 +16,7 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 28
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     lintOptions {
@@ -42,17 +42,18 @@ android {
 }
 
 dependencies {
-    api "com.android.support:appcompat-v7:$android_support_version"
-    api "com.android.support:recyclerview-v7:$android_support_version"
-    implementation "com.android.support:support-annotations:$android_support_version"
+    api 'androidx.appcompat:appcompat:1.0.2'
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.annotation:annotation:1.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     testImplementation 'junit:junit:4.12'
     testImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
 
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
     androidTestImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
     androidTestImplementation "org.mockito:mockito-android:$mockito_version"
 }

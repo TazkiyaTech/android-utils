@@ -1,12 +1,12 @@
 package com.thinkincode.utils.network;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import com.thinkincode.utils.BaseTestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static junit.framework.Assert.assertTrue;
 
