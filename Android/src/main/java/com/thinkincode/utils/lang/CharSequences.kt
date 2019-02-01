@@ -1,6 +1,15 @@
 package com.thinkincode.utils.lang
 
 /**
+ * Surrounds the [CharSequence] with a pair of round brackets ().
+ *
+ * @return the [CharSequence] surrounded with a pair of round brackets ().
+ */
+fun CharSequence.parenthesise(): String {
+    return "($this)"
+}
+
+/**
  * Splits this [CharSequence] around spaces.
  *
  * @return a [List] of the words in this [CharSequence]
@@ -23,13 +32,14 @@ fun CharSequence.numberOfCharactersExcludingArabicVowelMarks(): Int {
         val c = get(i)
 
         if ((c >= 0x610.toChar() && c <= 0x061A.toChar())
-                || (c >= 0x064B.toChar() && c <= 0x065F.toChar())
-                || (c == 0x0670.toChar())
-                || (c == 0x0674.toChar())
-                || (c >= 0x06D6.toChar() && c <= 0x06DC.toChar())
-                || (c >= 0x06DF.toChar() && c <= 0x06E8.toChar())
-                || (c >= 0x06EA.toChar() && c <= 0x06ED.toChar())
-                || (c >= 0x08E3.toChar() && c <= 0x08FF.toChar())) { // c is a vowel mark
+            || (c >= 0x064B.toChar() && c <= 0x065F.toChar())
+            || (c == 0x0670.toChar())
+            || (c == 0x0674.toChar())
+            || (c >= 0x06D6.toChar() && c <= 0x06DC.toChar())
+            || (c >= 0x06DF.toChar() && c <= 0x06E8.toChar())
+            || (c >= 0x06EA.toChar() && c <= 0x06ED.toChar())
+            || (c >= 0x08E3.toChar() && c <= 0x08FF.toChar())
+        ) { // c is a vowel mark
             if (previousCharacterWasSpace) {
                 count++
             }

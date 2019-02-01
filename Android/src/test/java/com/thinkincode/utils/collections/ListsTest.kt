@@ -6,7 +6,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class ListUtilsTest {
+class ListsTest {
 
     @Test
     fun joinWithSpaceSeparator_without_to_index() {
