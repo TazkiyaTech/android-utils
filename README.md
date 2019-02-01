@@ -10,7 +10,7 @@ The classes contained within the library are as follows:
 * [com.thinkincode.utils.collections.ImmutableMap](Android/src/main/java/com/thinkincode/utils/collections/ImmutableMap.java) – Provides a helper method for creating immutable copies of `java.util.Map` instances.
 * [com.thinkincode.utils.collections.ImmutableSet](Android/src/main/java/com/thinkincode/utils/collections/ImmutableSet.java) – Provides a helper method for creating immutable copies of `java.util.Set` instances.
 * [com.thinkincode.utils.database.QueryPlanExplainer](Android/src/main/java/com/thinkincode/utils/database/QueryPlanExplainer.java) – Provides helper methods for explaining the strategy or plan that SQLite uses to implement specific SQL queries.
-* [com.thinkincode.utils.display.ColorUtils](Android/src/main/java/com/thinkincode/utils/display/Colors.kt) – Provides helper methods for converting between different colour representations.
+* [com.thinkincode.utils.display.Colors](Android/src/main/java/com/thinkincode/utils/display/Colors.kt) – Provides helper methods for converting between different colour representations.
 * [com.thinkincode.utils.display.Dimensions](Android/src/main/java/com/thinkincode/utils/display/Dimensions.kt) – Provides helper methods for converting between different dimension units.
 * [com.thinkincode.utils.display.Spannables](Android/src/main/java/com/thinkincode/utils/display/Spannables.kt) – Provides helper methods for adding spans to `android.text.Spannable` instances.
 * [com.thinkincode.utils.lang.Optional](Android/src/main/java/com/thinkincode/utils/lang/Optional.java) – A container object which may or may not contain a non-null value.
@@ -35,5 +35,5 @@ To use the above classes within your app you'll need to first declare the reposi
 Secondly and finally, you need to declare the library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
 
     dependencies {
-        compile 'com.thinkincode.utils:Android:0.3.4'
+        compile 'com.thinkincode.utils:Android:0.4.5'
     }
