@@ -85,7 +85,7 @@ publishing {
             artifact generateSourcesJar
 
             groupId getProperty('projectGroupName').toString()
-//            artifactId 'Android'
+            artifactId getProperty('projectArtifactName').toString()
             version getProperty('projectVersionName').toString()
         }
     }
@@ -97,8 +97,7 @@ bintray {
     publications = ['UtilsLibrary']
     pkg {
         repo = 'maven'
-        name = 'utils-library'
-//        userOrg = 'Think In Code' // optional
+        name = getProperty('projectArtifactName').toString()
         licenses = ['Apache-2.0']
         vcsUrl = 'https://bitbucket.org/adilson05uk/utils-library.git'
 
