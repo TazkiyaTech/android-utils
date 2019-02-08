@@ -1,3 +1,3 @@
--keep public interface com.thinkincode.utils.** { *; }
--keep public class com.thinkincode.utils.** { *; }
--keep public enum com.thinkincode.utils.** { *; }
+-keep public interface com.tazkiyatech.utils.** { *; }
+-keep public class com.tazkiyatech.utils.** { *; }
+-keep public enum com.tazkiyatech.utils.** { *; }

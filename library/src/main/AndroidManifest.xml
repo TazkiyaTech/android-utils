@@ -1,6 +1,6 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.thinkincode.utils">
+    package="com.tazkiyatech.utils">
 
     <!-- needed for the NetworkInspector class -->
     <uses-permission android:name="android.permission.INTERNET" />
