@@ -12,4 +12,4 @@ local.properties
 
 # Build folders
 /build
-/Android/build
+/library/build
