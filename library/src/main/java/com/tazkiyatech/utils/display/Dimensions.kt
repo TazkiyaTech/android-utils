@@ -7,9 +7,9 @@ import android.content.res.Resources
  * to the corresponding number of density independent pixels using the formula:
  * dip = px / (dpi / 160).
  */
-fun Resources.convertPxToDip(pixels: Float): Float {
+fun Resources.convertPxToDp(px: Float): Float {
     val scalingFactor = screenDensity
-    return pixels / scalingFactor
+    return px / scalingFactor
 }
 
 /**
@@ -17,9 +17,9 @@ fun Resources.convertPxToDip(pixels: Float): Float {
  * to the corresponding number of pixels using the formula:
  * px = dip * (dpi / 160).
  */
-fun Resources.convertDipToPx(dip: Float): Float {
+fun Resources.convertDpToPx(dp: Float): Float {
     val scalingFactor = screenDensity
-    return dip * scalingFactor
+    return dp * scalingFactor
 }
 
 /**
