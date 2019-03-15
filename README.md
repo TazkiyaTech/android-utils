@@ -13,6 +13,8 @@ The classes contained within the library are as follows:
 * [com.tazkiyatech.utils.display.Colors](library/src/main/java/com/tazkiyatech/utils/display/Colors.kt) – Provides helper methods for converting between different colour representations.
 * [com.tazkiyatech.utils.display.Dimensions](library/src/main/java/com/tazkiyatech/utils/display/Dimensions.kt) – Provides helper methods for converting between different dimension units.
 * [com.tazkiyatech.utils.display.Spannables](library/src/main/java/com/tazkiyatech/utils/display/Spannables.kt) – Provides helper methods for adding spans to `android.text.Spannable` instances.
+* [com.tazkiyatech.utils.display.SpannableStringBuilders](library/src/main/java/com/tazkiyatech/utils/display/SpannableStringBuilders.kt) – Provides helper methods for adding spans to `android.text.SpannableStringBuilder` instances.
+* [com.tazkiyatech.utils.display.Themes](library/src/main/java/com/tazkiyatech/utils/display/Themes.kt) – Provides helper methods for getting colours such as the primary text colour out of the theme.
 * [com.tazkiyatech.utils.lang.Optional](library/src/main/java/com/tazkiyatech/utils/lang/Optional.java) – A container object which may or may not contain a non-null value.
 * [com.tazkiyatech.utils.lang.Void](library/src/main/java/com/tazkiyatech/utils/lang/Void.java) – An empty class which differs from `java.lang.Void` class in that this class can be instantiated.
 * [com.tazkiyatech.utils.network.NetworkInspector](library/src/main/java/com/tazkiyatech/utils/network/NetworkInspector.java) – Provides helper methods for checking the state of the network.
@@ -35,5 +37,5 @@ To use the above classes within your app you'll need to first declare the reposi
 Secondly and finally, you need to declare the library as a dependency in your app. You can do this by copying the following dependency declaration into the `build.gradle` file of your app:
 
     dependencies {
-        implementation 'com.tazkiyatech:android-utils:0.0.2'
+        implementation 'com.tazkiyatech:android-utils:0.0.3'
     }
