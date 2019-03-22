@@ -13,10 +13,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 @RunWith(JUnit4.class)
-public class ImmutableListTest {
+public class ImmutableListUnitTest {
 
     @Test
-    public void test_copyOf_withListContainingSingleItem() {
+    public void copyOf_withListContainingSingleItem() {
         // Given.
         List<String> input = Collections.singletonList("a");
 
@@ -28,7 +28,7 @@ public class ImmutableListTest {
     }
 
     @Test
-    public void test_copyOf_withListContainingMultipleItems() {
+    public void copyOf_withListContainingMultipleItems() {
         // Given.
         List<String> input = Arrays.asList("a", "b", "c");
 
@@ -40,7 +40,7 @@ public class ImmutableListTest {
     }
 
     @Test
-    public void test_modifyingInputAfterCreatingImmutableListDoesNotAffectImmutableList() {
+    public void modifyingInputAfterCreatingImmutableListDoesNotAffectImmutableList() {
         // Given.
         List<String> input = new ArrayList<>();
         input.add("a");
@@ -55,7 +55,7 @@ public class ImmutableListTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void test_addingItemToImmutableListThrowsException() {
+    public void addingItemToImmutableListThrowsException() {
         // Given.
         List<String> input = new ArrayList<>();
         input.add("a");
@@ -67,7 +67,7 @@ public class ImmutableListTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void test_removingItemFromImmutableListThrowsException() {
+    public void removingItemFromImmutableListThrowsException() {
         // Given.
         List<String> input = new ArrayList<>();
         input.add("a");

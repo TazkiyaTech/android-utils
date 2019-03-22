@@ -6,7 +6,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class CharSequencesTest {
+class CharSequencesUnitTest {
 
     @Test
     fun parenthesise_with_empty_string() {

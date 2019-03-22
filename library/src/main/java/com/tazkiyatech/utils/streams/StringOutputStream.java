@@ -1,10 +1,10 @@
 package com.tazkiyatech.utils.streams;
 
-import androidx.annotation.NonNull;
-
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
+import androidx.annotation.NonNull;
 
 /**
  * Provides an easy method for writing a {@link String} to an {@link OutputStream}.
@@ -30,7 +30,7 @@ public class StringOutputStream implements AutoCloseable {
      * @throws IOException if an I/O error occurs.
      */
     public void write(@NonNull String value) throws IOException {
-        outputStream.write(value.getBytes(Charset.forName("UTF-8")));
+        outputStream.write(value.getBytes(StandardCharsets.UTF_8));
         outputStream.flush();
     }
 

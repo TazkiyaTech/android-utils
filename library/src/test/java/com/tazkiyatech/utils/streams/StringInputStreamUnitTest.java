@@ -5,21 +5,21 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnit4.class)
-public class StringInputStreamTest {
+public class StringInputStreamUnitTest {
 
     @Test
-    public void test_read() throws IOException {
+    public void read() throws Exception {
         // Given.
         String input = "Hello\nHello\tHello";
         String output;
 
-        try (InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+        try (InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
              StringInputStream stringInputStream = new StringInputStream(inputStream)) {
             // When.
             output = stringInputStream.read();
@@ -30,12 +30,12 @@ public class StringInputStreamTest {
     }
 
     @Test
-    public void test_read_after_read_has_already_been_called() throws IOException {
+    public void read_after_read_has_already_been_called() throws Exception {
         // Given.
         String input = "Hello\nHello\tHello";
         String output;
 
-        try (InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+        try (InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
              StringInputStream stringInputStream = new StringInputStream(inputStream)) {
             stringInputStream.read();
 
@@ -48,12 +48,12 @@ public class StringInputStreamTest {
     }
 
     @Test
-    public void test_read_after_close_has_been_called() throws IOException {
+    public void read_after_close_has_been_called() throws Exception {
         // Given.
         String input = "Hello\nHello\tHello";
         String output;
 
-        try (InputStream inputStream = new ByteArrayInputStream(input.getBytes("UTF-8"));
+        try (InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
              StringInputStream stringInputStream = new StringInputStream(inputStream)) {
             stringInputStream.close();
 

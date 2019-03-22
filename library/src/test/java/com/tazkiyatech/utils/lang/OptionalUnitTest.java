@@ -11,10 +11,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnit4.class)
-public class OptionalTest {
+public class OptionalUnitTest {
 
     @Test
-    public void test_isPresent_optional_has_null_value() {
+    public void isPresent_optional_has_null_value() {
         // Given.
         Optional<String> optional = Optional.ofNullable(null);
 
@@ -23,7 +23,7 @@ public class OptionalTest {
     }
 
     @Test
-    public void test_isPresent_optional_has_non_null_value() {
+    public void isPresent_optional_has_non_null_value() {
         // Given.
         Optional<String> optional = Optional.ofNullable("Some value");
 
@@ -32,7 +32,7 @@ public class OptionalTest {
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void test_get_when_optional_has_null_value() {
+    public void get_when_optional_has_null_value() {
         // Given.
         Optional<String> optional = Optional.ofNullable(null);
 
@@ -41,7 +41,7 @@ public class OptionalTest {
     }
 
     @Test
-    public void test_get_when_optional_has_non_null_value() {
+    public void get_when_optional_has_non_null_value() {
         // Given.
         Optional<String> optional = Optional.ofNullable("Some value");
 
@@ -50,7 +50,7 @@ public class OptionalTest {
     }
 
     @Test
-    public void test_orElse_when_optional_has_null_value() {
+    public void orElse_when_optional_has_null_value() {
         // Given.
         Optional<String> optional = Optional.ofNullable(null);
 
@@ -59,7 +59,7 @@ public class OptionalTest {
     }
 
     @Test
-    public void test_orElse_when_optional_has_non_null_value() {
+    public void orElse_when_optional_has_non_null_value() {
         // Given.
         Optional<String> optional = Optional.ofNullable("Some value");
 
@@ -68,7 +68,7 @@ public class OptionalTest {
     }
 
     @Test(expected = RuntimeException.class)
-    public void test_orElseThrow_when_optional_has_null_value() {
+    public void orElseThrow_when_optional_has_null_value() {
         // Given.
         Optional<String> optional = Optional.ofNullable(null);
 
@@ -77,7 +77,7 @@ public class OptionalTest {
     }
 
     @Test
-    public void test_orElseThrow_when_optional_has_non_null_value() {
+    public void orElseThrow_when_optional_has_non_null_value() {
         // Given.
         Optional<String> optional = Optional.ofNullable("Some value");
 

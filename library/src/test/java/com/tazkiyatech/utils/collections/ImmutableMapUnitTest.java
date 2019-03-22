@@ -13,10 +13,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JUnit4.class)
-public class ImmutableMapTest {
+public class ImmutableMapUnitTest {
 
     @Test
-    public void test_copyOf_withMapContainingSingleItem() {
+    public void copyOf_withMapContainingSingleItem() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("SomeKey", "SomeValue");
@@ -29,7 +29,7 @@ public class ImmutableMapTest {
     }
 
     @Test
-    public void test_copyOf_withMapContainingMultipleItems() {
+    public void copyOf_withMapContainingMultipleItems() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");
@@ -44,7 +44,7 @@ public class ImmutableMapTest {
     }
 
     @Test
-    public void test_copyOf_returnsMapOrderedByItsKeys() {
+    public void copyOf_returnsMapOrderedByItsKeys() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");
@@ -59,7 +59,7 @@ public class ImmutableMapTest {
     }
 
     @Test
-    public void test_modifyingInputAfterCreatingImmutableMapDoesNotAffectImmutableMap() {
+    public void modifyingInputAfterCreatingImmutableMapDoesNotAffectImmutableMap() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");
@@ -74,7 +74,7 @@ public class ImmutableMapTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void test_addingItemToImmutableMapThrowsException() {
+    public void addingItemToImmutableMapThrowsException() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");
@@ -86,7 +86,7 @@ public class ImmutableMapTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void test_removingItemFromImmutableMapThrowsException() {
+    public void removingItemFromImmutableMapThrowsException() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");

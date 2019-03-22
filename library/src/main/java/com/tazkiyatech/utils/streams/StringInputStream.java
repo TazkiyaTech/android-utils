@@ -1,10 +1,10 @@
 package com.tazkiyatech.utils.streams;
 
-import androidx.annotation.NonNull;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import androidx.annotation.NonNull;
 
 /**
  * Provides an easy method for reading in the contents of an {@link InputStream}
@@ -14,8 +14,7 @@ public class StringInputStream implements AutoCloseable {
 
     private static final int BUFFER_SIZE_BYTES = 2048;
 
-    @NonNull
-    private final InputStream inputStream;
+    @NonNull private final InputStream inputStream;
 
     /**
      * Constructor.

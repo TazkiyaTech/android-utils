@@ -11,10 +11,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 @RunWith(JUnit4.class)
-public class ImmutableSetTest {
+public class ImmutableSetUnitTest {
 
     @Test
-    public void test_of_withSingleItem() {
+    public void of_withSingleItem() {
         // When.
         Set<String> output = ImmutableSet.of("a");
 
@@ -23,7 +23,7 @@ public class ImmutableSetTest {
     }
 
     @Test
-    public void test_of_withMultipleItems() {
+    public void of_withMultipleItems() {
         // When.
         Set<String> output = ImmutableSet.of("a", "c", "b");
 
@@ -32,7 +32,7 @@ public class ImmutableSetTest {
     }
 
     @Test
-    public void test_modifyingInputAfterCreatingImmutableSetDoesNotAffectImmutableList() {
+    public void modifyingInputAfterCreatingImmutableSetDoesNotAffectImmutableList() {
         // Given.
         Set<String> input = new HashSet<>();
         input.add("a");
@@ -47,7 +47,7 @@ public class ImmutableSetTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void test_addingItemToImmutableListThrowsException() {
+    public void addingItemToImmutableListThrowsException() {
         // Given.
         Set<String> input = new HashSet<>();
         input.add("a");
@@ -59,7 +59,7 @@ public class ImmutableSetTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void test_removingItemFromImmutableListThrowsException() {
+    public void removingItemFromImmutableListThrowsException() {
         // Given.
         Set<String> input = new HashSet<>();
         input.add("a");
