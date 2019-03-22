@@ -10,7 +10,7 @@ import org.junit.runner.RunWith
 class ColorsUnitTest {
 
     @Test
-    fun test_toRGBHexadecimalString_00000000() {
+    fun toRGBHexadecimal_with_00000000() {
         // When.
         val actual = Color.parseColor("#00000000").toRGBHexadecimalString()
 
@@ -19,7 +19,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_00000000() {
+    fun toARGBHexadecimal_with_00000000() {
         // When.
         val actual = Color.parseColor("#00000000").toARGBHexadecimalString()
 
@@ -28,7 +28,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_FF000000() {
+    fun toRGBHexadecimal_with_FF000000() {
         // When.
         val actual = Color.parseColor("#FF000000").toRGBHexadecimalString()
 
@@ -37,7 +37,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_FF000000() {
+    fun toARGBHexadecimal_with_FF000000() {
         // When.
         val actual = Color.parseColor("#FF000000").toARGBHexadecimalString()
 
@@ -46,7 +46,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_000000() {
+    fun toRGBHexadecimal_with_000000() {
         // When.
         val actual = Color.parseColor("#000000").toRGBHexadecimalString()
 
@@ -55,7 +55,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_000000() {
+    fun toARGBHexadecimal_with_000000() {
         // When.
         val actual = Color.parseColor("#000000").toARGBHexadecimalString()
 
@@ -64,7 +64,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_FFFFFFFF() {
+    fun toRGBHexadecimal_with_FFFFFFFF() {
         // When.
         val actual = Color.parseColor("#FFFFFFFF").toRGBHexadecimalString()
 
@@ -73,7 +73,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_FFFFFFFF() {
+    fun toARGBHexadecimal_with_FFFFFFFF() {
         // When.
         val actual = Color.parseColor("#FFFFFFFF").toARGBHexadecimalString()
 
@@ -82,7 +82,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_FFFFFF() {
+    fun toRGBHexadecimal_with_FFFFFF() {
         // When.
         val actual = Color.parseColor("#FFFFFF").toRGBHexadecimalString()
 
@@ -91,7 +91,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_FFFFFF() {
+    fun toARGBHexadecimal_with_FFFFFF() {
         // When.
         val actual = Color.parseColor("#FFFFFF").toARGBHexadecimalString()
 
@@ -100,7 +100,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_FF0000FF() {
+    fun toRGBHexadecimal_with_FF0000FF() {
         // When.
         val actual = Color.parseColor("#FF0000FF").toRGBHexadecimalString()
 
@@ -109,7 +109,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_FF0000FF() {
+    fun toARGBHexadecimal_with_FF0000FF() {
         // When.
         val actual = Color.parseColor("#FF0000FF").toARGBHexadecimalString()
 
@@ -118,7 +118,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_0000FF() {
+    fun toRGBHexadecimal_with_0000FF() {
         // When.
         val actual = Color.parseColor("#0000FF").toRGBHexadecimalString()
 
@@ -127,7 +127,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_0000FF() {
+    fun toARGBHexadecimal_with_0000FF() {
         // When.
         val actual = Color.parseColor("#0000FF").toARGBHexadecimalString()
 
@@ -136,7 +136,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_FF00FF00() {
+    fun toRGBHexadecimal_with_FF00FF00() {
         // When.
         val actual = Color.parseColor("#FF00FF00").toRGBHexadecimalString()
 
@@ -145,7 +145,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_FF00FF00() {
+    fun toARGBHexadecimal_with_FF00FF00() {
         // When.
         val actual = Color.parseColor("#FF00FF00").toARGBHexadecimalString()
 
@@ -154,7 +154,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_00FF00() {
+    fun toRGBHexadecimal_with_00FF00() {
         // When.
         val actual = Color.parseColor("#00FF00").toRGBHexadecimalString()
 
@@ -163,7 +163,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_00FF00() {
+    fun toARGBHexadecimal_with_00FF00() {
         // When.
         val actual = Color.parseColor("#00FF00").toARGBHexadecimalString()
 
@@ -172,7 +172,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_FFFF0000() {
+    fun toRGBHexadecimal_with_FFFF0000() {
         // When.
         val actual = Color.parseColor("#FFFF0000").toRGBHexadecimalString()
 
@@ -181,7 +181,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_FFFF0000() {
+    fun toARGBHexadecimal_with_FFFF0000() {
         // When.
         val actual = Color.parseColor("#FFFF0000").toARGBHexadecimalString()
 
@@ -190,7 +190,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toRGBHexadecimalString_FF0000() {
+    fun toRGBHexadecimal_with_FF0000() {
         // When.
         val actual = Color.parseColor("#FF0000").toRGBHexadecimalString()
 
@@ -199,7 +199,7 @@ class ColorsUnitTest {
     }
 
     @Test
-    fun test_toARGBHexadecimalString_FF0000() {
+    fun toARGBHexadecimal_with_FF0000() {
         // When.
         val actual = Color.parseColor("#FF0000").toARGBHexadecimalString()
 

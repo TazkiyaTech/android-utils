@@ -1,6 +1,5 @@
 package com.tazkiyatech.utils.views;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -8,9 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -21,11 +20,11 @@ public class HorizontalFlowLayoutUnitTest {
 
     @Before
     public void setUp() {
-        target = new HorizontalFlowLayout(getContext());
+        target = new HorizontalFlowLayout(getApplicationContext());
     }
 
     @Test
-    public void test_measureRequiredHeight_withEmptyListOfChildViews() {
+    public void measureRequiredHeight_with_emptyListOfChildViews() {
         // Given.
         int expected = 0;
 
@@ -37,19 +36,18 @@ public class HorizontalFlowLayoutUnitTest {
     }
 
     @Test
-    public void test_measureRequiredHeight_withNonEmptyListOfChildViews() {
+    public void measureRequiredHeight_with_nonEmptyListOfChildViews() {
         // Given.
-
         ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams(0, 0);
         layoutParams.setMargins(25, 15, 25, 15);
 
-        View view1 = new View(getContext());
+        View view1 = new View(getApplicationContext());
         view1.setLayoutParams(new ViewGroup.MarginLayoutParams(layoutParams));
 
-        View view2 = new View(getContext());
+        View view2 = new View(getApplicationContext());
         view2.setLayoutParams(new ViewGroup.MarginLayoutParams(layoutParams));
 
-        View view3 = new View(getContext());
+        View view3 = new View(getApplicationContext());
         view3.setLayoutParams(new ViewGroup.MarginLayoutParams(layoutParams));
 
         target.addView(view1);
@@ -63,12 +61,5 @@ public class HorizontalFlowLayoutUnitTest {
 
         // Then.
         assertThat(actual, is(expected));
-    }
-
-    /**
-     * @return the {@link Context} for the target application being instrumented.
-     */
-    private Context getContext() {
-        return ApplicationProvider.getApplicationContext();
     }
 }
