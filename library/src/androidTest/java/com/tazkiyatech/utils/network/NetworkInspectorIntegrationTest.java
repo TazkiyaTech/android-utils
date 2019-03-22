@@ -1,24 +1,23 @@
 package com.tazkiyatech.utils.network;
 
-import com.tazkiyatech.utils.BaseTestCase;
+import android.content.Context;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class NetworkInspectorTest extends BaseTestCase {
+public class NetworkInspectorIntegrationTest {
 
     private NetworkInspector networkInspector;
 
     @Before
-    @Override
     public void setUp() {
-        super.setUp();
         networkInspector = new NetworkInspector(getContext());
     }
 
@@ -40,5 +39,12 @@ public class NetworkInspectorTest extends BaseTestCase {
     @Test
     public void testIsGoogleReachableWithInetAddress() {
         assertTrue(networkInspector.isGoogleReachableWithInetAddress());
+    }
+
+    /**
+     * @return the {@link Context} for the target application being instrumented.
+     */
+    private Context getContext() {
+        return ApplicationProvider.getApplicationContext();
     }
 }

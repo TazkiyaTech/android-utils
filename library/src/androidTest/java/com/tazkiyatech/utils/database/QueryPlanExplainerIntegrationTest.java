@@ -5,8 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.tazkiyatech.utils.BaseTestCase;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,21 +15,19 @@ import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
-public class QueryPlanExplainerTest extends BaseTestCase {
+public class QueryPlanExplainerIntegrationTest {
 
     private QueryPlanExplainer queryPlanExplainer;
     private SomeDatabase someDatabase;
 
     @Before
-    @Override
     public void setUp() {
-        super.setUp();
-
         someDatabase = new SomeDatabase(getContext());
         someDatabase.createTable();
         someDatabase.createRecord(1, "1");
@@ -42,9 +38,7 @@ public class QueryPlanExplainerTest extends BaseTestCase {
     }
 
     @After
-    @Override
     public void tearDown() {
-        super.tearDown();
         someDatabase.dropTable();
         someDatabase.close();
     }
@@ -568,6 +562,13 @@ public class QueryPlanExplainerTest extends BaseTestCase {
 
         // Then.
         assertEquals(expected, actual);
+    }
+
+    /**
+     * @return the {@link Context} for the target application being instrumented.
+     */
+    private Context getContext() {
+        return ApplicationProvider.getApplicationContext();
     }
 
     private static class SomeDatabase extends SQLiteOpenHelper {

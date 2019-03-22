@@ -1,24 +1,21 @@
 package com.tazkiyatech.utils.views;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.tazkiyatech.utils.BaseTestCase;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-/**
- * Unit tests for the {@link HorizontalFlowLayout} class.
- */
 @RunWith(AndroidJUnit4.class)
-public class HorizontalFlowLayoutTest extends BaseTestCase {
+public class HorizontalFlowLayoutUnitTest {
 
     private HorizontalFlowLayout target;
 
@@ -66,5 +63,12 @@ public class HorizontalFlowLayoutTest extends BaseTestCase {
 
         // Then.
         assertThat(actual, is(expected));
+    }
+
+    /**
+     * @return the {@link Context} for the target application being instrumented.
+     */
+    private Context getContext() {
+        return ApplicationProvider.getApplicationContext();
     }
 }
