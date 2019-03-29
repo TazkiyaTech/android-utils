@@ -5,6 +5,7 @@ import android.text.Spannable
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.text.style.UnderlineSpan
 
 /**
  * Applies the bold [StyleSpan] to the first occurrence of the given substring in this [Spannable].
@@ -35,6 +36,23 @@ fun Spannable.applyForegroundColorSpanToSubString(
 
     setSpan(
         ForegroundColorSpan(color),
+        subStringStartIndex,
+        subStringEndIndex,
+        Spanned.SPAN_INCLUSIVE_EXCLUSIVE
+    )
+}
+
+/**
+ * Applies the [UnderlineSpan] to the first occurrence of the given substring in this [Spannable].
+ */
+fun Spannable.applyUnderlineSpanToSubString(
+    subString: String
+) {
+    val subStringStartIndex = indexOf(subString)
+    val subStringEndIndex = subStringStartIndex + subString.length
+
+    setSpan(
+        UnderlineSpan(),
         subStringStartIndex,
         subStringEndIndex,
         Spanned.SPAN_INCLUSIVE_EXCLUSIVE
