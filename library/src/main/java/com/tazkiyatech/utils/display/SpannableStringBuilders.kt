@@ -24,6 +24,7 @@ fun SpannableStringBuilder.appendBulletSpans(
     horizontalSpaceToPutBetweenBulletPointAndParagraph: Int,
     @ColorInt bulletPointColor: Int
 ): SpannableStringBuilder {
+
     var isFirstItem = true
 
     for (paragraph in paragraphs) {
@@ -58,6 +59,7 @@ fun SpannableStringBuilder.appendBulletSpan(
     horizontalSpaceToPutBetweenBulletPointAndParagraph: Int,
     @ColorInt bulletPointColor: Int
 ): SpannableStringBuilder {
+
     val absoluteSizeSpan = AbsoluteSizeSpan(verticalSpaceToPutBeforeParagraph)
 
     val lengthBeforeAddingAbsoluteSizeSpan = length
