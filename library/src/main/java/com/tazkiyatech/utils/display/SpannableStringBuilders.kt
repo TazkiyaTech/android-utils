@@ -4,6 +4,7 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.BulletSpan
+import androidx.annotation.ColorInt
 
 /**
  * Appends each [String] in [paragraphs] to this [SpannableStringBuilder]
@@ -21,7 +22,7 @@ fun SpannableStringBuilder.appendBulletSpans(
     wantVerticalSpaceBeforeFirstParagraph: Boolean,
     verticalSpaceToPutBetweenParagraphs: Int,
     horizontalSpaceToPutBetweenBulletPointAndParagraph: Int,
-    bulletPointColor: Int
+    @ColorInt bulletPointColor: Int
 ): SpannableStringBuilder {
     var isFirstItem = true
 
@@ -55,7 +56,7 @@ fun SpannableStringBuilder.appendBulletSpan(
     paragraph: String,
     verticalSpaceToPutBeforeParagraph: Int,
     horizontalSpaceToPutBetweenBulletPointAndParagraph: Int,
-    bulletPointColor: Int
+    @ColorInt bulletPointColor: Int
 ): SpannableStringBuilder {
     val absoluteSizeSpan = AbsoluteSizeSpan(verticalSpaceToPutBeforeParagraph)
 
