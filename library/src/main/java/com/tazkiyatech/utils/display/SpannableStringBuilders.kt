@@ -11,7 +11,7 @@ import androidx.annotation.ColorInt
  * and styles each [String] as a bullet point.
  *
  * @param paragraphs the [Array] of [String]s to append to this [SpannableStringBuilder].
- * @param wantVerticalSpaceBeforeFirstParagraph whether to place some vertical space before the first paragraph.
+ * @param putVerticalSpaceBeforeFirstParagraph whether to place some vertical space before the first paragraph. The amount of space placed is determined by the [verticalSpaceToPutBetweenParagraphs] parameter.
  * @param verticalSpaceToPutBetweenParagraphs the vertical space, in pixels, to place between each paragraph. Pass in 0 for no extra space.
  * @param horizontalSpaceToPutBetweenBulletPointAndParagraph the horizontal space, in pixels, to place between the bullet point and the paragraph.
  * @param bulletPointColor the bullet point color, as a color integer.
@@ -19,7 +19,7 @@ import androidx.annotation.ColorInt
  */
 fun SpannableStringBuilder.appendBulletSpans(
     paragraphs: Array<String>,
-    wantVerticalSpaceBeforeFirstParagraph: Boolean,
+    putVerticalSpaceBeforeFirstParagraph: Boolean,
     verticalSpaceToPutBetweenParagraphs: Int,
     horizontalSpaceToPutBetweenBulletPointAndParagraph: Int,
     @ColorInt bulletPointColor: Int
@@ -29,7 +29,7 @@ fun SpannableStringBuilder.appendBulletSpans(
 
     for (paragraph in paragraphs) {
         val spaceToPutBeforeBulletSpan =
-            if (isFirstItem && !wantVerticalSpaceBeforeFirstParagraph) 0 else verticalSpaceToPutBetweenParagraphs
+            if (isFirstItem && !putVerticalSpaceBeforeFirstParagraph) 0 else verticalSpaceToPutBetweenParagraphs
 
         appendBulletSpan(
             paragraph,
