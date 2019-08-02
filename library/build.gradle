@@ -11,7 +11,6 @@ File[] proGuardFileCollection = file('./proguard').listFiles()
 File[] proGuardDebugFileCollection = file('./proguard-debug').listFiles()
 
 android {
-    buildToolsVersion '28.0.3'
     compileSdkVersion 28
 
     defaultConfig {
