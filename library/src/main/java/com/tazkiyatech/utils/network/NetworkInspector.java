@@ -3,6 +3,7 @@ package com.tazkiyatech.utils.network;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
 import androidx.annotation.NonNull;
 
 import java.net.InetAddress;
@@ -12,8 +13,7 @@ import java.net.InetAddress;
  */
 public class NetworkInspector {
 
-    @NonNull
-    private final Context context;
+    @NonNull private final Context context;
 
     /**
      * Constructor.
