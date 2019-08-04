@@ -7,7 +7,7 @@ This library contains a mixture of small helper classes, functions and views use
 * [ImmutableList](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableList.java) – Provides a helper method for creating immutable copies of `java.util.List` instances
 * [ImmutableMap](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableMap.java) – Provides a helper method for creating immutable copies of `java.util.Map` instances.
 * [ImmutableSet](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableSet.java) – Provides a helper method for creating immutable copies of `java.util.Set` instances.
-* [ListExtensions](library/src/main/java/com/tazkiyatech/utils/collections/ListExtensions.kt) – Provides a helper method for joining a `java.util.List` of `java.lang.String` objects into a single `java.lang.String` object.
+* [ListExtensions](library/src/main/java/com/tazkiyatech/utils/collections/ListExtensions.kt) – Provides a Kotlin extension function for joining a `java.util.List` of `java.lang.String` objects into a single `java.lang.String` object.
 
 ## Database
 
@@ -15,11 +15,16 @@ This library contains a mixture of small helper classes, functions and views use
 
 ## Display
 
-* [Colors](library/src/main/java/com/tazkiyatech/utils/display/Colors.kt) – Provides helper methods for converting between different colour representations.
-* [Dimensions](library/src/main/java/com/tazkiyatech/utils/display/Dimensions.kt) – Provides helper methods for converting between different dimension units.
-* [SpannableExtensions](library/src/main/java/com/tazkiyatech/utils/display/SpannableExtensions.kt) – Provides helper methods for adding spans to `android.text.Spannable` instances.
-* [SpannableStringBuilderExtensions](library/src/main/java/com/tazkiyatech/utils/display/SpannableStringBuilderExtensions.kt) – Provides helper methods for adding spans to `android.text.SpannableStringBuilder` instances.
-* [Themes](library/src/main/java/com/tazkiyatech/utils/display/Themes.kt) – Provides helper methods for getting colours such as the primary text colour out of the theme.
+* [Colors](library/src/main/java/com/tazkiyatech/utils/display/Colors.kt) – Provides a number of Kotlin extension functions for converting between different colour representations.
+* [DialogFragmentExtensions](library/src/main/java/com/tazkiyatech/utils/display/DialogFragmentExtensions.kt) – Provides a Kotlin extension function which allows a `DialogFragment` to be shown even after the activity's state has been saved.
+* [Dimensions](library/src/main/java/com/tazkiyatech/utils/display/Dimensions.kt) – Provides a number of Kotlin extension functions for converting between different dimension units.
+* [SpannableExtensions](library/src/main/java/com/tazkiyatech/utils/display/SpannableExtensions.kt) – Provides a number of Kotlin extension functions for adding spans to an `android.text.Spannable` instance.
+* [SpannableStringBuilderExtensions](library/src/main/java/com/tazkiyatech/utils/display/SpannableStringBuilderExtensions.kt) – Provides a number of Kotlin extension functions for adding spans to an `android.text.SpannableStringBuilder` instance.
+* [Themes](library/src/main/java/com/tazkiyatech/utils/display/Themes.kt) – Provides a number of Kotlin extension functions for getting colours such as the primary text colour out of the theme.
+
+## Lang
+
+* [CharSequenceExtensions](library/src/main/java/com/tazkiyatech/utils/lang/CharSequenceExtensions.kt) – Provides a number of Kotlin extension functions for the `java.lang.CharSequence` class.
 
 ## Network
 
