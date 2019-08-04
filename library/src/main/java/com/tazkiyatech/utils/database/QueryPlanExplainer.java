@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  * Helper class for building up a {@link List} of {@link QueryPlanRow} objects
- * that explain the strategy or plan that SQLite uses to implement a specific SQL query.
+ * that explain the strategy or plan that SQLite will use to implement a specific SQL query.
  */
 public class QueryPlanExplainer {
 
