@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * – when applied to a {@link RecyclerView} –
  * draws a horizontal divider at the bottom of each item in the {@link RecyclerView}.
  * <p>
- * This class is a modification of N J's answer on Stack Overflow here:
- * <a href="http://stackoverflow.com/a/31243174/1071320">http://stackoverflow.com/a/31243174/1071320</a>
+ * This class is a modification of N J's answer on Stack Overflow <a href="http://stackoverflow.com/a/31243174/1071320">here</a>.
  */
 public class HorizontalDividerRecyclerViewItemDecoration extends RecyclerView.ItemDecoration {
 
