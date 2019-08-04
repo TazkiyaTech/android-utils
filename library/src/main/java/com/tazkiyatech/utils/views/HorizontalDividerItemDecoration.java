@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * <p>
  * This class is a modification of N J's answer on Stack Overflow <a href="http://stackoverflow.com/a/31243174/1071320">here</a>.
  */
-public class HorizontalDividerRecyclerViewItemDecoration extends RecyclerView.ItemDecoration {
+public class HorizontalDividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private final Drawable dividerDrawable;
     private final int dividerHeightPixels;
@@ -30,10 +30,10 @@ public class HorizontalDividerRecyclerViewItemDecoration extends RecyclerView.It
      * @param dividerMarginLeftPixels  the size of the left margin (in pixels).
      * @param dividerMarginRightPixels the size of the right margin (in pixels).
      */
-    public HorizontalDividerRecyclerViewItemDecoration(int dividerColor,
-                                                       int dividerHeightPixels,
-                                                       int dividerMarginLeftPixels,
-                                                       int dividerMarginRightPixels) {
+    public HorizontalDividerItemDecoration(int dividerColor,
+                                           int dividerHeightPixels,
+                                           int dividerMarginLeftPixels,
+                                           int dividerMarginRightPixels) {
         this.dividerDrawable = new ColorDrawable(dividerColor);
         this.dividerHeightPixels = dividerHeightPixels;
         this.dividerMarginLeftPixels = dividerMarginLeftPixels;
@@ -41,7 +41,9 @@ public class HorizontalDividerRecyclerViewItemDecoration extends RecyclerView.It
     }
 
     @Override
-    public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+    public void onDrawOver(@NonNull Canvas c,
+                           @NonNull RecyclerView parent,
+                           @NonNull RecyclerView.State state) {
         int left = dividerMarginLeftPixels;
         int right = parent.getWidth() - dividerMarginRightPixels;
 
