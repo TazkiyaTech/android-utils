@@ -80,7 +80,7 @@ publishing {
     publications {
         UtilsLibrary(MavenPublication) {
             from components.android
-            artifact generateJavadocJar
+//            artifact generateJavadocJar // TODO: reinstate this artifact once the following issue is resolved: https://github.com/Kotlin/dokka/issues/294
             artifact generateSourcesJar
 
             groupId getProperty('projectGroupName').toString()
