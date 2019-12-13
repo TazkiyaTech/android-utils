@@ -1,61 +1,77 @@
 package com.tazkiyatech.utils.collections
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.Test
 
-@RunWith(JUnit4::class)
 class ListExtensionsUnitTest {
 
     @Test
     fun joinWithSpaceSeparator_without_to_index() {
+        // Given.
+        val input = listOf("apple", "banana", "carrot")
+
         // When.
-        val result = listOf("apple", "banana", "carrot").joinWithSpaceSeparator()
+        val output = input.joinWithSpaceSeparator()
 
         // Then.
-        assertEquals("apple banana carrot", result)
+        assertEquals("apple banana carrot", output)
     }
 
     @Test
     fun joinWithSpaceSeparator_with_to_index_of_0() {
+        // Given.
+        val input = listOf("apple", "banana", "carrot")
+
         // When.
-        val result = listOf("apple", "banana", "carrot").joinWithSpaceSeparator(0)
+        val output = input.joinWithSpaceSeparator(0)
 
         // Then.
-        assertEquals("", result)
+        assertEquals("", output)
     }
 
     @Test
     fun joinWithSpaceSeparator_with_to_index_of_1() {
+        // Given.
+        val input = listOf("apple", "banana", "carrot")
+
         // When.
-        val result = listOf("apple", "banana", "carrot").joinWithSpaceSeparator(1)
+        val output = input.joinWithSpaceSeparator(1)
 
         // Then.
-        assertEquals("apple", result)
+        assertEquals("apple", output)
     }
 
     @Test
     fun joinWithSpaceSeparator_with_to_index_of_2() {
+        // Given.
+        val input = listOf("apple", "banana", "carrot")
+
         // When.
-        val result = listOf("apple", "banana", "carrot").joinWithSpaceSeparator(2)
+        val output = input.joinWithSpaceSeparator(2)
 
         // Then.
-        assertEquals("apple banana", result)
+        assertEquals("apple banana", output)
     }
 
     @Test
     fun joinWithSpaceSeparator_with_to_index_of_3() {
+        // Given.
+        val input = listOf("apple", "banana", "carrot")
+
         // When.
-        val result = listOf("apple", "banana", "carrot").joinWithSpaceSeparator(3)
+        val output = input.joinWithSpaceSeparator(3)
 
         // Then.
-        assertEquals("apple banana carrot", result)
+        assertEquals("apple banana carrot", output)
     }
 
-    @Test(expected = IndexOutOfBoundsException::class)
+    @Test
     fun joinWithSpaceSeparator_with_to_index_of_4() {
+        // Given.
+        val input = listOf("apple", "banana", "carrot")
+
         // When.
-        listOf("apple", "banana", "carrot").joinWithSpaceSeparator(4)
+        assertThrows(IndexOutOfBoundsException::class.java) { input.joinWithSpaceSeparator(4) }
     }
 }

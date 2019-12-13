@@ -1,20 +1,17 @@
 package com.tazkiyatech.utils.streams;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(JUnit4.class)
-public class StringInputStreamUnitTest {
+class StringInputStreamUnitTest {
 
     @Test
-    public void read() throws Exception {
+    void read() throws Exception {
         // Given.
         String input = "Hello\nHello\tHello";
         String output;
@@ -30,7 +27,7 @@ public class StringInputStreamUnitTest {
     }
 
     @Test
-    public void read_after_read_has_already_been_called() throws Exception {
+    void read_after_read_has_already_been_called() throws Exception {
         // Given.
         String input = "Hello\nHello\tHello";
         String output;
@@ -48,7 +45,7 @@ public class StringInputStreamUnitTest {
     }
 
     @Test
-    public void read_after_close_has_been_called() throws Exception {
+    void read_after_close_has_been_called() throws Exception {
         // Given.
         String input = "Hello\nHello\tHello";
         String output;

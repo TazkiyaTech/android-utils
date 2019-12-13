@@ -1,20 +1,17 @@
 package com.tazkiyatech.utils.streams;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(JUnit4.class)
-public class StringOutputStreamUnitTest {
+class StringOutputStreamUnitTest {
 
     @Test
-    public void write() throws Exception {
+    void write() throws Exception {
         // Given.
         String input = "Hello\nHello\tHello";
         String output;
@@ -32,7 +29,7 @@ public class StringOutputStreamUnitTest {
     }
 
     @Test
-    public void write_after_write_has_already_been_called() throws Exception {
+    void write_after_write_has_already_been_called() throws Exception {
         // Given.
         String input = "Hello\nHello\tHello";
         String output;
@@ -52,7 +49,7 @@ public class StringOutputStreamUnitTest {
     }
 
     @Test
-    public void write_after_close_has_been_called() throws Exception {
+    void write_after_close_has_been_called() throws Exception {
         // Given.
         String input = "Hello\nHello\tHello";
         String output;

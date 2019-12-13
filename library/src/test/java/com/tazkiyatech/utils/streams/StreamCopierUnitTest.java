@@ -1,20 +1,17 @@
 package com.tazkiyatech.utils.streams;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(JUnit4.class)
-public class StreamCopierUnitTest {
+class StreamCopierUnitTest {
 
     @Test
-    public void copy() throws Exception {
+    void copy() throws Exception {
         // Given.
         StreamCopier streamCopier = new StreamCopier();
 

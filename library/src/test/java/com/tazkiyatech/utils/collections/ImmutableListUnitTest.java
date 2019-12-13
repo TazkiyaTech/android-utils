@@ -1,8 +1,6 @@
 package com.tazkiyatech.utils.collections;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,12 +9,12 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(JUnit4.class)
-public class ImmutableListUnitTest {
+class ImmutableListUnitTest {
 
     @Test
-    public void copyOf_withListContainingSingleItem() {
+    void copyOf_with_list_containing_single_item() {
         // Given.
         List<String> input = Collections.singletonList("a");
 
@@ -28,7 +26,7 @@ public class ImmutableListUnitTest {
     }
 
     @Test
-    public void copyOf_withListContainingMultipleItems() {
+    void copyOf_with_list_containing_multiple_items() {
         // Given.
         List<String> input = Arrays.asList("a", "b", "c");
 
@@ -40,7 +38,7 @@ public class ImmutableListUnitTest {
     }
 
     @Test
-    public void modifyingInputAfterCreatingImmutableListDoesNotAffectImmutableList() {
+    void modifying_input_after_creating_immutable_set_does_not_affect_immutable_list() {
         // Given.
         List<String> input = new ArrayList<>();
         input.add("a");
@@ -54,8 +52,8 @@ public class ImmutableListUnitTest {
         assertThat(output, contains("a"));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void addingItemToImmutableListThrowsException() {
+    @Test
+    void adding_item_to_immutable_list_throws_exception() {
         // Given.
         List<String> input = new ArrayList<>();
         input.add("a");
@@ -63,11 +61,11 @@ public class ImmutableListUnitTest {
         List<String> output = ImmutableList.copyOf(input);
 
         // When.
-        output.add("b");
+        assertThrows(UnsupportedOperationException.class, () -> output.add("b"));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void removingItemFromImmutableListThrowsException() {
+    @Test
+    void removing_item_from_immutable_list_throws_exception() {
         // Given.
         List<String> input = new ArrayList<>();
         input.add("a");
@@ -75,6 +73,6 @@ public class ImmutableListUnitTest {
         List<String> output = ImmutableList.copyOf(input);
 
         // When.
-        output.clear();
+        assertThrows(UnsupportedOperationException.class, output::clear);
     }
 }

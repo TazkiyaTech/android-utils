@@ -1,20 +1,18 @@
 package com.tazkiyatech.utils.collections;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(JUnit4.class)
-public class ImmutableSetUnitTest {
+class ImmutableSetUnitTest {
 
     @Test
-    public void of_withSingleItem() {
+    void of_with_single_item() {
         // When.
         Set<String> output = ImmutableSet.of("a");
 
@@ -23,7 +21,7 @@ public class ImmutableSetUnitTest {
     }
 
     @Test
-    public void of_withMultipleItems() {
+    void of_with_multiple_items() {
         // When.
         Set<String> output = ImmutableSet.of("a", "c", "b");
 
@@ -32,7 +30,7 @@ public class ImmutableSetUnitTest {
     }
 
     @Test
-    public void modifyingInputAfterCreatingImmutableSetDoesNotAffectImmutableList() {
+    void modifying_input_after_creating_immutable_set_does_not_affect_immutable_list() {
         // Given.
         Set<String> input = new HashSet<>();
         input.add("a");
@@ -46,8 +44,8 @@ public class ImmutableSetUnitTest {
         assertThat(output, contains("a"));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void addingItemToImmutableListThrowsException() {
+    @Test
+    void adding_item_to_immutable_set_throws_exception() {
         // Given.
         Set<String> input = new HashSet<>();
         input.add("a");
@@ -55,11 +53,11 @@ public class ImmutableSetUnitTest {
         Set<String> output = ImmutableSet.copyOf(input);
 
         // When.
-        output.add("b");
+        assertThrows(UnsupportedOperationException.class, () -> output.add("b"));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void removingItemFromImmutableListThrowsException() {
+    @Test
+    void removing_item_from_immutable_set_throws_exception() {
         // Given.
         Set<String> input = new HashSet<>();
         input.add("a");
@@ -67,6 +65,6 @@ public class ImmutableSetUnitTest {
         Set<String> output = ImmutableSet.copyOf(input);
 
         // When.
-        output.clear();
+        assertThrows(UnsupportedOperationException.class, output::clear);
     }
 }

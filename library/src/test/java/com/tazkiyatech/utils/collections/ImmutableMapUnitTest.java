@@ -1,22 +1,20 @@
 package com.tazkiyatech.utils.collections;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(JUnit4.class)
-public class ImmutableMapUnitTest {
+class ImmutableMapUnitTest {
 
     @Test
-    public void copyOf_withMapContainingSingleItem() {
+    void copyOf_with_map_containing_single_item() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("SomeKey", "SomeValue");
@@ -29,7 +27,7 @@ public class ImmutableMapUnitTest {
     }
 
     @Test
-    public void copyOf_withMapContainingMultipleItems() {
+    void copyOf_with_map_containing_multiple_items() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");
@@ -44,7 +42,7 @@ public class ImmutableMapUnitTest {
     }
 
     @Test
-    public void copyOf_returnsMapOrderedByItsKeys() {
+    void copyOf_returns_map_ordered_by_its_keys() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");
@@ -59,7 +57,7 @@ public class ImmutableMapUnitTest {
     }
 
     @Test
-    public void modifyingInputAfterCreatingImmutableMapDoesNotAffectImmutableMap() {
+    void modifying_input_after_creating_immutable_map_does_not_affect_immutable_map() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");
@@ -73,8 +71,8 @@ public class ImmutableMapUnitTest {
         assertEquals(Collections.singletonMap("Key1", "Value1"), output);
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void addingItemToImmutableMapThrowsException() {
+    @Test
+    void adding_item_to_immutable_map_throws_exception() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");
@@ -82,11 +80,11 @@ public class ImmutableMapUnitTest {
         Map<String, String> output = ImmutableMap.copyOf(input);
 
         // When.
-        output.put("Key2", "Value2");
+        assertThrows(UnsupportedOperationException.class, () -> output.put("Key2", "Value2"));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void removingItemFromImmutableMapThrowsException() {
+    @Test
+    void removing_item_from_immutable_map_throws_exception() {
         // Given.
         Map<String, String> input = new HashMap<>();
         input.put("Key1", "Value1");
@@ -94,6 +92,6 @@ public class ImmutableMapUnitTest {
         Map<String, String> output = ImmutableMap.copyOf(input);
 
         // When.
-        output.clear();
+        assertThrows(UnsupportedOperationException.class, output::clear);
     }
 }
