@@ -50,5 +50,5 @@ To use the above utilities within your app simply add the following repository a
         jcenter()
     }
     dependencies {
-        implementation 'com.tazkiyatech:android-utils:0.1.1'
+        implementation 'com.tazkiyatech:android-utils:0.1.2'
     }
