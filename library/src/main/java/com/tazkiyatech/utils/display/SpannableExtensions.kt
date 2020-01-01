@@ -11,15 +11,15 @@ import androidx.annotation.ColorInt
 /**
  * Applies the bold [StyleSpan] to the first occurrence of the given substring in this [Spannable].
  */
-fun Spannable.applyBoldStyleSpanToSubString(subString: String) {
+fun Spannable.applyBoldStyleSpanToSubstring(substring: String) {
 
-    val subStringStartIndex = indexOf(subString)
-    val subStringEndIndex = subStringStartIndex + subString.length
+    val substringStartIndex = indexOf(substring)
+    val substringEndIndex = substringStartIndex + substring.length
 
     setSpan(
         StyleSpan(Typeface.BOLD),
-        subStringStartIndex,
-        subStringEndIndex,
+        substringStartIndex,
+        substringEndIndex,
         Spanned.SPAN_INCLUSIVE_EXCLUSIVE
     )
 }
@@ -27,18 +27,15 @@ fun Spannable.applyBoldStyleSpanToSubString(subString: String) {
 /**
  * Applies the [ForegroundColorSpan] to the first occurrence of the given substring in this [Spannable].
  */
-fun Spannable.applyForegroundColorSpanToSubString(
-    subString: String,
-    @ColorInt color: Int
-) {
+fun Spannable.applyForegroundColorSpanToSubstring(substring: String, @ColorInt color: Int) {
 
-    val subStringStartIndex = indexOf(subString)
-    val subStringEndIndex = subStringStartIndex + subString.length
+    val substringStartIndex = indexOf(substring)
+    val substringEndIndex = substringStartIndex + substring.length
 
     setSpan(
         ForegroundColorSpan(color),
-        subStringStartIndex,
-        subStringEndIndex,
+        substringStartIndex,
+        substringEndIndex,
         Spanned.SPAN_INCLUSIVE_EXCLUSIVE
     )
 }
@@ -46,15 +43,15 @@ fun Spannable.applyForegroundColorSpanToSubString(
 /**
  * Applies the italic [StyleSpan] to the first occurrence of the given substring in this [Spannable].
  */
-fun Spannable.applyItalicStyleSpanToSubString(subString: String) {
+fun Spannable.applyItalicStyleSpanToSubstring(substring: String) {
 
-    val subStringStartIndex = indexOf(subString)
-    val subStringEndIndex = subStringStartIndex + subString.length
+    val substringStartIndex = indexOf(substring)
+    val substringEndIndex = substringStartIndex + substring.length
 
     setSpan(
         StyleSpan(Typeface.ITALIC),
-        subStringStartIndex,
-        subStringEndIndex,
+        substringStartIndex,
+        substringEndIndex,
         Spanned.SPAN_INCLUSIVE_EXCLUSIVE
     )
 }
@@ -62,15 +59,15 @@ fun Spannable.applyItalicStyleSpanToSubString(subString: String) {
 /**
  * Applies the [UnderlineSpan] to the first occurrence of the given substring in this [Spannable].
  */
-fun Spannable.applyUnderlineSpanToSubString(subString: String) {
+fun Spannable.applyUnderlineSpanToSubstring(substring: String) {
 
-    val subStringStartIndex = indexOf(subString)
-    val subStringEndIndex = subStringStartIndex + subString.length
+    val substringStartIndex = indexOf(substring)
+    val substringEndIndex = substringStartIndex + substring.length
 
     setSpan(
         UnderlineSpan(),
-        subStringStartIndex,
-        subStringEndIndex,
+        substringStartIndex,
+        substringEndIndex,
         Spanned.SPAN_INCLUSIVE_EXCLUSIVE
     )
 }

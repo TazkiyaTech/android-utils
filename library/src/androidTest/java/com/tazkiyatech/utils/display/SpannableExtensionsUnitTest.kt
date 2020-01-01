@@ -19,7 +19,7 @@ class SpannableExtensionsUnitTest {
         val spannable = SpannableString("apple banana carrot")
 
         // When.
-        spannable.applyBoldStyleSpanToSubString("banana")
+        spannable.applyBoldStyleSpanToSubstring("banana")
 
         // Then.
         val spans = spannable.getSpans(0, spannable.length, StyleSpan::class.java)
@@ -35,7 +35,7 @@ class SpannableExtensionsUnitTest {
         val spannable = SpannableString("apple banana carrot")
 
         // When.
-        spannable.applyForegroundColorSpanToSubString("banana", Color.BLACK)
+        spannable.applyForegroundColorSpanToSubstring("banana", Color.BLACK)
 
         // Then.
         val spans = spannable.getSpans(0, spannable.length, ForegroundColorSpan::class.java)
@@ -51,7 +51,7 @@ class SpannableExtensionsUnitTest {
         val spannable = SpannableString("apple banana carrot")
 
         // When.
-        spannable.applyUnderlineSpanToSubString("banana")
+        spannable.applyUnderlineSpanToSubstring("banana")
 
         // Then.
         val spans = spannable.getSpans(0, spannable.length, UnderlineSpan::class.java)
