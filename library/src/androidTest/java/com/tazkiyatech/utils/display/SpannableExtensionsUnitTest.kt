@@ -46,6 +46,22 @@ class SpannableExtensionsUnitTest {
     }
 
     @Test
+    fun applyItalicStyleSpanToSubstring() {
+        // Given.
+        val spannable = SpannableString("apple banana carrot")
+
+        // When.
+        spannable.applyItalicStyleSpanToSubstring("banana")
+
+        // Then.
+        val spans = spannable.getSpans(0, spannable.length, StyleSpan::class.java)
+
+        assertEquals(1, spans.size)
+        assertEquals(6, spannable.getSpanStart(spans[0]))
+        assertEquals(12, spannable.getSpanEnd(spans[0]))
+    }
+
+    @Test
     fun applyUnderlineSpanToSubstring() {
         // Given.
         val spannable = SpannableString("apple banana carrot")
