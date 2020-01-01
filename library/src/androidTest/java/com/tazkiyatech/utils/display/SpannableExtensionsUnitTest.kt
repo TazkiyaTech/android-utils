@@ -14,7 +14,7 @@ import org.junit.runner.RunWith
 class SpannableExtensionsUnitTest {
 
     @Test
-    fun applyBoldStyleSpanToSubString() {
+    fun applyBoldStyleSpanToSubstring() {
         // Given.
         val spannable = SpannableString("apple banana carrot")
 
@@ -30,7 +30,7 @@ class SpannableExtensionsUnitTest {
     }
 
     @Test
-    fun applyForegroundColorSpanToSubString() {
+    fun applyForegroundColorSpanToSubstring() {
         // Given.
         val spannable = SpannableString("apple banana carrot")
 
@@ -46,7 +46,7 @@ class SpannableExtensionsUnitTest {
     }
 
     @Test
-    fun applyUnderlineSpanToSubString() {
+    fun applyUnderlineSpanToSubstring() {
         // Given.
         val spannable = SpannableString("apple banana carrot")
 
