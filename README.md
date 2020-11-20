@@ -4,10 +4,11 @@ This library contains a mixture of small helper classes, functions and views use
 
 ## Collections
 
+* [CollectionExtensions](library/src/main/java/com/tazkiyatech/utils/collections/CollectionExtensions.kt) – Provides a Kotlin extension function for checking whether a `Collection` contains any element in another collection.
 * [ImmutableList](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableList.java) – Provides a helper method for creating immutable copies of `java.util.List` instances
 * [ImmutableMap](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableMap.java) – Provides a helper method for creating immutable copies of `java.util.Map` instances.
 * [ImmutableSet](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableSet.java) – Provides a helper method for creating immutable copies of `java.util.Set` instances.
-* [ListExtensions](library/src/main/java/com/tazkiyatech/utils/collections/ListExtensions.kt) – Provides a Kotlin extension function for joining a `java.util.List` of `java.lang.String` objects into a single `java.lang.String` object.
+* [ListExtensions](library/src/main/java/com/tazkiyatech/utils/collections/ListExtensions.kt) – Provides a Kotlin extension function for joining a `List` of `String` objects into a single `String` object.
 
 ## Database
 
@@ -24,7 +25,7 @@ This library contains a mixture of small helper classes, functions and views use
 
 ## Lang
 
-* [CharSequenceExtensions](library/src/main/java/com/tazkiyatech/utils/lang/CharSequenceExtensions.kt) – Provides a number of Kotlin extension functions for the `java.lang.CharSequence` class.
+* [CharSequenceExtensions](library/src/main/java/com/tazkiyatech/utils/lang/CharSequenceExtensions.kt) – Provides a number of Kotlin extension functions for the `CharSequence` class.
 
 ## Network
 
@@ -33,8 +34,8 @@ This library contains a mixture of small helper classes, functions and views use
 ## Streams
 
 * [StreamCopier](library/src/main/java/com/tazkiyatech/utils/streams/StreamCopier.java) – Provides an easy method for copying the contents of an input stream to an output stream.
-* [StringInputStream](library/src/main/java/com/tazkiyatech/utils/streams/StringInputStream.java) – Provides an easy method for reading in the contents of an input stream and converting it to a `java.lang.String` instance.
-* [StringOutputStream](library/src/main/java/com/tazkiyatech/utils/streams/StringOutputStream.java) – Provides an easy method for writing a `java.lang.String` instance to an output stream.
+* [StringInputStream](library/src/main/java/com/tazkiyatech/utils/streams/StringInputStream.java) – Provides an easy method for reading in the contents of an input stream and converting it to a `String` instance.
+* [StringOutputStream](library/src/main/java/com/tazkiyatech/utils/streams/StringOutputStream.java) – Provides an easy method for writing a `String` instance to an output stream.
 
 ## Views
 
@@ -50,5 +51,5 @@ To use the above utilities within your app simply add the following repository a
         jcenter()
     }
     dependencies {
-        implementation 'com.tazkiyatech:android-utils:0.1.2'
+        implementation 'com.tazkiyatech:android-utils:0.1.3'
     }
