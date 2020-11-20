@@ -11,8 +11,8 @@ class CollectionExtensionsUnitTest {
 
     @ParameterizedTest(name = "collection={0}, input={1}, expected={2}")
     @MethodSource("provideArguments")
-    fun containsAny_when_elements_is_collection(collection: Collection<String>,
-                                                input: Collection<String>,
+    fun containsAny_when_elements_is_collection(collection: Collection<Any>,
+                                                input: Collection<Any>,
                                                 expected: Boolean) {
         // When.
         val actual = collection.containsAny(input)
@@ -23,8 +23,8 @@ class CollectionExtensionsUnitTest {
 
     @ParameterizedTest(name = "collection={0}, input={1}, expected={2}")
     @MethodSource("provideArguments")
-    fun containsAny_when_elements_is_vararg(collection: Collection<String>,
-                                            input: Collection<String>,
+    fun containsAny_when_elements_is_vararg(collection: Collection<Any>,
+                                            input: Collection<Any>,
                                             expected: Boolean) {
         // When.
         val actual = collection.containsAny(*input.toTypedArray())
@@ -39,9 +39,9 @@ class CollectionExtensionsUnitTest {
         @Suppress("unused")
         fun provideArguments(): Stream<Arguments> {
             return Stream.of(
-                    arguments(emptyList<String>(), emptyList<String>(), false),
-                    arguments(emptyList<String>(), listOf("a", "b", "c"), false),
-                    arguments(listOf("a", "b", "c"), emptyList<String>(), false),
+                    arguments(emptyList<Any>(), emptyList<Any>(), false),
+                    arguments(emptyList<Any>(), listOf("a", "b", "c"), false),
+                    arguments(listOf("a", "b", "c"), emptyList<Any>(), false),
                     arguments(listOf("a", "b", "c"), listOf("d"), false),
                     arguments(listOf("a", "b", "c"), listOf("a"), true),
                     arguments(listOf("a", "b", "c"), listOf("b", "c"), true),
