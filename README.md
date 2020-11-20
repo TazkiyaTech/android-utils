@@ -4,7 +4,8 @@ This library contains a mixture of small helper classes, functions and views use
 
 ## Collections
 
-* [CollectionExtensions](library/src/main/java/com/tazkiyatech/utils/collections/CollectionExtensions.kt) – Provides a Kotlin extension function for checking whether a `Collection` contains any element in another collection.
+* [ArrayExtensions](library/src/main/java/com/tazkiyatech/utils/collections/ArrayExtensions.kt) – Provides a Kotlin extension function for checking whether an `Array` contains any of the elements in another array.
+* [CollectionExtensions](library/src/main/java/com/tazkiyatech/utils/collections/CollectionExtensions.kt) – Provides a Kotlin extension function for checking whether a `Collection` contains any of the elements in another collection.
 * [ImmutableList](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableList.java) – Provides a helper method for creating immutable copies of `java.util.List` instances
 * [ImmutableMap](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableMap.java) – Provides a helper method for creating immutable copies of `java.util.Map` instances.
 * [ImmutableSet](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableSet.java) – Provides a helper method for creating immutable copies of `java.util.Set` instances.
@@ -51,5 +52,5 @@ To use the above utilities within your app simply add the following repository a
         jcenter()
     }
     dependencies {
-        implementation 'com.tazkiyatech:android-utils:0.1.3'
+        implementation 'com.tazkiyatech:android-utils:0.1.4'
     }
