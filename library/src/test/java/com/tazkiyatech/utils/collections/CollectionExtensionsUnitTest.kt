@@ -43,7 +43,8 @@ class CollectionExtensionsUnitTest {
                     arguments(emptyList<String>(), listOf("a", "b", "c"), false),
                     arguments(listOf("a", "b", "c"), emptyList<String>(), false),
                     arguments(listOf("a", "b", "c"), listOf("d"), false),
-                    arguments(listOf("a", "b", "c"), listOf("c"), true),
+                    arguments(listOf("a", "b", "c"), listOf("a"), true),
+                    arguments(listOf("a", "b", "c"), listOf("b", "c"), true),
             )
         }
     }
