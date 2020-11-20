@@ -1,13 +1,11 @@
-# General folders
-/.idea
+# General folders and files
 /.gradle
-/captures
-/out
 /projectFilesBackup*
+/local.properties
 
-# General files
-.DS_Store
-local.properties
+# JetBrains folders and files
+/.idea/*
+!/.idea/codeStyles
 *.iml
 
 # Build folders
