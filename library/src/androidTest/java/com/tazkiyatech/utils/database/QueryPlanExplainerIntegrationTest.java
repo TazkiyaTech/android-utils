@@ -5,6 +5,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.NonNull;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,10 +17,6 @@ import org.junit.runner.RunWith;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.test.core.app.ApplicationProvider;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.junit.Assert.assertEquals;
 
@@ -30,9 +30,6 @@ public class QueryPlanExplainerIntegrationTest {
     public void setUp() {
         someDatabase = new SomeDatabase(getContext());
         someDatabase.createTable();
-        someDatabase.createRecord(1, "1");
-        someDatabase.createRecord(2, "2");
-        someDatabase.createRecord(3, "3");
 
         queryPlanExplainer = new QueryPlanExplainer(someDatabase.getReadableDatabase());
     }
@@ -44,37 +41,21 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_noWhereClauseProvided_1() {
+    public void explainQueryPlanForSelectStatement_when_no_where_clause_provided_1() {
         // Given.
-        List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SCAN TABLE TableA"
-                )
-        );
+        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow("SCAN TABLE TableA"));
 
         // When.
-        List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSqlStatement(
-                "SELECT * FROM TableA"
-        );
+        List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSqlStatement("SELECT * FROM TableA");
 
         // Then.
         assertEquals(expected, actual);
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_noWhereClauseProvided_2() {
+    public void explainQueryPlanForSelectStatement_when_no_where_clause_provided_2() {
         // Given.
-        List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SCAN TABLE TableA"
-                )
-        );
+        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow("SCAN TABLE TableA"));
 
         // When.
         List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSelectStatement(
@@ -93,37 +74,21 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForUpdateStatement_when_noWhereClauseProvided_1() {
+    public void explainQueryPlanForUpdateStatement_when_no_where_clause_provided_1() {
         // Given.
-        List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SCAN TABLE TableA"
-                )
-        );
+        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow("SCAN TABLE TableA"));
 
         // When.
-        List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSqlStatement(
-                "UPDATE TableA SET ColumnB = 1"
-        );
+        List<QueryPlanRow> actual = queryPlanExplainer.explainQueryPlanForSqlStatement("UPDATE TableA SET ColumnB = 1");
 
         // Then.
         assertEquals(expected, actual);
     }
 
     @Test
-    public void explainQueryPlanForUpdateStatement_when_noWhereClauseProvided_2() {
+    public void explainQueryPlanForUpdateStatement_when_no_where_clause_provided_2() {
         // Given.
-        List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SCAN TABLE TableA"
-                )
-        );
+        List<QueryPlanRow> expected = Collections.singletonList(new QueryPlanRow("SCAN TABLE TableA"));
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("ColumnB", 1);
@@ -141,15 +106,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnA_1() {
+    public void explainQueryPlanForSelectStatement_when_where_clause_matches_ColumnA_1() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)")
         );
 
         // When.
@@ -162,15 +122,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnA_2() {
+    public void explainQueryPlanForSelectStatement_when_where_clause_matches_ColumnA_2() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)")
         );
 
         // When.
@@ -190,15 +145,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnA_1() {
+    public void explainQueryPlanForUpdateStatement_when_where_clause_matches_ColumnA_1() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)")
         );
 
         // When.
@@ -211,15 +161,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnA_2() {
+    public void explainQueryPlanForUpdateStatement_when_where_clause_matches_ColumnA_2() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INTEGER PRIMARY KEY (rowid=?)")
         );
 
         ContentValues contentValues = new ContentValues();
@@ -238,15 +183,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnB_1() {
+    public void explainQueryPlanForSelectStatement_when_where_clause_matches_ColumnB_1() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)")
         );
 
         // When.
@@ -259,15 +199,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnB_2() {
+    public void explainQueryPlanForSelectStatement_when_where_clause_matches_ColumnB_2() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)")
         );
 
         // When.
@@ -287,15 +222,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnB_1() {
+    public void explainQueryPlanForUpdateStatement_when_where_clause_matches_ColumnB_1() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)")
         );
 
         // When.
@@ -308,15 +238,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnB_2() {
+    public void explainQueryPlanForUpdateStatement_when_where_clause_matches_ColumnB_2() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)")
         );
 
         ContentValues contentValues = new ContentValues();
@@ -338,12 +263,7 @@ public class QueryPlanExplainerIntegrationTest {
     public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnC_1() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)")
         );
 
         // When.
@@ -359,12 +279,7 @@ public class QueryPlanExplainerIntegrationTest {
     public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnC_2() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)")
         );
 
         // When.
@@ -386,12 +301,7 @@ public class QueryPlanExplainerIntegrationTest {
     public void explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnC_1() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)")
         );
 
         // When.
@@ -407,12 +317,7 @@ public class QueryPlanExplainerIntegrationTest {
     public void explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnC_2() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)")
         );
 
         ContentValues contentValues = new ContentValues();
@@ -423,22 +328,18 @@ public class QueryPlanExplainerIntegrationTest {
                 "TableA",
                 contentValues,
                 "ColumnC = ? ",
-                new String[]{"1"});
+                new String[]{"1"}
+        );
 
         // Then.
         assertEquals(expected, actual);
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnBAndColumnC_1() {
+    public void explainQueryPlanForSelectStatement_when_where_clause_matches_ColumnB_and_ColumnC_1() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=? AND ColumnC=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=? AND ColumnC=?)")
         );
 
         // When.
@@ -451,15 +352,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnBAndColumnC_2() {
+    public void explainQueryPlanForSelectStatement_when_where_clause_matches_ColumnB_and_ColumnC_2() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=? AND ColumnC=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=? AND ColumnC=?)")
         );
 
         // When.
@@ -478,15 +374,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnBAndColumnC_1() {
+    public void explainQueryPlanForUpdateStatement_when_where_clause_matches_ColumnB_and_ColumnC_1() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INDEX ColumnB_ColumnC_on_TableA (ColumnB=? AND ColumnC=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INDEX ColumnB_ColumnC_on_TableA (ColumnB=? AND ColumnC=?)")
         );
 
         // When.
@@ -499,15 +390,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForUpdateStatement_when_whereClauseMatchesColumnBAndColumnC_2() {
+    public void explainQueryPlanForUpdateStatement_when_where_clause_matches_ColumnB_and_ColumnC_2() {
         // Given.
         List<QueryPlanRow> expected = Collections.singletonList(
-                new QueryPlanRow(
-                        0,
-                        0,
-                        0,
-                        "SEARCH TABLE TableA USING INDEX ColumnB_ColumnC_on_TableA (ColumnB=? AND ColumnC=?)"
-                )
+                new QueryPlanRow("SEARCH TABLE TableA USING INDEX ColumnB_ColumnC_on_TableA (ColumnB=? AND ColumnC=?)")
         );
 
         ContentValues contentValues = new ContentValues();
@@ -525,14 +411,14 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnBOrColumnC() {
+    public void explainQueryPlanForSelectStatement_when_where_clause_matches_ColumnB_or_ColumnC() {
         // Given.
-        QueryPlanRow expectedQueryPlanRow1 = new QueryPlanRow(0, 0, 0, "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)");
-        QueryPlanRow expectedQueryPlanRow2 = new QueryPlanRow(0, 0, 0, "SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)");
-
         List<QueryPlanRow> expected = Arrays.asList(
-                expectedQueryPlanRow1,
-                expectedQueryPlanRow2
+                new QueryPlanRow("MULTI-INDEX OR"),
+                new QueryPlanRow("INDEX 1"),
+                new QueryPlanRow("SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)"),
+                new QueryPlanRow("INDEX 2"),
+                new QueryPlanRow("SEARCH TABLE TableA USING INDEX ColumnC_on_TableA (ColumnC=?)")
         );
 
         // When.
@@ -545,10 +431,10 @@ public class QueryPlanExplainerIntegrationTest {
     }
 
     @Test
-    public void explainQueryPlanForSelectStatement_when_whereClauseMatchesColumnB_and_orderByColumnA() {
+    public void explainQueryPlanForSelectStatement_when_where_clause_matches_ColumnB_and_orderBy_matches_ColumnA() {
         // Given.
-        QueryPlanRow queryPlanRow1 = new QueryPlanRow(0, 0, 0, "SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)");
-        QueryPlanRow queryPlanRow2 = new QueryPlanRow(0, 0, 0, "USE TEMP B-TREE FOR ORDER BY");
+        QueryPlanRow queryPlanRow1 = new QueryPlanRow("SEARCH TABLE TableA USING COVERING INDEX ColumnB_ColumnC_on_TableA (ColumnB=?)");
+        QueryPlanRow queryPlanRow2 = new QueryPlanRow("USE TEMP B-TREE FOR ORDER BY");
 
         List<QueryPlanRow> expected = Arrays.asList(
                 queryPlanRow1,
@@ -627,19 +513,10 @@ public class QueryPlanExplainerIntegrationTest {
 
         void dropTable() {
             SQLiteDatabase database = getWritableDatabase();
+
             database.execSQL(DROP_TABLE_A);
             database.execSQL(DROP_INDEX_COLUMN_B_COLUMN_C_FOR_TABLE_A);
             database.execSQL(DROP_INDEX_COLUMN_C_FOR_TABLE_A);
-        }
-
-        long createRecord(int columnBValue, String columnCValue) {
-            SQLiteDatabase database = getWritableDatabase();
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("ColumnB", columnBValue);
-            contentValues.put("ColumnC", columnCValue);
-
-            return database.insert("TableA", null, contentValues);
         }
     }
 }

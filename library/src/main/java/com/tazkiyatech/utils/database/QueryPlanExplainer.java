@@ -3,9 +3,10 @@ package com.tazkiyatech.utils.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,7 @@ import java.util.Set;
  */
 public class QueryPlanExplainer {
 
-    @NonNull
-    private final SQLiteDatabase database;
+    @NonNull private final SQLiteDatabase database;
 
     /**
      * Constructor.
@@ -174,32 +174,20 @@ public class QueryPlanExplainer {
      */
     private List<QueryPlanRow> executeExplainQueryPlanStatement(@NonNull String sql,
                                                                 @Nullable String[] selectionArgs) {
-        Cursor cursor = null;
 
-        try {
-            cursor = database.rawQuery(sql, selectionArgs);
+        try (Cursor cursor = database.rawQuery(sql, selectionArgs)) {
 
             List<QueryPlanRow> queryPlanRowList = new ArrayList<>();
 
             while (cursor.moveToNext()) {
-                final int colIndexSelectId = cursor.getColumnIndex("selectid");
-                final int colIndexOrder = cursor.getColumnIndex("order");
-                final int colIndexFrom = cursor.getColumnIndex("from");
-                final int colIndexDetail = cursor.getColumnIndex("detail");
+                final int detailColumnIndex = cursor.getColumnIndex("detail");
 
-                final int selectId = cursor.getInt(colIndexSelectId);
-                final int order = cursor.getInt(colIndexOrder);
-                final int from = cursor.getInt(colIndexFrom);
-                final String detail = cursor.getString(colIndexDetail);
+                final String detail = cursor.getString(detailColumnIndex);
 
-                queryPlanRowList.add(new QueryPlanRow(selectId, order, from, detail));
+                queryPlanRowList.add(new QueryPlanRow(detail));
             }
 
             return queryPlanRowList;
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 }

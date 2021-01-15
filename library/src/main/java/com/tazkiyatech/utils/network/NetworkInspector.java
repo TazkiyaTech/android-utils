@@ -59,11 +59,7 @@ public class NetworkInspector {
 
             int exitValue = process.waitFor();
 
-            if (exitValue == 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return exitValue == 0;
         } catch (Exception ex) {
             return false;
         }
@@ -76,11 +72,7 @@ public class NetworkInspector {
         try {
             InetAddress inetAddress = InetAddress.getByName("www.google.com");
 
-            if (inetAddress != null && !inetAddress.toString().equals("")) {
-                return true;
-            } else {
-                return false;
-            }
+            return inetAddress != null && !inetAddress.toString().equals("");
         } catch (Exception ex) {
             return false;
         }
