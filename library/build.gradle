@@ -62,7 +62,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
-    testImplementation "org.hamcrest:hamcrest-core:2.2"
+    testImplementation 'org.hamcrest:hamcrest-core:2.2'
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5_version"
     testImplementation "org.junit.jupiter:junit-jupiter-engine:$junit5_version"
     testImplementation "org.junit.jupiter:junit-jupiter-params:$junit5_version"
@@ -95,7 +95,7 @@ task generateJavadocJar(type: Jar) {
 
 publishing {
     publications {
-        UtilsLibrary(MavenPublication) {
+        AndroidUtils(MavenPublication) {
             from components.android
             artifact generateJavadocJar
             artifact generateSourcesJar
@@ -110,18 +110,18 @@ publishing {
 bintray {
     user = getProperty('bintray_user')
     key = getProperty('bintray_api_key')
-    publications = ['UtilsLibrary']
+    publications = ['AndroidUtils']
     pkg {
         repo = 'maven'
         name = getProperty('projectArtifactName')
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://bitbucket.org/adilson05uk/utils-library.git'
+        vcsUrl = 'https://github.com/adil-hussain-84/android-utils.git'
 
         version {
             name = getProperty('projectVersionName')
             desc = 'Latest release!'
             released = new Date()
-            vcsTag = 'release_' + getProperty('projectVersionName')
+            vcsTag = 'release-' + getProperty('projectVersionName')
         }
     }
 }
