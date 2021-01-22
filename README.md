@@ -11,10 +11,6 @@ This library contains a mixture of small helper classes, functions and views use
 * [ImmutableSet](library/src/main/java/com/tazkiyatech/utils/collections/ImmutableSet.java) – Provides a helper method for creating immutable copies of `java.util.Set` instances.
 * [ListExtensions](library/src/main/java/com/tazkiyatech/utils/collections/ListExtensions.kt) – Provides a Kotlin extension function for joining a `List` of `String` objects into a single `String` object.
 
-## Database
-
-* [QueryPlanExplainer](library/src/main/java/com/tazkiyatech/utils/database/QueryPlanExplainer.java) – Provides helper methods for explaining the strategy or plan that SQLite will use to implement a specific SQL query.
-
 ## Display
 
 * [Colors](library/src/main/java/com/tazkiyatech/utils/display/Colors.kt) – Provides a number of Kotlin extension functions for converting between different colour representations.
@@ -52,5 +48,5 @@ To use the above utilities within your app simply add the following repository a
         jcenter()
     }
     dependencies {
-        implementation 'com.tazkiyatech:android-utils:0.1.4'
+        implementation 'com.tazkiyatech:android-utils:0.1.6'
     }
