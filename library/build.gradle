@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
 apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'signing'
 
 group = getProperty('projectGroupName')
 version = getProperty('projectVersionName')
@@ -66,9 +67,9 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-engine:$junit5_version"
     testImplementation "org.junit.jupiter:junit-jupiter-params:$junit5_version"
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test:runner:1.3.0'
-    androidTestImplementation 'androidx.test:rules:1.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
 }
 
 task generateSourcesJar(type: Jar) {
@@ -103,6 +104,30 @@ afterEvaluate {
                 groupId getProperty('projectGroupName')
                 artifactId getProperty('projectArtifactName')
                 version getProperty('projectVersionName')
+
+                pom {
+                    name = getProperty('projectArtifactName')
+                    description = 'An Android library containing a mixture of small helper classes, functions and views useful for Android projects.'
+                    url = 'https://github.com/TazkiyaTech/android-utils'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'adil-hussain-84'
+                            name = 'Adil Hussain'
+                            email = 'adilson05uk@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/TazkiyaTech/android-utils.git'
+                        developerConnection = 'scm:git:ssh://github.com:TazkiyaTech/android-utils.git'
+                        url = 'https://github.com/TazkiyaTech/android-utils/tree/master'
+                    }
+                }
             }
             debug(MavenPublication) {
                 from components.debug
@@ -114,5 +139,20 @@ afterEvaluate {
                 version getProperty('projectVersionName')
             }
         }
+
+        repositories {
+            maven {
+                url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+                credentials {
+                    username getProperty('sonatype_username')
+                    password getProperty('sonatype_password')
+                }
+            }
+        }
+    }
+
+    signing {
+        // the 'signing.keyId', 'signing.password' and 'signing.secretKeyRingFile' properties required by this task are defined outside of this project in the '~/.gradle/gradle.properties' file
+        sign publishing.publications.release
     }
 }
