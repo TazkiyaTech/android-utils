@@ -43,10 +43,10 @@ This library contains a mixture of small helper classes, functions and views use
 ## Setup
 
 To use the above utilities within your app simply add the following repository and dependency declaration in the `build.gradle` file of your Android project:
- 
+
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        implementation 'com.tazkiyatech:android-utils:0.1.6'
+        implementation 'com.tazkiyatech:android-utils:0.1.8'
     }
