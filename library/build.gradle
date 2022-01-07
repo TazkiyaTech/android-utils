@@ -78,17 +78,14 @@ task generateSourcesJar(type: Jar) {
     group = 'build'
 }
 
-task generateJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    outputFormat = 'javadoc'
-    outputDirectory = "$buildDir/docs/javadoc"
-    description = "Generates the Javadoc for this module."
-    group = 'documentation'
+dokkaJavadoc.configure {
+    outputDirectory.set(file("$buildDir/docs/javadoc"))
 }
 
 task generateJavadocJar(type: Jar) {
-    from generateJavadoc
-    archiveClassifier.set('javadoc')
-    destinationDirectory.set(file("$buildDir/outputs/javadoc"))
+    from dokkaJavadoc
+    classifier 'javadoc'
+    destinationDirectory = file("$buildDir/outputs/javadoc")
     description = "Builds up a jar of this module's Javadoc."
     group = 'build'
 }
