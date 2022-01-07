@@ -48,5 +48,5 @@ To use the above utilities within your app simply add the following repository a
         mavenCentral()
     }
     dependencies {
-        implementation 'com.tazkiyatech:android-utils:0.1.8'
+        implementation 'com.tazkiyatech:android-utils:0.2.0'
     }
