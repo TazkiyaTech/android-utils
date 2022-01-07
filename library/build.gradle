@@ -78,14 +78,9 @@ task generateSourcesJar(type: Jar) {
     group = 'build'
 }
 
-dokkaJavadoc.configure {
-    outputDirectory.set(file("$buildDir/docs/javadoc"))
-}
-
 task generateJavadocJar(type: Jar) {
     from dokkaJavadoc
     classifier 'javadoc'
-    destinationDirectory = file("$buildDir/outputs/javadoc")
     description = "Builds up a jar of this module's Javadoc."
     group = 'build'
 }
