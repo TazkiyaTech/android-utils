@@ -11,16 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * An extension of {@link RecyclerView.ItemDecoration} that
- * draws a divider between each item in a {@link RecyclerView}.
+ * draws a colored divider between each item in a {@link RecyclerView}.
  * <p>
  * Unlike the {@link androidx.recyclerview.widget.DividerItemDecoration} class offered by the
  * <a href="https://maven.google.com/web/index.html#androidx.recyclerview:recyclerview">recyclerview</a>
- * library, this class does not draw the divider under the final item in the {@link RecyclerView}.
+ * library, this class does not draw a divider under the final item in the {@link RecyclerView}.
  * <p>
  * See <a href="https://stackoverflow.com/a/27037230/1071320">this answer</a> in Stack Overflow
  * for a better understanding of {@link RecyclerView.ItemDecoration}.
  */
-public class RecyclerViewDividerItemDecoration extends RecyclerView.ItemDecoration {
+public class RecyclerViewColoredDividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private final Drawable dividerDrawable;
     private final int dividerHeightPixels;
@@ -35,10 +35,10 @@ public class RecyclerViewDividerItemDecoration extends RecyclerView.ItemDecorati
      * @param dividerMarginLeftPixels  The left margin to apply to the divider (in pixels).
      * @param dividerMarginRightPixels The right margin to apply to the divider (in pixels).
      */
-    public RecyclerViewDividerItemDecoration(@ColorInt int dividerColor,
-                                             int dividerHeightPixels,
-                                             int dividerMarginLeftPixels,
-                                             int dividerMarginRightPixels) {
+    public RecyclerViewColoredDividerItemDecoration(@ColorInt int dividerColor,
+                                                    int dividerHeightPixels,
+                                                    int dividerMarginLeftPixels,
+                                                    int dividerMarginRightPixels) {
         this.dividerDrawable = new ColorDrawable(dividerColor);
         this.dividerHeightPixels = dividerHeightPixels;
         this.dividerMarginLeftPixels = dividerMarginLeftPixels;
