@@ -36,8 +36,7 @@ This library contains a mixture of small helper classes, functions and views use
 
 ## Views
 
-* [RecyclerViewColoredDividerItemDecoration](library/src/main/java/com/tazkiyatech/utils/views/RecyclerViewColoredDividerItemDecoration.java) – An extension of the `androidx.recyclerview.widget.RecyclerView.ItemDecoration` class that draws a colored divider between each item in a `RecyclerView`.
-* [RecyclerViewVerticalGapItemDecoration](library/src/main/java/com/tazkiyatech/utils/views/RecyclerViewVerticalGapItemDecoration.java) – An extension of the `androidx.recyclerview.widget.RecyclerView.ItemDecoration` class that draws a vertical gap between each item in a `RecyclerView`.
+* [RecyclerViewExtensions](library/src/main/java/com/tazkiyatech/utils/views/RecyclerViewExtensions.kt) – Provides Kotlin extension functions for drawing a colored divider or vertical gap between items in a `RecyclerView`.
 * [SimpleTouchListener](library/src/main/java/com/tazkiyatech/utils/views/SimpleTouchListener.java) – An implementation of the `android.view.View.OnTouchListener` interface that simply reports when a `android.view.View` is touched down and when the touch is subsequently released or canceled.
 * [SpinnerLookalikeView](library/src/main/java/com/tazkiyatech/utils/views/SpinnerLookalikeView.java) – An extension of the `android.widget.FrameLayout` class that looks like an `android.widget.Spinner` view.
 
@@ -50,6 +49,6 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'com.tazkiyatech:android-utils:0.2.2'
+    implementation 'com.tazkiyatech:android-utils:0.2.3'
 }
 ```
