@@ -12,6 +12,7 @@ File[] proGuardDebugFileCollection = file('./proguard-debug').listFiles()
 
 android {
     compileSdkVersion 31
+    namespace 'com.tazkiyatech.utils'
 
     defaultConfig {
         minSdkVersion 19
