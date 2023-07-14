@@ -3,9 +3,6 @@ apply plugin: 'maven-publish'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'signing'
 
-group = getProperty('projectGroupName')
-version = getProperty('projectVersionName')
-
 File[] proGuardFileCollection = file('./proguard').listFiles()
 File[] proGuardDebugFileCollection = file('./proguard-debug').listFiles()
 
