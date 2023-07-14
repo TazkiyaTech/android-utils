@@ -70,11 +70,11 @@ This library contains a mixture of small helper classes, functions and views use
 To use the above utilities within your app simply add the following repository and dependency declaration in
 the `build.gradle` file of your Android project:
 
-```gradle
+```groovy
 repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'com.tazkiyatech:android-utils:0.2.4'
+    implementation 'com.tazkiyatech:android-utils:0.2.5'
 }
 ```
