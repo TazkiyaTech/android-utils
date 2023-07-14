@@ -50,6 +50,14 @@ android {
         abortOnError true
     }
 
+    publishing {
+        multipleVariants {
+            allVariants()
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
+
     testOptions {
         unitTests.all {
             useJUnitPlatform()
@@ -72,13 +80,6 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.5.0'
 }
 
-task generateSourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    archiveClassifier.set('sources')
-    description = "Builds up a jar of this module's sources."
-    group = 'build'
-}
-
 task generateJavadocJar(type: Jar) {
     from dokkaJavadoc
     archiveClassifier.set("javadoc")
@@ -92,7 +93,6 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 artifact generateJavadocJar
-//                artifact generateSourcesJar
 
                 groupId getProperty('projectGroupName')
                 artifactId getProperty('projectArtifactName')
@@ -129,7 +129,6 @@ afterEvaluate {
             debug(MavenPublication) {
                 from components.debug
                 artifact generateJavadocJar
-//                artifact generateSourcesJar
 
                 groupId getProperty('projectGroupName')
                 artifactId getProperty('projectArtifactName')
