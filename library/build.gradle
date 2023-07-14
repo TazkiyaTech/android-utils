@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
-apply plugin: 'org.jetbrains.dokka'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'signing'
 
@@ -51,8 +50,7 @@ android {
     }
 
     publishing {
-        multipleVariants {
-            allVariants()
+        singleVariant('release') {
             withJavadocJar()
             withSourcesJar()
         }
@@ -80,19 +78,11 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.5.0'
 }
 
-task generateJavadocJar(type: Jar) {
-    from dokkaJavadoc
-    archiveClassifier.set("javadoc")
-    description = "Builds up a jar of this module's Javadoc."
-    group = 'build'
-}
-
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 from components.release
-                artifact generateJavadocJar
 
                 groupId getProperty('projectGroupName')
                 artifactId getProperty('projectArtifactName')
@@ -125,14 +115,6 @@ afterEvaluate {
                         url = 'https://github.com/TazkiyaTech/android-utils'
                     }
                 }
-            }
-            debug(MavenPublication) {
-                from components.debug
-                artifact generateJavadocJar
-
-                groupId getProperty('projectGroupName')
-                artifactId getProperty('projectArtifactName')
-                version getProperty('projectVersionName')
             }
         }
 
