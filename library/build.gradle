@@ -3,9 +3,6 @@ apply plugin: 'maven-publish'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'signing'
 
-File[] proGuardFileCollection = file('./proguard').listFiles()
-File[] proGuardDebugFileCollection = file('./proguard-debug').listFiles()
-
 android {
     compileSdkVersion 33
     namespace 'com.tazkiyatech.utils'
@@ -20,16 +17,11 @@ android {
         debug {
             minifyEnabled false
             shrinkResources false
-            proguardFile(getDefaultProguardFile('proguard-android.txt'))
-            proguardFiles(proGuardFileCollection)
-            proguardFiles(proGuardDebugFileCollection)
         }
 
         release {
             minifyEnabled false
             shrinkResources false
-            proguardFile(getDefaultProguardFile('proguard-android.txt'))
-            proguardFiles(proGuardFileCollection)
         }
     }
 
