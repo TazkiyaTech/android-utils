@@ -22,23 +22,15 @@ This library contains a mixture of small helper classes, functions and views use
 
 * [Colors](library/src/main/java/com/tazkiyatech/utils/display/Colors.kt) – Provides a number of Kotlin
   extension functions for converting between different colour representations.
-* [DialogFragmentExtensions](library/src/main/java/com/tazkiyatech/utils/display/DialogFragmentExtensions.kt)
-  – Provides a Kotlin extension function which allows a `DialogFragment` to be shown even after the activity's
-  state has been saved.
 * [Dimensions](library/src/main/java/com/tazkiyatech/utils/display/Dimensions.kt) – Provides a number of
   Kotlin extension functions for converting between different dimension units.
-* [SpannableExtensions](library/src/main/java/com/tazkiyatech/utils/display/SpannableExtensions.kt) – Provides
-  a number of Kotlin extension functions for adding spans to an `android.text.Spannable` instance.
-* [SpannableStringBuilderExtensions](library/src/main/java/com/tazkiyatech/utils/display/SpannableStringBuilderExtensions.kt)
-  – Provides a number of Kotlin extension functions for adding spans to
-  an `android.text.SpannableStringBuilder` instance.
 * [Themes](library/src/main/java/com/tazkiyatech/utils/display/Themes.kt) – Provides a number of Kotlin
   extension functions for getting colours such as the primary text colour out of the theme.
 
-## Lang
+## Fragments
 
-* [CharSequenceExtensions](library/src/main/java/com/tazkiyatech/utils/lang/CharSequenceExtensions.kt) –
-  Provides a number of Kotlin extension functions for the `CharSequence` class.
+* [DialogFragmentExtensions](library/src/main/java/com/tazkiyatech/utils/display/DialogFragmentExtensions.kt) –
+  Provides a Kotlin extension function which allows a `DialogFragment` to be shown even after the activity's state has been saved.
 
 ## Network
 
@@ -54,16 +46,24 @@ This library contains a mixture of small helper classes, functions and views use
 * [StringOutputStream](library/src/main/java/com/tazkiyatech/utils/streams/StringOutputStream.java) – Provides
   an easy method for writing a `String` instance to an output stream.
 
+## Text
+
+* [CharSequenceExtensions](library/src/main/java/com/tazkiyatech/utils/lang/CharSequenceExtensions.kt) –
+  Provides a number of Kotlin extension functions for the `CharSequence` class.
+* [SpannableExtensions](library/src/main/java/com/tazkiyatech/utils/display/SpannableExtensions.kt) – Provides
+  a number of Kotlin extension functions for adding spans to an `android.text.Spannable` instance.
+* [SpannableStringBuilderExtensions](library/src/main/java/com/tazkiyatech/utils/display/SpannableStringBuilderExtensions.kt) –
+  Provides a number of Kotlin extension functions for adding spans to an `android.text.SpannableStringBuilder` instance.
+
 ## Views
 
 * [RecyclerViewExtensions](library/src/main/java/com/tazkiyatech/utils/views/RecyclerViewExtensions.kt) –
-  Provides Kotlin extension functions for drawing a colored divider or a vertical gap between items in
-  a `RecyclerView`.
-* [SimpleTouchListener](library/src/main/java/com/tazkiyatech/utils/views/SimpleTouchListener.java) – An
-  implementation of the `android.view.View.OnTouchListener` interface that simply reports when
+  Provides Kotlin extension functions for drawing a colored divider or a vertical gap between items in a `RecyclerView`.
+* [SimpleTouchListener](library/src/main/java/com/tazkiyatech/utils/views/SimpleTouchListener.java) –
+  An implementation of the `android.view.View.OnTouchListener` interface that simply reports when
   a `android.view.View` is touched down and when the touch is subsequently released or canceled.
-* [SpinnerLookalikeView](library/src/main/java/com/tazkiyatech/utils/views/SpinnerLookalikeView.java) – An
-  extension of the `android.widget.FrameLayout` class that looks like an `android.widget.Spinner` view.
+* [SpinnerLookalikeView](library/src/main/java/com/tazkiyatech/utils/views/SpinnerLookalikeView.java) –
+  An extension of the `android.widget.FrameLayout` class that looks like an `android.widget.Spinner` view.
 
 ## Setup
 
