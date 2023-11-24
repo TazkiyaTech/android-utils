@@ -1,6 +1,6 @@
 # Android Utils Library
 
-This library contains a mixture of small helper classes, functions and views useful for Android projects.
+This library contains an assortment of small helper classes, functions and views useful for Android projects.
 
 ## Collections
 
