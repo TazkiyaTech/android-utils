@@ -2,6 +2,11 @@
   <code_scheme name="Project" version="173">
     <option name="RIGHT_MARGIN" value="110" />
     <option name="FORMATTER_TAGS_ENABLED" value="true" />
+    <option name="DO_NOT_FORMAT">
+      <list>
+        <fileSet type="globPattern" pattern="*.md" />
+      </list>
+    </option>
     <JavaCodeStyleSettings>
       <option name="DO_NOT_WRAP_AFTER_SINGLE_ANNOTATION" value="true" />
     </JavaCodeStyleSettings>
