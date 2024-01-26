@@ -14,5 +14,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = 'android-utils'
-include ':library'
+include(":library")
