@@ -1,5 +1,5 @@
 [versions]
-junit5 = "5.10.1"
+junit5 = "5.10.2"
 
 [libraries]
 appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.6.1" }
