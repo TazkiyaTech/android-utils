@@ -67,6 +67,6 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation("com.tazkiyatech:android-utils:1.0.0")
+    implementation("com.tazkiyatech:android-utils:2.0.0")
 }
 ```
