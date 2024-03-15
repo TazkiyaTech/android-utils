@@ -18,22 +18,21 @@ public class NetworkInspector {
     /**
      * Constructor.
      *
-     * @param context the {@link Context} used to get the {@link ConnectivityManager}.
+     * @param context The {@link Context} to use in order to get system services.
      */
     public NetworkInspector(@NonNull Context context) {
         this.context = context;
     }
 
     /**
-     * This method should not be called in the main/UI thread
-     * as it makes a network call.
+     * This method should not be called in the main/UI thread as it makes a network call.
      *
      * @return true iff the active network is connected and working.
      * @see #isActiveNetworkConnected()
      */
     public boolean isActiveNetworkConnectedAndWorking() {
         return isActiveNetworkConnected()
-                && (isGoogleReachableWithPing() || isGoogleReachableWithInetAddress());
+                && (isGoogleReachableWithInetAddress() || isGoogleReachableWithPing());
     }
 
     /**
@@ -44,9 +43,7 @@ public class NetworkInspector {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
-        return networkInfo != null
-                && networkInfo.isAvailable()
-                && networkInfo.isConnected();
+        return networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected();
     }
 
     /**
@@ -54,8 +51,7 @@ public class NetworkInspector {
      */
     boolean isGoogleReachableWithPing() {
         try {
-            Runtime runtime = Runtime.getRuntime();
-            Process process = runtime.exec("/system/bin/ping -c 1 www.google.com");
+            Process process = Runtime.getRuntime().exec("/system/bin/ping -c 1 google.com");
 
             int exitValue = process.waitFor();
 
@@ -70,9 +66,7 @@ public class NetworkInspector {
      */
     boolean isGoogleReachableWithInetAddress() {
         try {
-            InetAddress inetAddress = InetAddress.getByName("www.google.com");
-
-            return inetAddress != null && !inetAddress.toString().equals("");
+            return InetAddress.getByName("google.com").isReachable(5_000);
         } catch (Exception ex) {
             return false;
         }
