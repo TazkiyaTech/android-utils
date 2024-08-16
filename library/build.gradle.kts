@@ -67,7 +67,7 @@ tasks.withType<Test> {
 
 publishing {
     publications {
-        create<MavenPublication>("release") {
+        register<MavenPublication>("release") {
             afterEvaluate {
                 from(components["release"])
             }
